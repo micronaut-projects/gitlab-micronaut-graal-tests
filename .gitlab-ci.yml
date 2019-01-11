@@ -6,6 +6,13 @@ before_script:
 #  - wget https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
 #  - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
 #
+
+job_name:
+  variables:
+    CI_DEBUG_TRACE: "true"
+  script:
+    - pwd
+
 build_graal:
   script:
     - pwd
