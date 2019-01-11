@@ -40,6 +40,8 @@ micronaut-graal:
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
     - cd $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
+    - pwd
+    - ls -l
     - native-image --no-server \
              --allow-incomplete-classpath -cp build/libs/fresh-graal-0.1-all.jar \
              -H:ReflectionConfigurationFiles=reflect.json \
