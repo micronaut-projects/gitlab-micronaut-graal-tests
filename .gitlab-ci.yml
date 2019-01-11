@@ -19,4 +19,4 @@ build_graal:
     - cd $CI_PROJECT_DIR
     - git clone https://github.com/graemerocher/micronaut-graal-experiments.git
     - cd micronaut-graal-experiments/fresh-graal
-    - ./build-native-image
+    - ./build-native-image.sh
