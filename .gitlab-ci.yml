@@ -40,3 +40,6 @@ micronaut-graal:
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
     - ./build-native-image.sh $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
+    - ls -l
+    - ./fresh-graal &
+    - curl localhost:8080
