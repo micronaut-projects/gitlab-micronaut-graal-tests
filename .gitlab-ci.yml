@@ -1,9 +1,9 @@
 stages:
-  - graal
-  - micronaut_graal
+  - build
+  - micronaut
 
 build_graal:
-  stage: graal
+  stage: build
   script:
     - mkdir graal
     - cd graal
@@ -22,7 +22,7 @@ build_graal:
       - $CI_PROJECT_DIR/graal/graal/vm
 
 micronaut:
-  stage: micronaut_graal
+  stage: micronaut
   image: java:8
   script:
     - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
