@@ -4,7 +4,7 @@ before_script:
   - git clone https://github.com/oracle/graal
   - git clone https://github.com/graalvm/mx
   - wget https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-  - tar zxvf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
+  - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
 
 build_graal:
   script:
