@@ -1,3 +1,5 @@
+image: java:8
+
 before_script:
   - mkdir graal
   - cd graal
@@ -16,3 +18,7 @@ build_graal:
     - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
+    - cd $CI_PROJECT_DIR
+    - git clone https://github.com/graemerocher/micronaut-graal-experiments.git
+    - cd micronaut-graal-experiments/fresh-graal
+    - ./build-native-image
