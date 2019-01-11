@@ -40,4 +40,8 @@ micronaut-graal:
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
     - ./build-native-image.sh $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
-    - ./fresh-graal
+    #- ./fresh-graal
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/fresh-graal
