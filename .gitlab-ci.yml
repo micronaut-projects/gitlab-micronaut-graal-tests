@@ -17,7 +17,7 @@ build_graal:
     #- mx clean
     #- mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
   artifacts:
-    expire_in: 1 day
+    expire_in: 3 hours
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
 
