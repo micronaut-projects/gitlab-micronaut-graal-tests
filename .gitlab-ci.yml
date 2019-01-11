@@ -40,7 +40,13 @@ micronaut-graal:
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
     - ./build-native-image.sh $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
-    #- ./fresh-graal
+    - ./fresh-graal &
+    - echo $! > mn_graal.pid
+    - sleep 3
+    - curl localhost:8080
+    - sleep 1
+    - kill -9 `cat ./mn_graal.pid`
+    - exit 0
   artifacts:
     expire_in: 1 hour
     paths:
