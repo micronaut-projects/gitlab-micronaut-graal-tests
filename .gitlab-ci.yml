@@ -47,6 +47,7 @@ create-micronaut-graal:
     paths:
       - $CI_PROJECT_DIR/fresh-graal
 
+
 test-micronaut-graal:
   stage: test
   script:
