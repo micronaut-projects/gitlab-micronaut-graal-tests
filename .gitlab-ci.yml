@@ -1,16 +1,17 @@
 before_script:
   - mkdir graal
   - cd graal
-  - pwd
-  - echo $USER_HOME
 #  - git clone https://github.com/oracle/graal
 #  - git clone https://github.com/graalvm/mx
 #  - wget https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
 #  - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
 #
-#build_graal:
-#  script:
-#    - export PATH=$PWD/mx:$PATH
+build_graal:
+  script:
+    - pwd
+    - ls -l
+    - echo $USER_HOME
+    - export PATH=$PWD/mx:$PATH
 #    - export JAVA_HOME=$USER_HOME/graal/openjdk1.8.0_192-jvmci-0.53
 #    - cd graal/vm
 #    - mx clean
