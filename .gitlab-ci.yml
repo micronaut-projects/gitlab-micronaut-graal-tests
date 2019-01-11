@@ -13,3 +13,6 @@ build_graal:
     - cd graal/vm
     - mx clean
     - mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
+    - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
+    - export PATH=$GRAALVM_HOME/bin:$PATH
+    - native-image --version
