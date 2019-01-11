@@ -2,34 +2,53 @@ stages:
   - build
   - micronaut
 
-build_graal:
+build-graal:
   stage: build
   script:
     - mkdir graal
     - cd graal
-    #- git clone https://github.com/oracle/graal
-    #- git clone https://github.com/graalvm/mx
-    #- wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-    #- tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-    #- export PATH=$PWD/mx:$PATH
-    #- export JAVA_HOME=$CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
-    #- cd graal/vm
-    #- mx clean
-    #- mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
+    - git clone https://github.com/oracle/graal
+    - git clone https://github.com/graalvm/mx
+    - wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
+    - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
+    - export PATH=$PWD/mx:$PATH
+    - export JAVA_HOME=$CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
+    - cd graal/vm
+    - mx clean
+    - mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
   artifacts:
-    expire_in: 3 hours
+    expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
 
-micronaut:
-  stage: micronaut
+build-micronaut:
+  stage: build
   image: java:8
-  dependencies: ['build_graal']
+  script:
+    - git clone https://github.com/graemerocher/micronaut-graal-experiments.git
+    - cd micronaut-graal-experiments/fresh-graal
+    - ./gradlew assemble
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
+
+micronaut-graal:
+  stage: micronaut
+  dependencies: ['build']
   script:
     - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
-    - cd $CI_PROJECT_DIR
-    - git clone https://github.com/graemerocher/micronaut-graal-experiments.git
-    - cd micronaut-graal-experiments/fresh-graal
-    - ./build-native-image.sh
+    - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
+    - native-image --no-server \
+             --allow-incomplete-classpath -cp build/libs/fresh-graal-0.1-all.jar \
+             -H:ReflectionConfigurationFiles=reflect.json \
+             -H:EnableURLProtocols=http \
+             -H:IncludeResources="logback.xml|application.yml" \
+             -H:Name=fresh-graal \
+             -H:Class=fresh.graal.Application \
+             -H:+ReportUnsupportedElementsAtRuntime \
+             -H:+AllowVMInspection \
+             --rerun-class-initialization-at-runtime='sun.security.jca.JCAUtil$CachedSecureRandomHolder,javax.net.ssl.SSLContext' \
+             --delay-class-initialization-to-runtime=io.netty.handler.codec.http.HttpObjectEncoder,io.netty.handler.codec.http.websocketx.WebSocket00FrameEncoder,io.netty.handler.ssl.util.ThreadLocalInsecureRandom,com.sun.jndi.dns.DnsClient
