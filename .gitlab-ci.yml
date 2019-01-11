@@ -1,6 +1,7 @@
 stages:
   - build
   - micronaut
+  - test
 
 build-graal:
   stage: build
@@ -21,7 +22,7 @@ build-graal:
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
 
-build-micronaut:
+build-micronaut-app:
   stage: build
   image: java:8
   script:
@@ -33,21 +34,28 @@ build-micronaut:
     paths:
       - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
 
-micronaut-graal:
+
+create-micronaut-graal:
   stage: micronaut
   script:
     - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
     - ./build-native-image.sh $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
-    - ./fresh-graal &
-    - echo $! > mn_graal.pid
-    - sleep 3
-    - curl localhost:8080
-    - sleep 1
-    - kill -9 `cat ./mn_graal.pid`
-    - exit 0
   artifacts:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/fresh-graal
+
+test-micronaut-graal:
+  stage: test
+  script:
+    - ./fresh-graal &
+    - echo $! > mn_graal.pid
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080)
+    - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
+    - EXIT_STATUS=0
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
+    - kill -9 `cat ./mn_graal.pid`
+    - exit $EXIT_STATUS
