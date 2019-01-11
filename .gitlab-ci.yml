@@ -1,18 +1,29 @@
-before_script:
-  - mkdir graal
-  - cd graal
-  - git clone https://github.com/oracle/graal
-  - git clone https://github.com/graalvm/mx
-  - wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-  - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
+stages:
+  - graal
+  - micronaut_graal
 
 build_graal:
+  stage: graal
   script:
+    - mkdir graal
+    - cd graal
+    - git clone https://github.com/oracle/graal
+    - git clone https://github.com/graalvm/mx
+    - wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
+    - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
     - export PATH=$PWD/mx:$PATH
     - export JAVA_HOME=$CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
     - cd graal/vm
     - mx clean
     - mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/graal/graal/vm
+
+micronaut:
+  stage: micronaut_graal
+  image: java:8
+  script:
     - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
     - export PATH=$GRAALVM_HOME/bin:$PATH
     - native-image --version
