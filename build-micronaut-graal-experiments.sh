@@ -12,7 +12,5 @@ java -version
 
 git clone https://github.com/graemerocher/micronaut-graal-experiments.git
 cd micronaut-graal-experiments/fresh-graal
-#./gradlew --no-daemon --console=plain assemble
-
-export GRADLE_OPTS="--no-daemon --console=plain"
+export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
 ./build-native-image.sh
