@@ -33,7 +33,7 @@ micronaut-build-graal-experiments:
   artifacts:
     expire_in: 1 hour
     paths:
-      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
+      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal
   script:
     - if [ ! -f .trigger_build ]; then exit 0; fi
     #- apt update && apt install -y openjdk-8-jdk
@@ -43,7 +43,7 @@ micronaut-build-graal-experiments:
 micronaut-test-graal-experiments:
   stage: test
   script:
-    - ./fresh-graal &
+    - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
     - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080)
