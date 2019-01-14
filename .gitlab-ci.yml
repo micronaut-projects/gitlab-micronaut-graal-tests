@@ -16,11 +16,12 @@ check-graal-repo:
 build-graal:
   stage: build
   script:
-    - if [[ -z "$(./check-run-build.sh)" ]]; then exit 0; fi
+    - if [ ! -f .trigger_build ]; then exit 0; fi
     - echo "Building Graal..."
 
 build-micronaut:
   stage: build
+  image: openjdk:8u191-jdk-alpine
   script:
-    - if [[ -z "$(./check-run-build.sh)" ]]; then exit 0; fi
+    - if [ ! -f .trigger_build ]; then exit 0; fi
     - echo "Building Micronaut..."
