@@ -1,6 +1,8 @@
 stages:
   - check
   - build
+  - test
+
 
 check-graal-repo:
   stage: check
@@ -13,15 +15,24 @@ check-graal-repo:
     - jq --version
     - ./should-trigger-the-build.sh
 
+
 build-graal:
   stage: build
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/graal/graal/vm
   script:
     - if [ ! -f .trigger_build ]; then exit 0; fi
-    - echo "Building Graal..."
+    - ./build-graal.sh
 
-build-micronaut:
-  stage: build
-  image: openjdk:8u191-jdk-alpine
+
+micronaut-test-graal-experiments:
+  stage: test
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
   script:
-    - if [ ! -f .trigger_build ]; then exit 0; fi
-    - echo "Building Micronaut..."
+    - apt update && apt install -y openjdk-8-jdk
+    - ./build-micronaut-graal-experiments.sh
