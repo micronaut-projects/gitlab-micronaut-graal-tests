@@ -16,5 +16,5 @@ echo $MN_LAST_COMMIT
 
 if [ "$GRAAL_CURRENT_COMMIT" != "$GRAAL_LAST_COMMIT" ] || [ "$MN_CURRENT_COMMIT" != "$MN_LAST_COMMIT" ]; then
 	echo "Something changed, triggering the build..."
-	touch .trigger-build
+	touch .trigger_build
 fi;
