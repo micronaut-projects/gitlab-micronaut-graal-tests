@@ -4,10 +4,10 @@ stages:
 
 check-graal-repo:
   stage: check
-#  artifacts:
-#    expire_in: 1 hour
-#    paths:
-#      - $CI_PROJECT_DIR/.trigger_build
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/.trigger_build
   script:
     - apt update && apt install -y jq
     - jq --version
@@ -16,15 +16,11 @@ check-graal-repo:
 build-graal:
   stage: build
   script:
-    - echo $SHOULD_RUN
+    - if [[ -z "$(./check-run-build.sh)" ]]; then exit 0; fi
     - echo "Building Graal..."
-  only:
-    variables:
-      - $SHOULD_RUN
-
 
 build-micronaut:
   stage: build
   script:
-    - echo $SHOULD_RUN
+    - if [[ -z "$(./check-run-build.sh)" ]]; then exit 0; fi
     - echo "Building Micronaut..."
