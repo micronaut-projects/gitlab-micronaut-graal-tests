@@ -14,11 +14,7 @@ echo $GRAAL_LAST_COMMIT
 echo $MN_CURRENT_COMMIT
 echo $MN_LAST_COMMIT
 
-if [ "$GRAAL_CURRENT_COMMIT" == "$GRAAL_LAST_COMMIT" ] && [ "$MN_CURRENT_COMMIT" == "$MN_LAST_COMMIT" ]; then
-	echo "finish the build"
-	#exit 127
-	#export SHOULD_RUN=true
-	#echo $SHOULD_RUN
-else
+if [ "$GRAAL_CURRENT_COMMIT" != "$GRAAL_LAST_COMMIT" ] || [ "$MN_CURRENT_COMMIT" != "$MN_LAST_COMMIT" ]; then
+	echo "Something changed, triggering the build..."
 	touch .trigger-build
 fi;
