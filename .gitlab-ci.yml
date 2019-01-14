@@ -26,4 +26,5 @@ build-graal:
 build-micronaut:
   stage: build
   script:
+    - echo $SHOULD_RUN
     - echo "Building Micronaut..."
