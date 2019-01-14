@@ -43,6 +43,7 @@ micronaut-build-graal-experiments:
 micronaut-test-graal-experiments:
   stage: test
   script:
+    - if [ ! -f .trigger_build ]; then exit 0; fi
     - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
     - echo $! > mn_graal.pid
     - sleep 3
