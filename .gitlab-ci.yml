@@ -12,7 +12,6 @@ check-graal-repo:
       - $CI_PROJECT_DIR/.trigger_build
   script:
     - apt update && apt install -y jq
-    - jq --version
     - ./should-trigger-the-build.sh
 
 
