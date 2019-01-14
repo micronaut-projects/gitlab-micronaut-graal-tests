@@ -1,6 +1,7 @@
 stages:
   - check
-  - build
+  - build-graal
+  - build-micronaut
   - test
 
 
@@ -16,7 +17,7 @@ check-graal-repo:
 
 
 build-graal:
-  stage: build
+  stage: build-graal
   artifacts:
     expire_in: 1 hour
     paths:
@@ -26,8 +27,8 @@ build-graal:
     - ./build-graal.sh
 
 
-micronaut-test-graal-experiments:
-  stage: test
+micronaut-build-graal-experiments:
+  stage: build-micronaut
   artifacts:
     expire_in: 1 hour
     paths:
@@ -36,3 +37,17 @@ micronaut-test-graal-experiments:
     - if [ ! -f .trigger_build ]; then exit 0; fi
     - apt update && apt install -y openjdk-8-jdk
     - ./build-micronaut-graal-experiments.sh
+
+
+micronaut-test-graal-experiments:
+  stage: test
+  script:
+    - ./fresh-graal &
+    - echo $! > mn_graal.pid
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080)
+    - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
+    - EXIT_STATUS=0
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
+    - kill -9 `cat ./mn_graal.pid`
+    - exit $EXIT_STATUS
