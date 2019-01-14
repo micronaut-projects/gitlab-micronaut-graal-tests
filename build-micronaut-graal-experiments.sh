@@ -8,4 +8,4 @@ native-image --version
 
 git clone https://github.com/graemerocher/micronaut-graal-experiments.git
 cd micronaut-graal-experiments/fresh-graal
-./build-native-image.sh
+./gradlew --no-daemon --console=plain assemble
