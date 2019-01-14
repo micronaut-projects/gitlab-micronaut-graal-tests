@@ -1,62 +1,10 @@
 stages:
-  - build
-  - micronaut
-  - test
+  - check
 
-build-graal:
-  stage: build
+
+check-graal-repo:
+  stage: check
   script:
-    - mkdir graal
-    - cd graal
-    - git clone https://github.com/oracle/graal
-    - git clone https://github.com/graalvm/mx
-    - wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-0.53/openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-    - tar zxf openjdk-8u192-jvmci-0.53-linux-amd64.tar.gz
-    - export PATH=$PWD/mx:$PATH
-    - export JAVA_HOME=$CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
-    - cd graal/vm
-    - mx clean
-    - mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - $CI_PROJECT_DIR/graal/graal/vm
+    - apt update && apt install -y jq
+    - jq --version
 
-build-micronaut-app:
-  stage: build
-  image: java:8
-  script:
-    - git clone https://github.com/graemerocher/micronaut-graal-experiments.git
-    - cd micronaut-graal-experiments/fresh-graal
-    - ./gradlew assemble
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
-
-
-create-micronaut-graal:
-  stage: micronaut
-  script:
-    - export GRAALVM_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
-    - export PATH=$GRAALVM_HOME/bin:$PATH
-    - native-image --version
-    - ./build-native-image.sh $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - $CI_PROJECT_DIR/fresh-graal
-
-
-test-micronaut-graal:
-  stage: test
-  script:
-    - ./fresh-graal &
-    - echo $! > mn_graal.pid
-    - sleep 3
-    - RESPONSE=$(curl localhost:8080)
-    - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
-    - EXIT_STATUS=0
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
-    - kill -9 `cat ./mn_graal.pid`
-    - exit $EXIT_STATUS
