@@ -11,6 +11,7 @@ check-graal-repo:
   script:
     - apt update && apt install -y jq
     - jq --version
+    - ./should-trigger-the-build.sh
 
 build-graal:
   stage: build
