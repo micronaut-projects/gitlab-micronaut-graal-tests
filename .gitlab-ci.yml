@@ -33,5 +33,6 @@ micronaut-test-graal-experiments:
     paths:
       - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal
   script:
+    - if [ ! -f .trigger_build ]; then exit 0; fi
     - apt update && apt install -y openjdk-8-jdk
     - ./build-micronaut-graal-experiments.sh
