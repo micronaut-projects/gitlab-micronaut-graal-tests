@@ -1,20 +1,7 @@
 stages:
-  - check
   - build-graal
-  - build-micronaut
+  - micronaut
   - test
-
-
-check-graal-repo:
-  stage: check
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - $CI_PROJECT_DIR/.trigger_build
-  script:
-    - apt update && apt install -y jq
-    - ./should-trigger-the-build.sh
-
 
 build-graal:
   stage: build-graal
@@ -24,25 +11,22 @@ build-graal:
       - $CI_PROJECT_DIR/graal/graal/vm
       - $CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
   script:
-    - if [ ! -f .trigger_build ]; then exit 0; fi
     - ./build-graal.sh
 
 
 micronaut-build-graal-experiments:
-  stage: build-micronaut
+  stage: micronaut
   artifacts:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal
   script:
-    - if [ ! -f .trigger_build ]; then exit 0; fi
     - ./build-micronaut-graal-experiments.sh
 
 
 micronaut-test-graal-experiments:
   stage: test
   script:
-    - if [ ! -f .trigger_build ]; then exit 0; fi
     - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
     - echo $! > mn_graal.pid
     - sleep 3
