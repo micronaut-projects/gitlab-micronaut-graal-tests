@@ -21,7 +21,7 @@ build-graal:
     - ./build-graal.sh
 
 
-micronaut-build-graal-experiments:
+micronaut:build-graal-experiments:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
@@ -30,15 +30,41 @@ micronaut-build-graal-experiments:
   script:
     - ./build-micronaut-graal-experiments.sh
 
+micronaut:build-basic-app:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
+  script:
+    - ./build-micronaut-basic-app.sh
 
-micronaut-test-graal-experiments:
+
+micronaut:test-graal-experiments:
   stage: test
+  dependencies:
+    - micronaut:build-graal-experiments
   script:
     - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
     - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080)
     - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
+    - EXIT_STATUS=0
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
+    - kill -9 `cat ./mn_graal.pid`
+    - exit $EXIT_STATUS
+
+micronaut:test-basic-app:
+  stage: test
+  dependencies:
+    - micronaut:build-basic-app
+  script:
+    - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
+    - echo $! > mn_graal.pid
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - EXIT_STATUS=0
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
     - kill -9 `cat ./mn_graal.pid`
