@@ -32,7 +32,7 @@ if [ "$GRAAL_CURRENT_COMMIT" != "$GRAAL_LAST_COMMIT" ] || [ "$MN_CURRENT_COMMIT"
     cp .tmp_micronaut .mn_master_commit
 
     git add .graal_master_commit .mn_master_commit
-    git commit -m "Update Micronaut and GraalVM last commits [ci skip]"
+    git commit -m "[ci skip] Update Micronaut and GraalVM last commits"
 
     git remote set-url --push origin $(perl -pe 's#.*@(.+?(\:\d+)?)/#git@\1:#' <<< $CI_REPOSITORY_URL)
     git push --all
