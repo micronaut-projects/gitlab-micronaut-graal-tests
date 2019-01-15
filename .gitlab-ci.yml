@@ -1,7 +1,14 @@
 stages:
+  - log-commits
   - build-graal
   - micronaut
   - test
+
+log-commits:
+  stage: log-commits
+  script:
+    - ./log-commits.sh
+
 
 build-graal:
   stage: build-graal
