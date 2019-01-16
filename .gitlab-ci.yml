@@ -27,6 +27,7 @@ micronaut:build-graal-experiments:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal
+  allow_failure: true
   script:
     - ./build-micronaut-graal-experiments.sh
 
@@ -36,6 +37,7 @@ micronaut:build-basic-app:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
+  allow_failure: true
   script:
     - ./build-micronaut-basic-app.sh
 
