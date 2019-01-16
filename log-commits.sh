@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Running build..."
 echo "Graal current commit: $GRAAL_CURRENT_COMMIT"

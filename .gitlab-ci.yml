@@ -5,6 +5,7 @@ stages:
   - test
 
 log-commits:
+  image: alpine:3.8
   stage: log-commits
   script:
     - ./log-commits.sh
