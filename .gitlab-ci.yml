@@ -42,6 +42,16 @@ micronaut:build-basic-app:
   script:
     - ./build-micronaut-basic-app.sh
 
+micronaut:build-consul-http-client:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
+  allow_failure: true
+  script:
+    - ./build-micronaut-consul-http-client.sh
+
 
 micronaut:test-graal-experiments:
   stage: test
@@ -64,6 +74,23 @@ micronaut:test-basic-app:
     - micronaut:build-basic-app
   script:
     - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
+    - echo $! > mn_graal.pid
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
+    - EXIT_STATUS=0
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
+    - kill -9 `cat ./mn_graal.pid`
+    - exit $EXIT_STATUS
+
+micronaut:test-consul-http-client:
+  stage: test
+  services:
+    - consul:1.4.0
+  dependencies:
+    - micronaut:build-consul-http-client
+  script:
+    - CONSUL_HOST=consul $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
     - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
