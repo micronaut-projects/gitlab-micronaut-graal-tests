@@ -22,7 +22,7 @@ build-graal:
     - ./build-graal.sh
 
 
-micronaut:build-graal-experiments:
+.micronaut:build-graal-experiments:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
@@ -32,7 +32,7 @@ micronaut:build-graal-experiments:
   script:
     - ./build-micronaut-graal-experiments.sh
 
-micronaut:build-basic-app:
+.micronaut:build-basic-app:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
@@ -53,7 +53,7 @@ micronaut:build-consul-http-client:
     - ./build-micronaut-consul-http-client.sh
 
 
-micronaut:test-graal-experiments:
+.micronaut:test-graal-experiments:
   stage: test
   dependencies:
     - micronaut:build-graal-experiments
@@ -68,7 +68,7 @@ micronaut:test-graal-experiments:
     - kill -9 `cat ./mn_graal.pid`
     - exit $EXIT_STATUS
 
-micronaut:test-basic-app:
+.micronaut:test-basic-app:
   stage: test
   dependencies:
     - micronaut:build-basic-app
