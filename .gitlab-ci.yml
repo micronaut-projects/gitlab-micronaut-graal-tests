@@ -70,6 +70,16 @@ micronaut:build-consul-http-client:
   script:
     - ./build-micronaut-consul-http-client.sh
 
+micronaut:build-zipkin-graal:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/build-micronaut-zipkin-graal/zipkin-graal
+  allow_failure: true
+  script:
+    - ./build-micronaut-zipkin-graal.sh
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -115,3 +125,20 @@ micronaut:test-consul-http-client:
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
+
+micronaut:build-zipkin-graal:
+  stage: test
+  services:
+    - name: openzipkin/zipkin:2.11.12
+      alias: openzipkin
+  dependencies:
+    - micronaut:build-zipkin-graal
+  script:
+    - MICRONAUT_CONFIG_FILES=./application-micronaut-zipkin-graal.yml ./build-micronaut-zipkin-graal/zipkin-graal &
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - EXPECTED_RESPONSE='Hello Micronaut'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - RESPONSE_ZIPKIN=$(curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal)
+    - EXPECTED_RESPONSE_ZIPKIN='["sayhi","get /hello/{name}"]'
+    - if [ "$RESPONSE_ZIPKIN" != "$EXPECTED_RESPONSE_ZIPKIN" ]; then echo $RESPONSE_ZIPKIN && exit 1; fi
