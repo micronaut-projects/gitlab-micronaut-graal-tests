@@ -59,13 +59,10 @@ micronaut:test-graal-experiments:
     - micronaut:build-graal-experiments
   script:
     - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
-    - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080)
     - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
-    - EXIT_STATUS=0
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
-    - kill -9 `cat ./mn_graal.pid`
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
     - exit $EXIT_STATUS
 
 micronaut:test-basic-app:
@@ -74,13 +71,10 @@ micronaut:test-basic-app:
     - micronaut:build-basic-app
   script:
     - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
-    - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
-    - EXIT_STATUS=0
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
-    - kill -9 `cat ./mn_graal.pid`
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
     - exit $EXIT_STATUS
 
 micronaut:test-consul-http-client:
@@ -92,11 +86,8 @@ micronaut:test-consul-http-client:
     - micronaut:build-consul-http-client
   script:
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
-    - echo $! > mn_graal.pid
     - sleep 3
     - RESPONSE=$(curl localhost:8080/api/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
-    - EXIT_STATUS=0
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
-    - kill -9 `cat ./mn_graal.pid`
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
     - exit $EXIT_STATUS
