@@ -100,7 +100,7 @@ micronaut:test-consul-http-client:
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
     - echo $! > mn_graal.pid
     - sleep 3
-    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - RESPONSE=$(curl localhost:8080/api/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - EXIT_STATUS=0
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then EXIT_STATUS=1; fi
