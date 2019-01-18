@@ -86,7 +86,7 @@ micronaut:test-graal-experiments:
     - sleep 3
     - RESPONSE=$(curl localhost:8080)
     - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
 
 micronaut:test-basic-app:
@@ -98,7 +98,7 @@ micronaut:test-basic-app:
     - sleep 3
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
 
 micronaut:test-consul-http-client:
@@ -113,5 +113,5 @@ micronaut:test-consul-http-client:
     - sleep 3
     - RESPONSE=$(curl localhost:8080/api/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then exit 1; fi
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
