@@ -13,18 +13,12 @@ log-commits:
 
 build-graal:
   stage: build-graal
-  cache:
-    key: all
-    paths:
-      - $CI_PROJECT_DIR/graal/graal/vm
-      - $CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
   artifacts:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
       - $CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
   script:
-    - if [ -d graal/graal ]; then exit 0; fi
     - ./build-graal.sh
 
 
