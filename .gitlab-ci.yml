@@ -134,7 +134,7 @@ micronaut:build-zipkin-graal:
   dependencies:
     - micronaut:build-zipkin-graal
   script:
-    - MICRONAUT_CONFIG_FILES=./application-micronaut-zipkin-graal.yml ./micronaut-zipkin-graal/zipkin-graal &
+    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
