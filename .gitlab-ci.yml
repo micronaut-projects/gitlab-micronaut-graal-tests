@@ -134,7 +134,7 @@ micronaut:test-zipkin-graal:
   dependencies:
     - micronaut:build-zipkin-graal
   script:
-    - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
+    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
     - curl localhost:8080/config
     - curl http://openzipkin:9411/zipkin/api/v2/services
