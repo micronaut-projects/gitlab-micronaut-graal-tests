@@ -126,7 +126,7 @@ micronaut:test-consul-http-client:
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
 
-micronaut:build-zipkin-graal:
+micronaut:test-zipkin-graal:
   stage: test
   services:
     - name: openzipkin/zipkin:2.11.12
