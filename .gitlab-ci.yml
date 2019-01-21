@@ -142,6 +142,3 @@ micronaut:test-zipkin-graal:
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - RESPONSE_ZIPKIN=$(curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal)
-    - EXPECTED_RESPONSE_ZIPKIN='["sayhi","get /hello/{name}"]'
-    - if [ "$RESPONSE_ZIPKIN" != "$EXPECTED_RESPONSE_ZIPKIN" ]; then echo $RESPONSE_ZIPKIN && exit 1; fi
