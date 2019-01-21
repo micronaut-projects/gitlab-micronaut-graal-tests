@@ -136,6 +136,9 @@ micronaut:test-zipkin-graal:
   script:
     - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
+    - curl localhost:8080/config
+    - curl http://openzipkin:9411/zipkin/api/v2/services
+    - curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
