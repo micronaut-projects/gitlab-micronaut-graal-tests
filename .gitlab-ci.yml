@@ -29,7 +29,7 @@ build-graal:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
-      - $CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.53
+      - $CI_PROJECT_DIR/graal/openjdk1.8.0_192-jvmci-0.54
   script:
     - ./build-graal.sh
 
