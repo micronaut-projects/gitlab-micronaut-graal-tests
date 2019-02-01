@@ -80,6 +80,16 @@ micronaut:build-zipkin-graal:
   script:
     - ./build-micronaut-zipkin-graal.sh
 
+micronaut:build-function-graal:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
+  allow_failure: true
+  script:
+    - ./build-micronaut-function-graal.sh
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -141,4 +151,20 @@ micronaut:test-zipkin-graal:
     - curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
     - RESPONSE=$(curl localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-function-graal:
+  stage: test
+  dependencies:
+    - micronaut:build-function-graal
+  script:
+    - export MICRONAUT_FUNCTION_NAME=greeting
+    - $(echo 'Micronaut' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
+    - RESPONSE=`cat RESPONSE.txt | tail -n 1`
+    - EXPECTED_RESPONSE='Hello Micronaut'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - export MICRONAUT_FUNCTION_NAME=greeting-pojo
+    - $(echo '{"name":"Micronaut"}' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
+    - RESPONSE=`cat RESPONSE.txt | tail -n 1`
+    - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
