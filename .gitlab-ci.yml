@@ -66,7 +66,7 @@ micronaut:build-basic-app:
   script:
     - ./build-micronaut-basic-app.sh
 
-micronaut:build-consul-http-client:
+.micronaut:build-consul-http-client:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
@@ -127,7 +127,7 @@ micronaut:test-basic-app:
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
 
-micronaut:test-consul-http-client:
+.micronaut:test-consul-http-client:
   stage: test
   services:
     - name: consul:1.4.0
