@@ -26,7 +26,7 @@ log-commits:
 build-graal:
   stage: build-graal
   #cache:
-  #  key: '20190201'
+  #  key: '20190228'
   #  paths:
   #    - $CI_PROJECT_DIR/graal/graal/vm
   #    - $CI_PROJECT_DIR/graal/openjdk1.8.0_202-jvmci-0.55
@@ -85,6 +85,16 @@ micronaut:build-function-graal:
   allow_failure: true
   script:
     - ./build-micronaut-function-graal.sh
+
+micronaut:build-rabbitmq-graal:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
+  allow_failure: true
+  script:
+    - ./build-micronaut-rabbitmq-graal.sh
 
 
 #  _            _
@@ -152,3 +162,26 @@ micronaut:test-function-graal:
     - RESPONSE=`cat RESPONSE.txt | tail -n 1`
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-rabbitmq-graal:
+  stage: test
+  image: frolvlad/alpine-glibc
+  services:
+    - name: rabbitmq:3.7.11
+      alias: rabbitmqhost
+  dependencies:
+    - micronaut:build-rabbitmq-graal
+  script:
+    - apk add curl
+    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
+    - sleep 3
+    - RESPONSE=$(curl localhost:8080/books-fireandforget/1491950358)
+    - EXPECTED_RESPONSE='{"isbn":"1491950358","name":"Building Microservices"}'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - RESPONSE=$(curl localhost:8080/analytics)
+    - EXPECTED_RESPONSE='[{"bookIsbn":"1491950358","count":1}]'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - RESPONSE=$(curl localhost:8080/books-rpc)
+    - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - exit $EXIT_STATUS
