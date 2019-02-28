@@ -46,16 +46,6 @@ build-graal:
 # | | | | | | | (__| | | (_) | | | | (_| | |_| | |_
 # |_| |_| |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
 #
-micronaut:build-graal-experiments:
-  stage: micronaut
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal
-  allow_failure: true
-  script:
-    - ./build-micronaut-graal-experiments.sh
-
 micronaut:build-basic-app:
   stage: micronaut
   artifacts:
@@ -103,18 +93,6 @@ micronaut:build-function-graal:
 # | ||  __/\__ \ |_
 #  \__\___||___/\__|
 #
-micronaut:test-graal-experiments:
-  stage: test
-  dependencies:
-    - micronaut:build-graal-experiments
-  script:
-    - $CI_PROJECT_DIR/micronaut-graal-experiments/fresh-graal/fresh-graal &
-    - sleep 3
-    - RESPONSE=$(curl localhost:8080)
-    - EXPECTED_RESPONSE='{"_links":{"self":{"href":"/","templated":false}},"message":"Page Not Found"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - exit $EXIT_STATUS
-
 micronaut:test-basic-app:
   stage: test
   dependencies:
