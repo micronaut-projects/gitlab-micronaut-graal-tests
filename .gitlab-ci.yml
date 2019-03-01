@@ -110,7 +110,7 @@ micronaut:test-basic-app:
   script:
     - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
     - sleep 3
-    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
@@ -125,7 +125,7 @@ micronaut:test-basic-app:
   script:
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
     - sleep 3
-    - RESPONSE=$(curl localhost:8080/api/hello/Micronaut)
+    - RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
@@ -140,10 +140,10 @@ micronaut:test-zipkin-graal:
   script:
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
-    - curl localhost:8080/config
-    - curl http://openzipkin:9411/zipkin/api/v2/services
-    - curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
-    - RESPONSE=$(curl localhost:8080/hello/Micronaut)
+    - curl -s localhost:8080/config
+    - curl -s http://openzipkin:9411/zipkin/api/v2/services
+    - curl -s http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
+    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
@@ -175,13 +175,13 @@ micronaut:test-rabbitmq-graal:
     - apk add curl
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
     - sleep 3
-    - RESPONSE=$(curl localhost:8080/books-fireandforget/1491950358)
+    - RESPONSE=$(curl -s localhost:8080/books-fireandforget/1491950358)
     - EXPECTED_RESPONSE='{"isbn":"1491950358","name":"Building Microservices"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - RESPONSE=$(curl localhost:8080/analytics)
+    - RESPONSE=$(curl -s localhost:8080/analytics)
     - EXPECTED_RESPONSE='[{"bookIsbn":"1491950358","count":1}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - RESPONSE=$(curl localhost:8080/books-rpc)
+    - RESPONSE=$(curl -s localhost:8080/books-rpc)
     - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
     - exit $EXIT_STATUS
