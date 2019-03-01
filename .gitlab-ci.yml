@@ -105,9 +105,11 @@ micronaut:build-rabbitmq-graal:
 #
 micronaut:test-basic-app:
   stage: test
+  image: frolvlad/alpine-glibc
   dependencies:
     - micronaut:build-basic-app
   script:
+    - apk add curl
     - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
     - sleep 3
     - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
@@ -117,12 +119,14 @@ micronaut:test-basic-app:
 
 .micronaut:test-consul-http-client:
   stage: test
+  image: frolvlad/alpine-glibc
   services:
     - name: consul:1.4.0
       alias: consulhost
   dependencies:
     - micronaut:build-consul-http-client
   script:
+    - apk add curl
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
     - sleep 3
     - RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
@@ -132,12 +136,14 @@ micronaut:test-basic-app:
 
 micronaut:test-zipkin-graal:
   stage: test
+  image: frolvlad/alpine-glibc
   services:
     - name: openzipkin/zipkin:2.11.12
       alias: openzipkin
   dependencies:
     - micronaut:build-zipkin-graal
   script:
+    - apk add curl
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
     - curl -s localhost:8080/config
@@ -149,6 +155,7 @@ micronaut:test-zipkin-graal:
 
 micronaut:test-function-graal:
   stage: test
+  image: frolvlad/alpine-glibc
   dependencies:
     - micronaut:build-function-graal
   script:
