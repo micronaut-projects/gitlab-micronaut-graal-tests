@@ -4,6 +4,7 @@ stages:
   - micronaut
   - test
 
+
 #  _                                                 _ _
 # | | ___   __ _        ___ ___  _ __ ___  _ __ ___ (_) |_ ___
 # | |/ _ \ / _` |_____ / __/ _ \| '_ ` _ \| '_ ` _ \| | __/ __|
@@ -110,12 +111,13 @@ micronaut:test-basic-app:
     - micronaut:build-basic-app
   script:
     - apk add curl
+
     - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
     - sleep 3
+
     - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - exit $EXIT_STATUS
 
 .micronaut:test-consul-http-client:
   stage: test
@@ -127,12 +129,13 @@ micronaut:test-basic-app:
     - micronaut:build-consul-http-client
   script:
     - apk add curl
+
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
     - sleep 3
+
     - RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - exit $EXIT_STATUS
 
 micronaut:test-zipkin-graal:
   stage: test
@@ -144,11 +147,14 @@ micronaut:test-zipkin-graal:
     - micronaut:build-zipkin-graal
   script:
     - apk add curl
+
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
     - sleep 3
+
     - curl -s localhost:8080/config
     - curl -s http://openzipkin:9411/zipkin/api/v2/services
     - curl -s http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
+
     - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
@@ -164,6 +170,7 @@ micronaut:test-function-graal:
     - RESPONSE=`cat RESPONSE.txt | tail -n 1`
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
     - export MICRONAUT_FUNCTION_NAME=greeting-pojo
     - $(echo '{"name":"Micronaut"}' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
     - RESPONSE=`cat RESPONSE.txt | tail -n 1`
@@ -180,15 +187,18 @@ micronaut:test-rabbitmq-graal:
     - micronaut:build-rabbitmq-graal
   script:
     - apk add curl
+
     - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
     - sleep 3
+
     - RESPONSE=$(curl -s localhost:8080/books-fireandforget/1491950358)
     - EXPECTED_RESPONSE='{"isbn":"1491950358","name":"Building Microservices"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
     - RESPONSE=$(curl -s localhost:8080/analytics)
     - EXPECTED_RESPONSE='[{"bookIsbn":"1491950358","count":1}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
     - RESPONSE=$(curl -s localhost:8080/books-rpc)
     - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - exit $EXIT_STATUS
