@@ -97,6 +97,16 @@ micronaut:build-rabbitmq-graal:
   script:
     - ./build-micronaut-rabbitmq-graal.sh
 
+micronaut:build-management-graal:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
+  allow_failure: true
+  script:
+    - ./build-micronaut-management-graal.sh
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -201,4 +211,23 @@ micronaut:test-rabbitmq-graal:
 
     - RESPONSE=$(curl -s localhost:8080/books-rpc)
     - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-management-graal:
+  stage: test
+  image: frolvlad/alpine-glibc
+  dependencies:
+    - micronaut:build-management-graal
+  script:
+    - apk add curl
+
+    - $CI_PROJECT_DIR/micronaut-management-graal/management-graal &
+    - sleep 3
+
+    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
+    - EXPECTED_RESPONSE='Hello Micronaut'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/health)
+    - EXPECTED_RESPONSE='{"status":"UP"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
