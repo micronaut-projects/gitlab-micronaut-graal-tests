@@ -206,7 +206,7 @@ micronaut:test-rabbitmq-graal:
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
     - RESPONSE=$(curl -s localhost:8080/analytics)
-    - EXPECTED_RESPONSE='[{"bookIsbn":"1491950358","count":1}]'
+    - EXPECTED_RESPONSE='[{"count":1,"bookIsbn":"1491950358"}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
     - RESPONSE=$(curl -s localhost:8080/books-rpc)
