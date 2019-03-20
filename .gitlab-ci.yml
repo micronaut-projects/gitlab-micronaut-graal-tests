@@ -147,9 +147,9 @@ micronaut:test-consul-http-client:
     - EXPECTED_RESPONSE='Hello Micronaut'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-    #- RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
-    #- EXPECTED_RESPONSE='Hello Micronaut'
-    #- if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
+    - EXPECTED_RESPONSE='Hello Micronaut'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 micronaut:test-zipkin-graal:
   stage: test
