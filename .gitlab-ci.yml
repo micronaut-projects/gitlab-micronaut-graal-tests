@@ -30,12 +30,12 @@ build-graal:
   #  key: '20190405'
   #  paths:
   #    - $CI_PROJECT_DIR/graal/graal/vm
-  #    - $CI_PROJECT_DIR/graal/openjdk1.8.0_202-jvmci-0.57
+  #    - $CI_PROJECT_DIR/graal/openjdk1.8.0_202-jvmci-0.58
   artifacts:
     expire_in: 1 hour
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
-      - $CI_PROJECT_DIR/graal/openjdk1.8.0_202-jvmci-0.57
+      - $CI_PROJECT_DIR/graal/openjdk1.8.0_202-jvmci-0.58
   script:
   #  - if [ -d $CI_PROJECT_DIR/graal ]; then exit 0; fi
     - ./build-graal.sh
