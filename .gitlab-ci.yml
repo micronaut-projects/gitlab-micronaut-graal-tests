@@ -97,7 +97,7 @@ micronaut:build-function-graal:
   script:
     - ./build-micronaut-rabbitmq-graal.sh
 
-.micronaut:build-management-graal:
+micronaut:build-management-graal:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
@@ -230,7 +230,7 @@ micronaut:test-function-graal:
     - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-.micronaut:test-management-graal:
+micronaut:test-management-graal:
   stage: test
   image: frolvlad/alpine-glibc
   dependencies:
