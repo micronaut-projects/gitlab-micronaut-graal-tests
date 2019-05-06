@@ -15,4 +15,4 @@ git clone https://github.com/graalvm/mx
 
 cd graal/vm
 mx clean
-mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
+LIBGRAAL=true mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
