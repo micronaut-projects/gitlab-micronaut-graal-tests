@@ -27,7 +27,7 @@ log-commits:
 build-graal:
   stage: build-graal
   #cache:
-  #  key: '20190405'
+  #  key: '20190606'
   #  paths:
   #    - $CI_PROJECT_DIR/graal/graal/vm
   #    - $CI_PROJECT_DIR/graal/openjdk1.8.0_212-jvmci-19-b01
@@ -107,15 +107,45 @@ micronaut:build-management-graal:
   script:
     - ./build-micronaut-management-graal.sh
 
-micronaut:build-views-graal:
+micronaut:build-views-graal-freemarker:
   stage: micronaut
   artifacts:
     expire_in: 1 hour
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
   allow_failure: true
   script:
-    - ./build-micronaut-views-graal.sh
+    - ./build-micronaut-views-graal.sh freemarker
+
+micronaut:build-views-graal-handlebars:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
+  allow_failure: true
+  script:
+    - ./build-micronaut-views-graal.sh handlebars
+
+micronaut:build-views-graal-thymeleaf:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
+  allow_failure: true
+  script:
+    - ./build-micronaut-views-graal.sh thymeleaf
+
+micronaut:build-views-graal-velocity:
+  stage: micronaut
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
+  allow_failure: true
+  script:
+    - ./build-micronaut-views-graal.sh velocity
 
 micronaut:build-security-jwt-graal:
   stage: micronaut
@@ -271,15 +301,15 @@ micronaut:test-management-graal:
     - EXPECTED_RESPONSE='8'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-micronaut:test-views-graal:
+micronaut:test-views-graal-freemarker:
   stage: test
   image: frolvlad/alpine-glibc
   dependencies:
-    - micronaut:build-views-graal
+    - micronaut:build-views-graal-freemarker
   script:
     - apk add curl
 
-    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal &
+    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker &
     - sleep 3
 
     - RESPONSE=$(curl -s localhost:8080/)
@@ -290,8 +320,109 @@ micronaut:test-views-graal:
     - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
     - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
-    - RESPONSE=$(curl -s localhost:8080/views)
+    - RESPONSE=$(curl -s localhost:8080/views/freemarker)
     - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Freemarker"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/freemarker-view)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Freemarker"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-views-graal-handlebars:
+  stage: test
+  image: frolvlad/alpine-glibc
+  dependencies:
+    - micronaut:build-views-graal-handlebars
+  script:
+    - apk add curl
+
+    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars &
+    - sleep 3
+
+    - RESPONSE=$(curl -s localhost:8080/)
+    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
+    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/handlebars)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Handlebars"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/handlebars-view)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Handlebars"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-views-graal-thymeleaf:
+  stage: test
+  image: frolvlad/alpine-glibc
+  dependencies:
+    - micronaut:build-views-graal-thymeleaf
+  script:
+    - apk add curl
+
+    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf &
+    - sleep 3
+
+    - RESPONSE=$(curl -s localhost:8080/)
+    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
+    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/thymeleaf)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/thymeleaf-view)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-views-graal-velocity:
+  stage: test
+  image: frolvlad/alpine-glibc
+  dependencies:
+    - micronaut:build-views-graal-velocity
+  script:
+    - apk add curl
+
+    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity &
+    - sleep 3
+
+    - RESPONSE=$(curl -s localhost:8080/)
+    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
+    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/velocity)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Velocity"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/views/velocity-view)
+    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
+    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - EXPECTED_RESPONSE_CONTAINS="Velocity"
     - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
 micronaut:test-security-jwt-graal:
