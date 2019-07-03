@@ -32,7 +32,7 @@ build-graal:
   #    - $CI_PROJECT_DIR/graal/graal/vm
   #    - $CI_PROJECT_DIR/graal/openjdk1.8.0_212-jvmci-20-b04
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/graal/graal/vm
       - $CI_PROJECT_DIR/graal/openjdk1.8.0_212-jvmci-20-b04
@@ -50,7 +50,7 @@ build-graal:
 micronaut:build-basic-app:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   allow_failure: true
@@ -60,7 +60,7 @@ micronaut:build-basic-app:
 micronaut:build-consul-http-client:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
   allow_failure: true
@@ -70,7 +70,7 @@ micronaut:build-consul-http-client:
 micronaut:build-zipkin-graal:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
   allow_failure: true
@@ -80,7 +80,7 @@ micronaut:build-zipkin-graal:
 micronaut:build-function-graal:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
   allow_failure: true
@@ -90,7 +90,7 @@ micronaut:build-function-graal:
 micronaut:build-rabbitmq-graal:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
   allow_failure: true
@@ -100,7 +100,7 @@ micronaut:build-rabbitmq-graal:
 micronaut:build-management-graal:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
   allow_failure: true
@@ -110,7 +110,7 @@ micronaut:build-management-graal:
 micronaut:build-views-graal-freemarker:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
   allow_failure: true
@@ -120,7 +120,7 @@ micronaut:build-views-graal-freemarker:
 micronaut:build-views-graal-handlebars:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
   allow_failure: true
@@ -130,7 +130,7 @@ micronaut:build-views-graal-handlebars:
 micronaut:build-views-graal-thymeleaf:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
   allow_failure: true
@@ -140,7 +140,7 @@ micronaut:build-views-graal-thymeleaf:
 micronaut:build-views-graal-velocity:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
   allow_failure: true
@@ -150,7 +150,7 @@ micronaut:build-views-graal-velocity:
 micronaut:build-security-jwt-graal:
   stage: micronaut
   artifacts:
-    expire_in: 1 hour
+    expire_in: 3 hrs
     paths:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
   allow_failure: true
