@@ -107,7 +107,7 @@ micronaut:build-management-graal:
   script:
     - ./build-micronaut-management-graal.sh
 
-.micronaut:build-views-graal-freemarker:
+micronaut:build-views-graal-freemarker:
   stage: micronaut
   artifacts:
     expire_in: 3 hrs
@@ -301,7 +301,7 @@ micronaut:test-management-graal:
     - EXPECTED_RESPONSE='8'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-.micronaut:test-views-graal-freemarker:
+micronaut:test-views-graal-freemarker:
   stage: test
   image: frolvlad/alpine-glibc
   dependencies:
