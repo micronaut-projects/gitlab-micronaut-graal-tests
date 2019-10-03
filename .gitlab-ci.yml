@@ -241,7 +241,7 @@ micronaut:test-function-graal:
     - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-micronaut:test-rabbitmq-graal:
+.micronaut:test-rabbitmq-graal:
   stage: test
   image: frolvlad/alpine-glibc
   services:
