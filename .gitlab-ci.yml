@@ -201,6 +201,20 @@ micronaut:build-security-jwt-graal:
     when:
       - runner_system_failure
 
+micronaut:build-micronaut-data-jdbc-graal:
+  stage: micronaut
+  artifacts:
+    expire_in: 3 hrs
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal
+  allow_failure: true
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -496,3 +510,31 @@ micronaut:test-security-jwt-graal:
     - RESPONSE=$(curl -s -H "Authorization:Bearer ${ACCESS_TOKEN}" localhost:8080/)
     - EXPECTED_RESPONSE='sherlock'
     - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+micronaut:test-micronaut-data-jdbc-graal:
+  stage: test
+  image: frolvlad/alpine-glibc
+  dependencies:
+    - micronaut:build-micronaut-data-jdbc-graal
+  script:
+    - apk add curl jq
+
+    - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal &
+    - sleep 3
+
+    - RESPONSE=$(curl -s localhost:8080/owners)
+    - EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/owners/Fred)
+    - EXPECTED_RESPONSE='{"id":1,"name":"Fred","age":45}'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/pets)
+    - EXPECTED_RESPONSE='[{"name":"Dino"},{"name":"Baby Puss"},{"name":"Hoppy"}]'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+    - RESPONSE=$(curl -s localhost:8080/pets/Dino | jq -c '{name, owner, type}')
+    - EXPECTED_RESPONSE='{"name":"Dino","owner":{"id":1,"name":"Fred","age":45},"type":"DOG"}'
+    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
