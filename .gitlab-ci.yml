@@ -169,17 +169,19 @@ micronaut:build-micronaut-data-jdbc-graal:
 # | ||  __/\__ \ |_
 #  \__\___||___/\__|
 #
-micronaut:test-basic-app:
+.micronaut:test-template: &micronaut-test-template
   stage: test
   image: frolvlad/alpine-glibc
+
+micronaut:test-basic-app:
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-basic-app
   script:
     - ./test-basic-app.sh
 
 micronaut:test-consul-http-client:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   services:
     - name: consul:1.4.0
       alias: consulhost
@@ -189,8 +191,7 @@ micronaut:test-consul-http-client:
     - ./test-consul-http-client.sh
 
 micronaut:test-zipkin-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   services:
     - name: openzipkin/zipkin:2.11.12
       alias: openzipkin
@@ -200,16 +201,14 @@ micronaut:test-zipkin-graal:
     - ./test-zipkin-graal.sh
 
 micronaut:test-function-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-function-graal
   script:
     - ./test-function-graal.sh
 
 .micronaut:test-rabbitmq-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.7.11
       alias: rabbitmqhost
@@ -219,56 +218,49 @@ micronaut:test-function-graal:
     - ./test-rabbitmq-graal.sh
 
 micronaut:test-management-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-management-graal
   script:
     - ./test-management-graal.sh
 
 micronaut:test-views-graal-freemarker:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-freemarker
   script:
     - ./test-views-graal-freemarker.sh
 
 micronaut:test-views-graal-handlebars:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-handlebars
   script:
     - ./test-views-graal-handlebars.sh
 
 micronaut:test-views-graal-thymeleaf:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-thymeleaf
   script:
     - ./test-views-graal-thymeleaf.sh
 
 micronaut:test-views-graal-velocity:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-velocity
   script:
     - ./test-views-graal-velocity.sh
 
 micronaut:test-security-jwt-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-security-jwt-graal
   script:
     - ./test-security-jwt-graal.sh
 
 micronaut:test-micronaut-data-jdbc-graal:
-  stage: test
-  image: frolvlad/alpine-glibc
+  <<: *micronaut-test-template
   dependencies:
     - micronaut:build-micronaut-data-jdbc-graal
   script:
