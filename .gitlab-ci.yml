@@ -207,7 +207,7 @@ micronaut:test-function-graal:
   script:
     - ./test-function-graal.sh
 
-.micronaut:test-rabbitmq-graal:
+micronaut:test-rabbitmq-graal:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.7.11
