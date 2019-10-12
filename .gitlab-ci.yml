@@ -47,173 +47,120 @@ build-graal:
 # | | | | | | | (__| | | (_) | | | | (_| | |_| | |_
 # |_| |_| |_|_|\___|_|  \___/|_| |_|\__,_|\__,_|\__|
 #
-micronaut:build-basic-app:
+.micronaut:build-template: &micronaut-build-template
   stage: micronaut
   artifacts:
     expire_in: 5 days
+  allow_failure: true
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+
+micronaut:build-basic-app:
+  <<: *micronaut-build-template
+  artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
-  allow_failure: true
   script:
     - ./build-micronaut-basic-app.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-consul-http-client:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
-  allow_failure: true
   script:
     - ./build-micronaut-consul-http-client.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-zipkin-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
-  allow_failure: true
   script:
     - ./build-micronaut-zipkin-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-function-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
   allow_failure: true
   script:
     - ./build-micronaut-function-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-rabbitmq-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
   allow_failure: true
   script:
     - ./build-micronaut-rabbitmq-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-management-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
   allow_failure: true
   script:
     - ./build-micronaut-management-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-views-graal-freemarker:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
   allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh freemarker
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-views-graal-handlebars:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
   allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh handlebars
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-views-graal-thymeleaf:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
   allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh thymeleaf
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-views-graal-velocity:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
   allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh velocity
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-security-jwt-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
   allow_failure: true
   script:
     - ./build-micronaut-security-jwt-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 micronaut:build-micronaut-data-jdbc-graal:
-  stage: micronaut
+  <<: *micronaut-build-template
   artifacts:
-    expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal
   allow_failure: true
   script:
     - ./build-micronaut-data-jdbc-graal.sh
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
 
 
 #  _            _
