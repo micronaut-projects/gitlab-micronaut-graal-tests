@@ -228,14 +228,7 @@ micronaut:test-basic-app:
   dependencies:
     - micronaut:build-basic-app
   script:
-    - apk add curl
-
-    - $CI_PROJECT_DIR/micronaut-basic-app/basic-app &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
-    - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-basic-app.sh
 
 micronaut:test-consul-http-client:
   stage: test
@@ -246,18 +239,7 @@ micronaut:test-consul-http-client:
   dependencies:
     - micronaut:build-consul-http-client
   script:
-    - apk add curl
-
-    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
-    - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/api/hello/Micronaut)
-    - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-consul-http-client.sh
 
 micronaut:test-zipkin-graal:
   stage: test
@@ -268,18 +250,7 @@ micronaut:test-zipkin-graal:
   dependencies:
     - micronaut:build-zipkin-graal
   script:
-    - apk add curl
-
-    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
-    - sleep 3
-
-    - curl -s localhost:8080/config
-    - curl -s http://openzipkin:9411/zipkin/api/v2/services
-    - curl -s http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
-
-    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
-    - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-zipkin-graal.sh
 
 micronaut:test-function-graal:
   stage: test
@@ -287,17 +258,7 @@ micronaut:test-function-graal:
   dependencies:
     - micronaut:build-function-graal
   script:
-    - export MICRONAUT_FUNCTION_NAME=greeting
-    - $(echo 'Micronaut' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
-    - RESPONSE=`cat RESPONSE.txt | tail -n 1`
-    - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - export MICRONAUT_FUNCTION_NAME=greeting-pojo
-    - $(echo '{"name":"Micronaut"}' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
-    - RESPONSE=`cat RESPONSE.txt | tail -n 1`
-    - EXPECTED_RESPONSE='{"msg":"Hello Micronaut"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-function-graal.sh
 
 .micronaut:test-rabbitmq-graal:
   stage: test
@@ -308,25 +269,7 @@ micronaut:test-function-graal:
   dependencies:
     - micronaut:build-rabbitmq-graal
   script:
-    - apk add curl jq
-
-    - MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/books-fireandforget/1491950358)
-    - EXPECTED_RESPONSE='{"isbn":"1491950358","name":"Building Microservices"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/analytics | jq '.[0] | .count')
-    - EXPECTED_RESPONSE='1'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-    - RESPONSE=$(curl -s localhost:8080/analytics | jq -r '.[0] | .bookIsbn')
-    - EXPECTED_RESPONSE='1491950358'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/books-rpc)
-    - EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-rabbitmq-graal.sh
 
 micronaut:test-management-graal:
   stage: test
@@ -334,30 +277,7 @@ micronaut:test-management-graal:
   dependencies:
     - micronaut:build-management-graal
   script:
-    - apk add curl jq
-
-    - $CI_PROJECT_DIR/micronaut-management-graal/management-graal &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
-    - EXPECTED_RESPONSE='Hello Micronaut'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/health)
-    - EXPECTED_RESPONSE='{"status":"UP"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/info)
-    - EXPECTED_RESPONSE='{}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/metrics | jq '.names | length')
-    - EXPECTED_RESPONSE='21'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/loggers | jq '.levels | length')
-    - EXPECTED_RESPONSE='8'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-management-graal.sh
 
 micronaut:test-views-graal-freemarker:
   stage: test
@@ -365,30 +285,7 @@ micronaut:test-views-graal-freemarker:
   dependencies:
     - micronaut:build-views-graal-freemarker
   script:
-    - apk add curl
-
-    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/)
-    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
-    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/freemarker)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Freemarker"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/freemarker-view)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Freemarker"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-views-graal-freemarker.sh
 
 micronaut:test-views-graal-handlebars:
   stage: test
@@ -396,30 +293,7 @@ micronaut:test-views-graal-handlebars:
   dependencies:
     - micronaut:build-views-graal-handlebars
   script:
-    - apk add curl
-
-    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/)
-    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
-    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/handlebars)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Handlebars"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/handlebars-view)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Handlebars"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-views-graal-handlebars.sh
 
 micronaut:test-views-graal-thymeleaf:
   stage: test
@@ -427,30 +301,7 @@ micronaut:test-views-graal-thymeleaf:
   dependencies:
     - micronaut:build-views-graal-thymeleaf
   script:
-    - apk add curl
-
-    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/)
-    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
-    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/thymeleaf)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/thymeleaf-view)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-views-graal-thymeleaf.sh
 
 micronaut:test-views-graal-velocity:
   stage: test
@@ -458,30 +309,7 @@ micronaut:test-views-graal-velocity:
   dependencies:
     - micronaut:build-views-graal-velocity
   script:
-    - apk add curl
-
-    - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/)
-    - EXPECTED_RESPONSE_CONTAINS='<img src="images/micronaut_mini_copy_tm.svg" width="400"/>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
-    - EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/velocity)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Velocity"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/views/velocity-view)
-    - EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-    - EXPECTED_RESPONSE_CONTAINS="Velocity"
-    - if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-views-graal-velocity.sh
 
 micronaut:test-security-jwt-graal:
   stage: test
@@ -489,27 +317,7 @@ micronaut:test-security-jwt-graal:
   dependencies:
     - micronaut:build-security-jwt-graal
   script:
-    - apk add curl jq
-
-    - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/ --write-out %{http_code})
-    - EXPECTED_RESPONSE='401'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s -X POST -H 'Content-Type:application/json' -d '{}' localhost:8080/login | jq '._embedded | .errors | length')
-    - EXPECTED_RESPONSE='4'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s -X POST -H 'Content-Type:application/json' -d '{"username":"sherlock","password":"password"}' localhost:8080/login | jq -r .token_type)
-    - EXPECTED_RESPONSE='Bearer'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - ACCESS_TOKEN=$(curl -s -X POST -H 'Content-Type:application/json' -d '{"username":"sherlock","password":"password"}' localhost:8080/login | jq -r .access_token)
-    - RESPONSE=$(curl -s -H "Authorization:Bearer ${ACCESS_TOKEN}" localhost:8080/)
-    - EXPECTED_RESPONSE='sherlock'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+    - ./test-security-jwt-graal.sh
 
 micronaut:test-micronaut-data-jdbc-graal:
   stage: test
@@ -517,24 +325,4 @@ micronaut:test-micronaut-data-jdbc-graal:
   dependencies:
     - micronaut:build-micronaut-data-jdbc-graal
   script:
-    - apk add curl jq
-
-    - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal &
-    - sleep 3
-
-    - RESPONSE=$(curl -s localhost:8080/owners)
-    - EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/owners/Fred)
-    - EXPECTED_RESPONSE='{"id":1,"name":"Fred","age":45}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/pets)
-    - EXPECTED_RESPONSE='[{"name":"Dino"},{"name":"Baby Puss"},{"name":"Hoppy"}]'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
-    - RESPONSE=$(curl -s localhost:8080/pets/Dino | jq -c '{name, owner, type}')
-    - EXPECTED_RESPONSE='{"name":"Dino","owner":{"id":1,"name":"Fred","age":45},"type":"DOG"}'
-    - if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
-
+    - ./test-micronaut-data-jdbc-graal.sh
