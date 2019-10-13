@@ -16,4 +16,4 @@ git clone --depth=1 https://github.com/graalvm/mx
 cd graal/vm
 echo "Git commit: `git rev-parse HEAD`"
 mx clean
-mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm build
+mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm --skip-libraries=true build
