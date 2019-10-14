@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 export MICRONAUT_FUNCTION_NAME=greeting
 $(echo 'Micronaut' | $CI_PROJECT_DIR/micronaut-function-graal/function-graal > RESPONSE.txt)
