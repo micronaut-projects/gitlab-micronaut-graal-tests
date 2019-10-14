@@ -154,7 +154,7 @@ micronaut:build-security-jwt-graal:
   script:
     - ./build-micronaut-security-jwt-graal.sh
 
-micronaut:build-micronaut-data-jdbc-graal:
+.micronaut:build-micronaut-data-jdbc-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -260,7 +260,7 @@ micronaut:test-security-jwt-graal:
   script:
     - ./test-security-jwt-graal.sh
 
-micronaut:test-micronaut-data-jdbc-graal:
+.micronaut:test-micronaut-data-jdbc-graal:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-micronaut-data-jdbc-graal
