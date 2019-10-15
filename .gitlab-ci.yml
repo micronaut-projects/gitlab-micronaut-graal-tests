@@ -153,14 +153,23 @@ micronaut:build-security-jwt-graal:
   script:
     - ./build-micronaut-security-jwt-graal.sh
 
-micronaut:build-micronaut-data-jdbc-graal:
+micronaut:build-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-build-template
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
   allow_failure: true
   script:
-    - ./build-micronaut-data-jdbc-graal.sh
+    - ./build-micronaut-data-jdbc-graal.sh h2
+
+micronaut:build-micronaut-data-jdbc-graal-postgres:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
+  allow_failure: true
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh postgres
 
 
 #  _            _
@@ -259,9 +268,24 @@ micronaut:test-security-jwt-graal:
   script:
     - ./test-security-jwt-graal.sh
 
-micronaut:test-micronaut-data-jdbc-graal:
+micronaut:test-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-micronaut-data-jdbc-graal
+    - micronaut:build-micronaut-data-jdbc-graal-h2
   script:
-    - ./test-micronaut-data-jdbc-graal.sh
+    - ./test-micronaut-data-jdbc-graal-h2.sh
+
+micronaut:test-micronaut-data-jdbc-graal-postgres:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - micronaut:build-micronaut-data-jdbc-graal-postgres
+  script:
+    - ./test-micronaut-data-jdbc-graal-postgres.sh
+
+variables:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: secret
+  POSTGRES_DB: pets
