@@ -171,6 +171,15 @@ micronaut:build-micronaut-data-jdbc-graal-postgres:
   script:
     - ./build-micronaut-data-jdbc-graal.sh postgres
 
+micronaut:build-micronaut-data-jdbc-graal-oracle:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
+  allow_failure: true
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh oracle
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -289,3 +298,13 @@ variables:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: secret
   POSTGRES_DB: pets
+
+micronaut:test-micronaut-data-jdbc-graal-oracle:
+  <<: *micronaut-test-template
+  services:
+    - name: wnameless/oracle-xe-11g-r2
+      alias: oraclehost
+  dependencies:
+    - micronaut:build-micronaut-data-jdbc-graal-oracle
+  script:
+    - ./test-micronaut-data-jdbc-graal-oracle.sh
