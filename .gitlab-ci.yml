@@ -198,7 +198,7 @@ micronaut:test-basic-app:
   script:
     - ./test-basic-app.sh
 
-micronaut:test-consul-http-client:
+.micronaut:test-consul-http-client:
   <<: *micronaut-test-template
   services:
     - name: consul:1.4.0
