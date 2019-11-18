@@ -17,3 +17,7 @@ cd graal/vm
 echo "Git commit: `git rev-parse HEAD`"
 mx clean
 mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm --skip-libraries=true build
+
+# Copy Graal SDK to new directory defined as artifact/cache
+echo "Copying Graal SDK to ${$CI_PROJECT_DIR/graal_dist}..."
+cp -R $CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home/ $CI_PROJECT_DIR/graal_dist

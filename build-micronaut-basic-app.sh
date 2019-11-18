@@ -2,7 +2,7 @@
 
 echo "Building micronaut-basic-app..."
 
-export JAVA_HOME=$CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home
+export JAVA_HOME=$CI_PROJECT_DIR/graal_dist
 export PATH=$JAVA_HOME/bin:$PATH
 java -version
 native-image --version

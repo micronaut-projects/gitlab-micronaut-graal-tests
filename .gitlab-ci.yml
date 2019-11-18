@@ -29,13 +29,11 @@ build-graal:
   cache:
     key: ${GRAAL_LAST_COMMIT}
     paths:
-      - $CI_PROJECT_DIR/graal/graal/sdk
-      - $CI_PROJECT_DIR/graal/graal/vm
+      - $CI_PROJECT_DIR/graal_dist
   artifacts:
     expire_in: 5 days
     paths:
-      - $CI_PROJECT_DIR/graal/graal/sdk
-      - $CI_PROJECT_DIR/graal/graal/vm
+      - $CI_PROJECT_DIR/graal_dist
   script:
     - if [ -d $CI_PROJECT_DIR/graal ]; then exit 0; fi
     - ./build-graal.sh
