@@ -35,7 +35,7 @@ build-graal:
     paths:
       - $CI_PROJECT_DIR/graal_dist
   script:
-    - if [ -d $CI_PROJECT_DIR/graal ]; then exit 0; fi
+    - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graal.sh
 
 
