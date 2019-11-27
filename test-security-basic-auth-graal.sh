@@ -3,12 +3,6 @@ set -x
 
 apk add curl jq
 
-ls -l
-pwd
-ls -l $CI_PROJECT_DIR
-ls -l $CI_PROJECT_DIR/micronaut-security-basic-auth-graal
-
-
 $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal &
 sleep 3
 
