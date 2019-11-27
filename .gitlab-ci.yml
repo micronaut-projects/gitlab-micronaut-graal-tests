@@ -151,6 +151,15 @@ micronaut:build-security-jwt-graal:
   script:
     - ./build-micronaut-security-jwt-graal.sh
 
+micronaut:build-security-basic-auth-graal:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal
+  allow_failure: true
+  script:
+    - ./build-micronaut-security-basic-auth-graal.sh
+
 micronaut:build-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-build-template
   artifacts:
@@ -274,6 +283,13 @@ micronaut:test-security-jwt-graal:
     - micronaut:build-security-jwt-graal
   script:
     - ./test-security-jwt-graal.sh
+
+micronaut:test-security-basic-auth-graal:
+  <<: *micronaut-test-template
+  dependencies:
+    - micronaut:build-security-basic-auth-graal
+  script:
+    - ./test-security-basic-auth-graal.sh
 
 micronaut:test-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-test-template
