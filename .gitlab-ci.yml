@@ -63,7 +63,7 @@ micronaut:build-basic-app:
   script:
     - ./build-micronaut-basic-app.sh
 
-micronaut:build-consul-http-client:
+.micronaut:build-consul-http-client:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -71,7 +71,7 @@ micronaut:build-consul-http-client:
   script:
     - ./build-micronaut-consul-http-client.sh
 
-micronaut:build-zipkin-graal:
+.micronaut:build-zipkin-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -79,7 +79,7 @@ micronaut:build-zipkin-graal:
   script:
     - ./build-micronaut-zipkin-graal.sh
 
-micronaut:build-function-graal:
+.micronaut:build-function-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -88,7 +88,7 @@ micronaut:build-function-graal:
   script:
     - ./build-micronaut-function-graal.sh
 
-micronaut:build-rabbitmq-graal:
+.micronaut:build-rabbitmq-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -97,7 +97,7 @@ micronaut:build-rabbitmq-graal:
   script:
     - ./build-micronaut-rabbitmq-graal.sh
 
-micronaut:build-management-graal:
+.micronaut:build-management-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -106,7 +106,7 @@ micronaut:build-management-graal:
   script:
     - ./build-micronaut-management-graal.sh
 
-micronaut:build-views-graal-freemarker:
+.micronaut:build-views-graal-freemarker:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -115,7 +115,7 @@ micronaut:build-views-graal-freemarker:
   script:
     - ./build-micronaut-views-graal.sh freemarker
 
-micronaut:build-views-graal-handlebars:
+.micronaut:build-views-graal-handlebars:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -124,7 +124,7 @@ micronaut:build-views-graal-handlebars:
   script:
     - ./build-micronaut-views-graal.sh handlebars
 
-micronaut:build-views-graal-thymeleaf:
+.micronaut:build-views-graal-thymeleaf:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -133,7 +133,7 @@ micronaut:build-views-graal-thymeleaf:
   script:
     - ./build-micronaut-views-graal.sh thymeleaf
 
-micronaut:build-views-graal-velocity:
+.micronaut:build-views-graal-velocity:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -142,7 +142,7 @@ micronaut:build-views-graal-velocity:
   script:
     - ./build-micronaut-views-graal.sh velocity
 
-micronaut:build-security-jwt-graal:
+.micronaut:build-security-jwt-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -151,7 +151,7 @@ micronaut:build-security-jwt-graal:
   script:
     - ./build-micronaut-security-jwt-graal.sh
 
-micronaut:build-security-basic-auth-graal:
+.micronaut:build-security-basic-auth-graal:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -160,7 +160,7 @@ micronaut:build-security-basic-auth-graal:
   script:
     - ./build-micronaut-security-basic-auth-graal.sh
 
-micronaut:build-micronaut-data-jdbc-graal-h2:
+.micronaut:build-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -169,7 +169,7 @@ micronaut:build-micronaut-data-jdbc-graal-h2:
   script:
     - ./build-micronaut-data-jdbc-graal.sh h2
 
-micronaut:build-micronaut-data-jdbc-graal-postgres:
+.micronaut:build-micronaut-data-jdbc-graal-postgres:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -178,7 +178,7 @@ micronaut:build-micronaut-data-jdbc-graal-postgres:
   script:
     - ./build-micronaut-data-jdbc-graal.sh postgres
 
-micronaut:build-micronaut-data-jdbc-graal-oracle:
+.micronaut:build-micronaut-data-jdbc-graal-oracle:
   <<: *micronaut-build-template
   artifacts:
     paths:
@@ -215,7 +215,7 @@ micronaut:test-basic-app:
   script:
     - ./test-consul-http-client.sh
 
-micronaut:test-zipkin-graal:
+.micronaut:test-zipkin-graal:
   <<: *micronaut-test-template
   services:
     - name: openzipkin/zipkin:2.11.12
@@ -225,14 +225,14 @@ micronaut:test-zipkin-graal:
   script:
     - ./test-zipkin-graal.sh
 
-micronaut:test-function-graal:
+.micronaut:test-function-graal:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-function-graal
   script:
     - ./test-function-graal.sh
 
-micronaut:test-rabbitmq-graal:
+.micronaut:test-rabbitmq-graal:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.7.11
@@ -242,63 +242,63 @@ micronaut:test-rabbitmq-graal:
   script:
     - ./test-rabbitmq-graal.sh
 
-micronaut:test-management-graal:
+.micronaut:test-management-graal:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-management-graal
   script:
     - ./test-management-graal.sh
 
-micronaut:test-views-graal-freemarker:
+.micronaut:test-views-graal-freemarker:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-freemarker
   script:
     - ./test-views-graal-freemarker.sh
 
-micronaut:test-views-graal-handlebars:
+.micronaut:test-views-graal-handlebars:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-handlebars
   script:
     - ./test-views-graal-handlebars.sh
 
-micronaut:test-views-graal-thymeleaf:
+.micronaut:test-views-graal-thymeleaf:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-thymeleaf
   script:
     - ./test-views-graal-thymeleaf.sh
 
-micronaut:test-views-graal-velocity:
+.micronaut:test-views-graal-velocity:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-views-graal-velocity
   script:
     - ./test-views-graal-velocity.sh
 
-micronaut:test-security-jwt-graal:
+.micronaut:test-security-jwt-graal:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-security-jwt-graal
   script:
     - ./test-security-jwt-graal.sh
 
-micronaut:test-security-basic-auth-graal:
+.micronaut:test-security-basic-auth-graal:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-security-basic-auth-graal
   script:
     - ./test-security-basic-auth-graal.sh
 
-micronaut:test-micronaut-data-jdbc-graal-h2:
+.micronaut:test-micronaut-data-jdbc-graal-h2:
   <<: *micronaut-test-template
   dependencies:
     - micronaut:build-micronaut-data-jdbc-graal-h2
   script:
     - ./test-micronaut-data-jdbc-graal-h2.sh
 
-micronaut:test-micronaut-data-jdbc-graal-postgres:
+.micronaut:test-micronaut-data-jdbc-graal-postgres:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -313,7 +313,7 @@ variables:
   POSTGRES_PASSWORD: secret
   POSTGRES_DB: pets
 
-micronaut:test-micronaut-data-jdbc-graal-oracle:
+.micronaut:test-micronaut-data-jdbc-graal-oracle:
   <<: *micronaut-test-template
   services:
     - name: wnameless/oracle-xe-11g-r2
