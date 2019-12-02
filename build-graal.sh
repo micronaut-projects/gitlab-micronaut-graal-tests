@@ -1,14 +1,33 @@
 #!/bin/bash
 
-echo "Building Graal..."
+JDK_VERSION=$1
+
+jdk8() {
+    echo "Building GraalVM for JDK 8"
+    wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-19.3-b04/openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
+    tar zxf openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_232-jvmci-19.3-b04
+}
+
+jdk11() {
+    echo "Building GraalVM for JDK 11"
+    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-19.3-b05/labsjdk-ce-11.0.5+10-jvmci-19.3-b05-linux-amd64.tar.gz
+    tar zxf labsjdk-ce-11.0.5+10-jvmci-19.3-b05-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.5-jvmci-19.3-b05
+}
+
+if [ "${JDK_VERSION}" == "jdk8" ]; then
+    jdk8
+elif [ "$JDK_VERSION" == "jdk11" ]; then
+    jdk11
+else
+    echo "Need to provide a valid JDK version: jdk8, jdk11"
+    exit 1
+fi
 
 mkdir graal
 cd graal
-
-wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-19.3-b04/openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
-tar zxf openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
 export PATH=$PWD/mx:$PATH
-export JAVA_HOME=$CI_PROJECT_DIR/graal/openjdk1.8.0_232-jvmci-19.3-b04
 
 git clone --depth=1 https://github.com/oracle/graal
 git clone --depth=1 https://github.com/graalvm/mx
