@@ -187,6 +187,14 @@ micronaut:build-micronaut-data-jdbc-graal-oracle:
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
 
+micronaut:build-micronaut-data-jdbc-graal-mariadb:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mariadb
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh mariadb
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -312,6 +320,8 @@ variables:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: secret
   POSTGRES_DB: pets
+  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: pets
 
 micronaut:test-micronaut-data-jdbc-graal-oracle:
   <<: *micronaut-test-template
@@ -322,3 +332,13 @@ micronaut:test-micronaut-data-jdbc-graal-oracle:
     - micronaut:build-micronaut-data-jdbc-graal-oracle
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
+
+micronaut:test-micronaut-data-jdbc-graal-mariadb:
+  <<: *micronaut-test-template
+  services:
+    - name: mariadb:10.4.8-bionic
+      alias: mariadbhost
+  dependencies:
+    - micronaut:build-micronaut-data-jdbc-graal-mariadb
+  script:
+    - ./test-micronaut-data-jdbc-graal-mariadb.sh
