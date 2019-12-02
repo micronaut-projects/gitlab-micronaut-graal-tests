@@ -90,127 +90,227 @@ jdk11:basic-app:micronaut-build:
   script:
     - ./build-micronaut-basic-app.sh
 
-.micronaut:build-consul-http-client:
-  <<: *micronaut-build-template
+jdk8:consul-http-client:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
   script:
     - ./build-micronaut-consul-http-client.sh
 
-.micronaut:build-zipkin-graal:
-  <<: *micronaut-build-template
+jdk11:consul-http-client:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
+  script:
+    - ./build-micronaut-consul-http-client.sh
+
+jdk8:zipkin:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
   script:
     - ./build-micronaut-zipkin-graal.sh
 
-.micronaut:build-function-graal:
-  <<: *micronaut-build-template
+jdk11:zipkin:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
+  script:
+    - ./build-micronaut-zipkin-graal.sh
+
+jdk8:function:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
-  allow_failure: true
   script:
     - ./build-micronaut-function-graal.sh
 
-.micronaut:build-rabbitmq-graal:
-  <<: *micronaut-build-template
+jdk11:function:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
+  script:
+    - ./build-micronaut-function-graal.sh
+
+jdk8:rabbitmq:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
-  allow_failure: true
   script:
     - ./build-micronaut-rabbitmq-graal.sh
 
-.micronaut:build-management-graal:
-  <<: *micronaut-build-template
+jdk11:rabbitmq:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
+  script:
+    - ./build-micronaut-rabbitmq-graal.sh
+
+jdk8:management:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
-  allow_failure: true
   script:
     - ./build-micronaut-management-graal.sh
 
-.micronaut:build-views-graal-freemarker:
-  <<: *micronaut-build-template
+jdk11:management:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
+  script:
+    - ./build-micronaut-management-graal.sh
+
+jdk8:views-freemarker:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
-  allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh freemarker
 
-.micronaut:build-views-graal-handlebars:
-  <<: *micronaut-build-template
+jdk11:views-freemarker:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
+  script:
+    - ./build-micronaut-views-graal.sh freemarker
+
+jdk8:views-handlebars:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
-  allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh handlebars
 
-.micronaut:build-views-graal-thymeleaf:
-  <<: *micronaut-build-template
+jdk11:views-handlebars:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
+  script:
+    - ./build-micronaut-views-graal.sh handlebars
+
+jdk8:views-thymeleaf:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
-  allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh thymeleaf
 
-.micronaut:build-views-graal-velocity:
-  <<: *micronaut-build-template
+jdk11:views-thymeleaf:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
+  script:
+    - ./build-micronaut-views-graal.sh thymeleaf
+
+jdk8:views-velocity:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
-  allow_failure: true
   script:
     - ./build-micronaut-views-graal.sh velocity
 
-.micronaut:build-security-jwt-graal:
-  <<: *micronaut-build-template
+jdk11:views-velocity:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
+  script:
+    - ./build-micronaut-views-graal.sh velocity
+
+jdk8:security-jwt:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
-  allow_failure: true
   script:
     - ./build-micronaut-security-jwt-graal.sh
 
-.micronaut:build-security-basic-auth-graal:
-  <<: *micronaut-build-template
+jdk11:security-jwt:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
+  script:
+    - ./build-micronaut-security-jwt-graal.sh
+
+jdk8:security-basic-auth:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal
-  allow_failure: true
   script:
     - ./build-micronaut-security-basic-auth-graal.sh
 
-.micronaut:build-micronaut-data-jdbc-graal-h2:
-  <<: *micronaut-build-template
+jdk11:security-basic-auth:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal
+  script:
+    - ./build-micronaut-security-basic-auth-graal.sh
+
+jdk8:data-jdbc-h2:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
-  allow_failure: true
   script:
     - ./build-micronaut-data-jdbc-graal.sh h2
 
-.micronaut:build-micronaut-data-jdbc-graal-postgres:
-  <<: *micronaut-build-template
+jdk11:data-jdbc-h2:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh h2
+
+jdk8:data-jdbc-postgres:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
-  allow_failure: true
   script:
     - ./build-micronaut-data-jdbc-graal.sh postgres
 
-.micronaut:build-micronaut-data-jdbc-graal-oracle:
-  <<: *micronaut-build-template
+jdk11:data-jdbc-postgres:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh postgres
+
+jdk8:data-jdbc-oracle:micronaut-build:
+  <<: *jdk8-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
-  allow_failure: true
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh oracle
+
+jdk11:data-jdbc-oracle:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
 
@@ -239,106 +339,209 @@ jdk11:basic-app:test:
   script:
     - ./test-basic-app.sh
 
-.micronaut:test-consul-http-client:
+jdk8:consul-http-client:test:
   <<: *micronaut-test-template
   services:
     - name: consul:1.4.0
       alias: consulhost
   dependencies:
-    - micronaut:build-consul-http-client
+    - jdk8:consul-http-client:micronaut-build
   script:
     - ./test-consul-http-client.sh
 
-.micronaut:test-zipkin-graal:
+jdk11:consul-http-client:test:
+  <<: *micronaut-test-template
+  services:
+    - name: consul:1.4.0
+      alias: consulhost
+  dependencies:
+    - jdk11:consul-http-client:micronaut-build
+  script:
+    - ./test-consul-http-client.sh
+
+jdk8:zipkin:test:
   <<: *micronaut-test-template
   services:
     - name: openzipkin/zipkin:2.11.12
       alias: openzipkin
   dependencies:
-    - micronaut:build-zipkin-graal
+    - jdk8:zipkin:micronaut-build
   script:
     - ./test-zipkin-graal.sh
 
-.micronaut:test-function-graal:
+jdk11:zipkin:test:
+  <<: *micronaut-test-template
+  services:
+    - name: openzipkin/zipkin:2.11.12
+      alias: openzipkin
+  dependencies:
+    - jdk11:zipkin:micronaut-build
+  script:
+    - ./test-zipkin-graal.sh
+
+jdk8:function:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-function-graal
+    - jdk8:function:micronaut-build
   script:
     - ./test-function-graal.sh
 
-.micronaut:test-rabbitmq-graal:
+jdk11:function:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:function:micronaut-build
+  script:
+    - ./test-function-graal.sh
+
+jdk8:rabbitmq:test:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.7.11
       alias: rabbitmqhost
   dependencies:
-    - micronaut:build-rabbitmq-graal
+    - jdk8:rabbitmq:micronaut-build
   script:
     - ./test-rabbitmq-graal.sh
 
-.micronaut:test-management-graal:
+jdk11:rabbitmq:test:
+  <<: *micronaut-test-template
+  services:
+    - name: rabbitmq:3.7.11
+      alias: rabbitmqhost
+  dependencies:
+    - jdk11:rabbitmq:micronaut-build
+  script:
+    - ./test-rabbitmq-graal.sh
+
+jdk8:management:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-management-graal
+    - jdk8:management:micronaut-build
   script:
     - ./test-management-graal.sh
 
-.micronaut:test-views-graal-freemarker:
+jdk11:management:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-views-graal-freemarker
+    - jdk11:management:micronaut-build
+  script:
+    - ./test-management-graal.sh
+
+jdk8:views-freemarker:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:views-freemarker:micronaut-build
   script:
     - ./test-views-graal-freemarker.sh
 
-.micronaut:test-views-graal-handlebars:
+jdk11:views-freemarker:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-views-graal-handlebars
+    - jdk11:views-freemarker:micronaut-build
+  script:
+    - ./test-views-graal-freemarker.sh
+
+jdk8:views-handlebars:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:views-handlebars:micronaut-build
   script:
     - ./test-views-graal-handlebars.sh
 
-.micronaut:test-views-graal-thymeleaf:
+jdk11:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-views-graal-thymeleaf
+    - jdk11:views-handlebars:micronaut-build
+  script:
+    - ./test-views-graal-handlebars.sh
+
+jdk8:views-thymeleaf:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:views-thymeleaf:micronaut-build
   script:
     - ./test-views-graal-thymeleaf.sh
 
-.micronaut:test-views-graal-velocity:
+jdk11:views-thymeleaf:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-views-graal-velocity
+    - jdk11:views-thymeleaf:micronaut-build
+  script:
+    - ./test-views-graal-thymeleaf.sh
+
+jdk8:views-velocity:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:views-velocity:micronaut-build
   script:
     - ./test-views-graal-velocity.sh
 
-.micronaut:test-security-jwt-graal:
+jdk11:views-velocity:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-security-jwt-graal
+    - jdk11:views-velocity:micronaut-build
+  script:
+    - ./test-views-graal-velocity.sh
+
+jdk8:security-jwt:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:security-jwt:micronaut-build
   script:
     - ./test-security-jwt-graal.sh
 
-.micronaut:test-security-basic-auth-graal:
+jdk11:security-jwt:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-security-basic-auth-graal
+    - jdk11:security-jwt:micronaut-build
+  script:
+    - ./test-security-jwt-graal.sh
+
+jdk8:security-basic-auth:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:security-basic-auth:micronaut-build
   script:
     - ./test-security-basic-auth-graal.sh
 
-.micronaut:test-micronaut-data-jdbc-graal-h2:
+jdk11:security-basic-auth:test:
   <<: *micronaut-test-template
   dependencies:
-    - micronaut:build-micronaut-data-jdbc-graal-h2
+    - jdk11:security-basic-auth:micronaut-build
+  script:
+    - ./test-security-basic-auth-graal.sh
+
+jdk8:data-jdbc-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:data-jdbc-h2:micronaut-build
   script:
     - ./test-micronaut-data-jdbc-graal-h2.sh
 
-.micronaut:test-micronaut-data-jdbc-graal-postgres:
+jdk11:data-jdbc-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:data-jdbc-h2:micronaut-build
+  script:
+    - ./test-micronaut-data-jdbc-graal-h2.sh
+
+jdk8:data-jdbc-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
       alias: postgreshost
   dependencies:
-    - micronaut:build-micronaut-data-jdbc-graal-postgres
+    - jdk8:data-jdbc-postgres:micronaut-build
+  script:
+    - ./test-micronaut-data-jdbc-graal-postgres.sh
+
+jdk11:data-jdbc-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk11:data-jdbc-postgres:micronaut-build
   script:
     - ./test-micronaut-data-jdbc-graal-postgres.sh
 
@@ -347,12 +550,22 @@ variables:
   POSTGRES_PASSWORD: secret
   POSTGRES_DB: pets
 
-.micronaut:test-micronaut-data-jdbc-graal-oracle:
+jdk8:data-jdbc-oracle:test:
   <<: *micronaut-test-template
   services:
     - name: wnameless/oracle-xe-11g-r2
       alias: oraclehost
   dependencies:
-    - micronaut:build-micronaut-data-jdbc-graal-oracle
+    - jdk8:data-jdbc-oracle:micronaut-build
+  script:
+    - ./test-micronaut-data-jdbc-graal-oracle.sh
+
+jdk11:data-jdbc-oracle:test:
+  <<: *micronaut-test-template
+  services:
+    - name: wnameless/oracle-xe-11g-r2
+      alias: oraclehost
+  dependencies:
+    - jdk11:data-jdbc-oracle:micronaut-build
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
