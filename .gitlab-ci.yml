@@ -195,6 +195,14 @@ micronaut:build-micronaut-data-jdbc-graal-mariadb:
   script:
     - ./build-micronaut-data-jdbc-graal.sh mariadb
 
+micronaut:build-micronaut-schedule:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal
+  script:
+    - ./build-micronaut-schedule-graal.sh
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -342,3 +350,10 @@ micronaut:test-micronaut-data-jdbc-graal-mariadb:
     - micronaut:build-micronaut-data-jdbc-graal-mariadb
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
+
+micronaut:test-schedule:
+  <<: *micronaut-test-template
+  dependencies:
+    - micronaut:build-micronaut-schedule
+  script:
+    - ./test-schedule.sh
