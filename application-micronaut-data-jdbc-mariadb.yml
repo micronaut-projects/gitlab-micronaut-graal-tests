@@ -1,0 +1,6 @@
+---
+datasources:
+  default:
+    url: jdbc:mariadb://mariadbhost:3306/pets
+    username: root
+    password: secret
