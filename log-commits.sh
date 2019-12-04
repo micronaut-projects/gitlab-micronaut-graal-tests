@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Running build..."
-echo "Graal current commit: $GRAAL_CURRENT_COMMIT"
-echo "Graal last commit: $GRAAL_LAST_COMMIT"
-echo "Micronaut current commit: $MN_CURRENT_COMMIT"
-echo "Micronaut last commit: $MN_LAST_COMMIT"
+echo "Graal previous commit: $GRAAL_PREVIOUS_COMMIT"
+echo "Graal new commit: $GRAAL_NEW_COMMIT"
+echo "Micronaut previous commit: $MN_PREVIOUS_COMMIT"
+echo "Micronaut new commit: $MN_NEW_COMMIT"

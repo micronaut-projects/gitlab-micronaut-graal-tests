@@ -27,7 +27,7 @@ log-commits:
 build-graal:
   stage: build-graal
   cache:
-    key: ${GRAAL_LAST_COMMIT}
+    key: ${GRAAL_NEW_COMMIT}
     paths:
       - $CI_PROJECT_DIR/graal_dist
   artifacts:
