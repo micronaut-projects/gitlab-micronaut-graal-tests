@@ -203,6 +203,13 @@ micronaut:build-micronaut-schedule:
   script:
     - ./build-micronaut-schedule-graal.sh
 
+micronaut:build-micronaut-cache:
+  <<: *micronaut-build-template
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-cache-graal/mn-cache-graal
+  script:
+    - ./build-micronaut-cache-graal.sh
 
 #  _            _
 # | |_ ___  ___| |_
@@ -357,3 +364,10 @@ micronaut:test-schedule:
     - micronaut:build-micronaut-schedule
   script:
     - ./test-schedule.sh
+
+micronaut:test-cache:
+  <<: *micronaut-test-template
+  dependencies:
+    - micronaut:build-micronaut-cache
+  script:
+    - ./test-cache.sh
