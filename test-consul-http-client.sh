@@ -8,7 +8,6 @@ sleep 3
 
 # Only send the requests but don't check anything
 curl localhost:8080/hello/Micronaut
-curl localhost:8080/api/hello/Micronaut
 
 # Consul fails con GitlabCI
 #RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
