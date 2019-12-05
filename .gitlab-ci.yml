@@ -330,6 +330,22 @@ jdk11:data-jdbc-mariadb:micronaut-build:
   script:
     - ./build-micronaut-data-jdbc-graal.sh mariadb
 
+jdk8:schedule:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal
+  script:
+    - ./build-micronaut-schedule-graal.sh
+
+jdk11:schedule:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal
+  script:
+    - ./build-micronaut-schedule-graal.sh
+
 jdk8:cache:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -622,6 +638,20 @@ jdk11:data-jdbc-mariadb:test:
     - jdk11:data-jdbc-mariadb:micronaut-build
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
+
+jdk8:schedule:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:schedule:micronaut-build
+  script:
+    - ./test-schedule.sh
+
+jdk11:schedule:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:schedule:micronaut-build
+  script:
+    - ./test-schedule.sh
 
 jdk8:cache:test:
   <<: *micronaut-test-template
