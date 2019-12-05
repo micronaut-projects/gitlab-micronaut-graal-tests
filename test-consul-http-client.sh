@@ -6,6 +6,10 @@ apk add curl
 MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
 sleep 3
 
+# Only send the requests but don't check anything
+curl localhost:8080/hello/Micronaut
+curl localhost:8080/api/hello/Micronaut
+
 # Consul fails con GitlabCI
 #RESPONSE=$(curl -s localhost:8080/hello/Micronaut)
 #EXPECTED_RESPONSE='Hello Micronaut'
