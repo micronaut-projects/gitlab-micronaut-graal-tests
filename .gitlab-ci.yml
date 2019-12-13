@@ -68,11 +68,13 @@ jdk11:build-graalvm:
   <<: *micronaut-build-template
   dependencies:
     - jdk8:build-graalvm
+  needs: ["jdk8:build-graalvm"]
 
 .jdk11:micronaut-build: &jdk11-build
   <<: *micronaut-build-template
   dependencies:
     - jdk11:build-graalvm
+  needs: ["jdk11:build-graalvm"]
 
 jdk8:basic-app:micronaut-build:
   <<: *jdk8-build
@@ -376,6 +378,7 @@ jdk8:basic-app:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:basic-app:micronaut-build
+  needs: ["jdk8:basic-app:micronaut-build"]
   script:
     - ./test-basic-app.sh
 
@@ -383,6 +386,7 @@ jdk11:basic-app:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:basic-app:micronaut-build
+  needs: ["jdk11:basic-app:micronaut-build"]
   script:
     - ./test-basic-app.sh
 
@@ -393,6 +397,7 @@ jdk8:consul-http-client:test:
       alias: consulhost
   dependencies:
     - jdk8:consul-http-client:micronaut-build
+  needs: ["jdk8:consul-http-client:micronaut-build"]
   script:
     - ./test-consul-http-client.sh
 
@@ -403,6 +408,7 @@ jdk11:consul-http-client:test:
       alias: consulhost
   dependencies:
     - jdk11:consul-http-client:micronaut-build
+  needs: ["jdk11:consul-http-client:micronaut-build"]
   script:
     - ./test-consul-http-client.sh
 
@@ -413,6 +419,7 @@ jdk8:zipkin:test:
       alias: openzipkin
   dependencies:
     - jdk8:zipkin:micronaut-build
+  needs: ["jdk8:zipkin:micronaut-build"]
   script:
     - ./test-zipkin-graal.sh
 
@@ -423,6 +430,7 @@ jdk11:zipkin:test:
       alias: openzipkin
   dependencies:
     - jdk11:zipkin:micronaut-build
+  needs: ["jdk11:zipkin:micronaut-build"]
   script:
     - ./test-zipkin-graal.sh
 
@@ -430,6 +438,7 @@ jdk8:function:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:function:micronaut-build
+  needs: ["jdk8:function:micronaut-build"]
   script:
     - ./test-function-graal.sh
 
@@ -437,6 +446,7 @@ jdk11:function:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:function:micronaut-build
+  needs: ["jdk11:function:micronaut-build"]
   script:
     - ./test-function-graal.sh
 
@@ -447,6 +457,7 @@ jdk8:rabbitmq:test:
       alias: rabbitmqhost
   dependencies:
     - jdk8:rabbitmq:micronaut-build
+  needs: ["jdk8:rabbitmq:micronaut-build"]
   script:
     - ./test-rabbitmq-graal.sh
 
@@ -457,6 +468,7 @@ jdk11:rabbitmq:test:
       alias: rabbitmqhost
   dependencies:
     - jdk11:rabbitmq:micronaut-build
+  needs: ["jdk11:rabbitmq:micronaut-build"]
   script:
     - ./test-rabbitmq-graal.sh
 
@@ -464,6 +476,7 @@ jdk8:management:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:management:micronaut-build
+  needs: ["jdk8:management:micronaut-build"]
   script:
     - ./test-management-graal.sh
 
@@ -471,6 +484,7 @@ jdk11:management:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:management:micronaut-build
+  needs: ["jdk11:management:micronaut-build"]
   script:
     - ./test-management-graal.sh
 
@@ -478,6 +492,7 @@ jdk8:views-freemarker:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:views-freemarker:micronaut-build
+  needs: ["jdk8:views-freemarker:micronaut-build"]
   script:
     - ./test-views-graal-freemarker.sh
 
@@ -485,6 +500,7 @@ jdk11:views-freemarker:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:views-freemarker:micronaut-build
+  needs: ["jdk11:views-freemarker:micronaut-build"]
   script:
     - ./test-views-graal-freemarker.sh
 
@@ -492,6 +508,7 @@ jdk8:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:views-handlebars:micronaut-build
+  needs: ["jdk8:views-handlebars:micronaut-build"]
   script:
     - ./test-views-graal-handlebars.sh
 
@@ -499,6 +516,7 @@ jdk11:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:views-handlebars:micronaut-build
+  needs: ["jdk11:views-handlebars:micronaut-build"]
   script:
     - ./test-views-graal-handlebars.sh
 
@@ -506,6 +524,7 @@ jdk8:views-thymeleaf:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:views-thymeleaf:micronaut-build
+  needs: ["jdk8:views-thymeleaf:micronaut-build"]
   script:
     - ./test-views-graal-thymeleaf.sh
 
@@ -513,6 +532,7 @@ jdk11:views-thymeleaf:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:views-thymeleaf:micronaut-build
+  needs: ["jdk11:views-thymeleaf:micronaut-build"]
   script:
     - ./test-views-graal-thymeleaf.sh
 
@@ -520,6 +540,7 @@ jdk8:views-velocity:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:views-velocity:micronaut-build
+  needs: ["jdk8:views-velocity:micronaut-build"]
   script:
     - ./test-views-graal-velocity.sh
 
@@ -527,6 +548,7 @@ jdk11:views-velocity:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:views-velocity:micronaut-build
+  needs: ["jdk11:views-velocity:micronaut-build"]
   script:
     - ./test-views-graal-velocity.sh
 
@@ -534,6 +556,7 @@ jdk8:security-jwt:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:security-jwt:micronaut-build
+  needs: ["jdk8:security-jwt:micronaut-build"]
   script:
     - ./test-security-jwt-graal.sh
 
@@ -541,6 +564,7 @@ jdk11:security-jwt:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:security-jwt:micronaut-build
+  needs: ["jdk11:security-jwt:micronaut-build"]
   script:
     - ./test-security-jwt-graal.sh
 
@@ -548,6 +572,7 @@ jdk8:security-basic-auth:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:security-basic-auth:micronaut-build
+  needs: ["jdk8:security-basic-auth:micronaut-build"]
   script:
     - ./test-security-basic-auth-graal.sh
 
@@ -555,6 +580,7 @@ jdk11:security-basic-auth:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:security-basic-auth:micronaut-build
+  needs: ["jdk11:security-basic-auth:micronaut-build"]
   script:
     - ./test-security-basic-auth-graal.sh
 
@@ -562,6 +588,7 @@ jdk8:data-jdbc-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:data-jdbc-h2:micronaut-build
+  needs: ["jdk8:data-jdbc-h2:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-h2.sh
 
@@ -569,6 +596,7 @@ jdk11:data-jdbc-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:data-jdbc-h2:micronaut-build
+  needs: ["jdk11:data-jdbc-h2:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-h2.sh
 
@@ -579,6 +607,7 @@ jdk8:data-jdbc-postgres:test:
       alias: postgreshost
   dependencies:
     - jdk8:data-jdbc-postgres:micronaut-build
+  needs: ["jdk8:data-jdbc-postgres:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-postgres.sh
 
@@ -589,6 +618,7 @@ jdk11:data-jdbc-postgres:test:
       alias: postgreshost
   dependencies:
     - jdk11:data-jdbc-postgres:micronaut-build
+  needs: ["jdk11:data-jdbc-postgres:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-postgres.sh
 
@@ -606,6 +636,7 @@ jdk8:data-jdbc-oracle:test:
       alias: oraclehost
   dependencies:
     - jdk8:data-jdbc-oracle:micronaut-build
+  needs: ["jdk8:data-jdbc-oracle:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
 
@@ -616,6 +647,7 @@ jdk11:data-jdbc-oracle:test:
       alias: oraclehost
   dependencies:
     - jdk11:data-jdbc-oracle:micronaut-build
+  needs: ["jdk11:data-jdbc-oracle:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
 
@@ -626,6 +658,7 @@ jdk8:data-jdbc-mariadb:test:
       alias: mariadbhost
   dependencies:
     - jdk8:data-jdbc-mariadb:micronaut-build
+  needs: ["jdk8:data-jdbc-mariadb:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
 
@@ -636,6 +669,7 @@ jdk11:data-jdbc-mariadb:test:
       alias: mariadbhost
   dependencies:
     - jdk11:data-jdbc-mariadb:micronaut-build
+  needs: ["jdk11:data-jdbc-mariadb:micronaut-build"]
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
 
@@ -643,6 +677,7 @@ jdk8:schedule:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:schedule:micronaut-build
+  needs: ["jdk8:schedule:micronaut-build"]
   script:
     - ./test-schedule.sh
 
@@ -650,6 +685,7 @@ jdk11:schedule:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:schedule:micronaut-build
+  needs: ["jdk11:schedule:micronaut-build"]
   script:
     - ./test-schedule.sh
 
@@ -657,6 +693,7 @@ jdk8:cache:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:cache:micronaut-build
+  needs: ["jdk8:cache:micronaut-build"]
   script:
     - ./test-cache.sh
 
@@ -664,5 +701,6 @@ jdk11:cache:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:cache:micronaut-build
+  needs: ["jdk11:cache:micronaut-build"]
   script:
     - ./test-cache.sh
