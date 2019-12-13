@@ -608,6 +608,10 @@ jdk8:data-jdbc-postgres:test:
   dependencies:
     - jdk8:data-jdbc-postgres:micronaut-build
   needs: ["jdk8:data-jdbc-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: pets
   script:
     - ./test-micronaut-data-jdbc-graal-postgres.sh
 
@@ -619,15 +623,12 @@ jdk11:data-jdbc-postgres:test:
   dependencies:
     - jdk11:data-jdbc-postgres:micronaut-build
   needs: ["jdk11:data-jdbc-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: pets
   script:
     - ./test-micronaut-data-jdbc-graal-postgres.sh
-
-variables:
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: secret
-  POSTGRES_DB: pets
-  MYSQL_ROOT_PASSWORD: secret
-  MYSQL_DATABASE: pets
 
 jdk8:data-jdbc-oracle:test:
   <<: *micronaut-test-template
@@ -659,6 +660,9 @@ jdk8:data-jdbc-mariadb:test:
   dependencies:
     - jdk8:data-jdbc-mariadb:micronaut-build
   needs: ["jdk8:data-jdbc-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: pets
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
 
@@ -670,6 +674,9 @@ jdk11:data-jdbc-mariadb:test:
   dependencies:
     - jdk11:data-jdbc-mariadb:micronaut-build
   needs: ["jdk11:data-jdbc-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: pets
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
 
