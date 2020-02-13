@@ -308,7 +308,7 @@ jdk8:data-jdbc-oracle:micronaut-build:
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
 
-jdk11:data-jdbc-oracle:micronaut-build:
+.jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -643,7 +643,7 @@ jdk8:data-jdbc-oracle:test:
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
 
-jdk11:data-jdbc-oracle:test:
+.jdk11:data-jdbc-oracle:test:
   <<: *micronaut-test-template
   services:
     - name: wnameless/oracle-xe-11g-r2
