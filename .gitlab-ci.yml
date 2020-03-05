@@ -364,6 +364,38 @@ jdk11:cache:micronaut-build:
   script:
     - ./build-micronaut-cache-graal.sh
 
+jdk8:servlet-tomcat:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-tomcat-graal
+  script:
+    - ./build-micronaut-servlet-graal.sh tomcat
+
+jdk11:servlet-tomcat:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-tomcat-graal
+  script:
+    - ./build-micronaut-servlet-graal.sh tomcat
+
+jdk8:servlet-jetty:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal
+  script:
+    - ./build-micronaut-servlet-graal.sh jetty
+
+jdk11:servlet-jetty:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal
+  script:
+    - ./build-micronaut-servlet-graal.sh jetty
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -713,3 +745,35 @@ jdk11:cache:test:
   needs: ["jdk11:cache:micronaut-build"]
   script:
     - ./test-cache.sh
+
+jdk8:servlet-tomcat:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:servlet-tomcat:micronaut-build
+  needs: ["jdk8:servlet-tomcat:micronaut-build"]
+  script:
+    - ./test-servlet-graal-tomcat.sh
+
+jdk11:servlet-tomcat:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:servlet-tomcat:micronaut-build
+  needs: ["jdk11:servlet-tomcat:micronaut-build"]
+  script:
+    - ./test-servlet-graal-tomcat.sh
+
+jdk8:servlet-jetty:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:servlet-jetty:micronaut-build
+  needs: ["jdk8:servlet-jetty:micronaut-build"]
+  script:
+    - ./test-servlet-graal-jetty.sh
+
+jdk11:servlet-jetty:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:servlet-jetty:micronaut-build
+  needs: ["jdk11:servlet-jetty:micronaut-build"]
+  script:
+    - ./test-servlet-graal-jetty.sh
