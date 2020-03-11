@@ -16,7 +16,7 @@ native-image --version
 
 git clone https://github.com/micronaut-graal-tests/micronaut-data-jdbc-graal
 cd micronaut-data-jdbc-graal
-git checkout $DB_DIALECT
+git checkout ${CI_BUILD_REF_NAME}_${DB_DIALECT}
 echo "Git commit: `git rev-parse HEAD`"
 export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
 ./build-native-image.sh
