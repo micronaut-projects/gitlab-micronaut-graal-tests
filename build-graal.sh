@@ -4,16 +4,16 @@ JDK_VERSION=$1
 
 jdk8() {
     echo "Building GraalVM for JDK 8"
-    wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-19.3-b04/openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
-    tar zxf openjdk-8u232-jvmci-19.3-b04-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_232-jvmci-19.3-b04
+    wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-20.0-b02/openjdk-8u242-jvmci-20.0-b02-linux-amd64.tar.gz
+    tar zxf openjdk-8u242-jvmci-20.0-b02-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_242-jvmci-20.0-b02
 }
 
 jdk11() {
     echo "Building GraalVM for JDK 11"
-    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-19.3-b05/labsjdk-ce-11.0.5+10-jvmci-19.3-b05-linux-amd64.tar.gz
-    tar zxf labsjdk-ce-11.0.5+10-jvmci-19.3-b05-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.5-jvmci-19.3-b05
+    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-20.0-b02/labsjdk-ce-11.0.6+9-jvmci-20.0-b02-linux-amd64.tar.gz
+    tar zxf labsjdk-ce-11.0.6+9-jvmci-20.0-b02-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.6-jvmci-20.0-b02
 }
 
 if [ "${JDK_VERSION}" == "jdk8" ]; then
