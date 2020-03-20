@@ -284,6 +284,22 @@ jdk11:security-cookie:micronaut-build:
   script:
     - ./build-micronaut-security-cookie-graal.sh
 
+jdk8:security-session:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session-graal
+  script:
+    - ./build-micronaut-security-session-graal.sh
+
+jdk11:security-session:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session-graal
+  script:
+    - ./build-micronaut-security-session-graal.sh
+
 jdk8:data-jdbc-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -649,6 +665,22 @@ jdk11:security-cookie:test:
   needs: ["jdk11:security-cookie:micronaut-build"]
   script:
     - ./test-security-cookie-graal.sh
+
+jdk8:security-session:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:security-session:micronaut-build
+  needs: ["jdk8:security-session:micronaut-build"]
+  script:
+    - ./test-security-session-graal.sh
+
+jdk11:security-session:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:security-session:micronaut-build
+  needs: ["jdk11:security-session:micronaut-build"]
+  script:
+    - ./test-security-session-graal.sh
 
 jdk8:data-jdbc-h2:test:
   <<: *micronaut-test-template
