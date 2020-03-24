@@ -428,6 +428,22 @@ jdk11:servlet-jetty:micronaut-build:
   script:
     - ./build-micronaut-servlet-graal.sh jetty
 
+jdk8:introspected:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal
+  script:
+    - ./build-micronaut-introspected-graal.sh
+
+jdk11:introspected:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal
+  script:
+    - ./build-micronaut-introspected-graal.sh
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -841,3 +857,19 @@ jdk11:servlet-jetty:test:
   needs: ["jdk11:servlet-jetty:micronaut-build"]
   script:
     - ./test-servlet-graal-jetty.sh
+
+jdk8:introspected:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:introspected:micronaut-build
+  needs: ["jdk8:introspected:micronaut-build"]
+  script:
+    - ./test-introspected.sh
+
+jdk11:introspected:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:introspected:micronaut-build
+  needs: ["jdk11:introspected:micronaut-build"]
+  script:
+    - ./test-introspected.sh
