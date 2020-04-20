@@ -62,7 +62,7 @@ jdk11:build-graalvm:
   retry:
     max: 2
     when:
-      - runner_system_failure
+      - always
 
 .jdk8:micronaut-build: &jdk8-build
   <<: *micronaut-build-template
