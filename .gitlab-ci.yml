@@ -340,13 +340,15 @@ jdk8:data-jdbc-oracle:micronaut-build:
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
 
-.jdk11:data-jdbc-oracle:micronaut-build:
+jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
+  tags:
+    - aws
 
 jdk8:data-jdbc-mariadb:micronaut-build:
   <<: *jdk8-build
@@ -815,7 +817,7 @@ jdk8:data-jdbc-oracle:test:
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
 
-.jdk11:data-jdbc-oracle:test:
+jdk11:data-jdbc-oracle:test:
   <<: *micronaut-test-template
   services:
     - name: wnameless/oracle-xe-11g-r2
