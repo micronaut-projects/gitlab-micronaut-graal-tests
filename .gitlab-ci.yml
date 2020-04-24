@@ -384,6 +384,26 @@ jdk11:data-jpa-h2:micronaut-build:
   tags:
     - aws
 
+jdk8:data-jpa-postgres:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-postgres
+  script:
+    - ./build-micronaut-data-jpa-graal.sh postgres
+  tags:
+    - aws
+
+jdk11:data-jpa-postgres:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-postgres
+  script:
+    - ./build-micronaut-data-jpa-graal.sh postgres
+  tags:
+    - aws
+
 jdk8:schedule:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -829,6 +849,36 @@ jdk11:data-jpa-h2:test:
   needs: ["jdk11:data-jpa-h2:micronaut-build"]
   script:
     - ./test-micronaut-data-jpa-graal-h2.sh
+
+jdk8:data-jpa-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk8:data-jpa-postgres:micronaut-build
+  needs: ["jdk8:data-jpa-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: pets
+  script:
+    - ./test-micronaut-data-jpa-graal-postgres.sh
+
+jdk11:data-jpa-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk11:data-jpa-postgres:micronaut-build
+  needs: ["jdk11:data-jpa-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: pets
+  script:
+    - ./test-micronaut-data-jpa-graal-postgres.sh
 
 jdk8:schedule:test:
   <<: *micronaut-test-template
