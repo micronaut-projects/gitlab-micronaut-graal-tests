@@ -339,6 +339,8 @@ jdk8:data-jdbc-oracle:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
   script:
     - ./build-micronaut-data-jdbc-graal.sh oracle
+  tags:
+    - aws
 
 jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
