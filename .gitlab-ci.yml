@@ -172,7 +172,7 @@ jdk11:management:micronaut-build:
   script:
     - ./build-micronaut-management-graal.sh
 
-jdk8:views-freemarker:micronaut-build:
+.jdk8:views-freemarker:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
@@ -634,7 +634,7 @@ jdk11:management:test:
   script:
     - ./test-management-graal.sh
 
-jdk8:views-freemarker:test:
+.jdk8:views-freemarker:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:views-freemarker:micronaut-build
