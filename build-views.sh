@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-views-graal
 cd micronaut-views-graal
-git checkout ${CI_BUILD_REF_NAME}_${TEMPLATE_TECHNOLOGY}
+git checkout master_${TEMPLATE_TECHNOLOGY}
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
