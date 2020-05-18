@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-data-jdbc-graal
 cd micronaut-data-jdbc-graal
-git checkout ${CI_BUILD_REF_NAME}_${DB_DIALECT}
+git checkout master_${DB_DIALECT}
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"

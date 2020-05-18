@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-management-graal
 cd micronaut-management-graal
-git checkout $CI_BUILD_REF_NAME
+git checkout master
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
