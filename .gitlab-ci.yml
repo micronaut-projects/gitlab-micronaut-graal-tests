@@ -40,12 +40,18 @@ jdk8:build-graalvm:
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graal.sh jdk8
+  tags:
+    - aws
+    - speed
 
 jdk11:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graal.sh jdk11
+  tags:
+    - aws
+    - speed
 
 
 #            _                                  _
@@ -307,6 +313,9 @@ jdk8:data-jdbc-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
   script:
     - ./build-micronaut-data-jdbc-graal.sh h2
+  tags:
+    - aws
+    - speed
 
 jdk11:data-jdbc-h2:micronaut-build:
   <<: *jdk11-build
@@ -315,6 +324,9 @@ jdk11:data-jdbc-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
   script:
     - ./build-micronaut-data-jdbc-graal.sh h2
+  tags:
+    - aws
+    - speed
 
 jdk8:data-jdbc-postgres:micronaut-build:
   <<: *jdk8-build
@@ -323,6 +335,9 @@ jdk8:data-jdbc-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
   script:
     - ./build-micronaut-data-jdbc-graal.sh postgres
+  tags:
+    - aws
+    - speed
 
 jdk11:data-jdbc-postgres:micronaut-build:
   <<: *jdk11-build
@@ -331,6 +346,9 @@ jdk11:data-jdbc-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
   script:
     - ./build-micronaut-data-jdbc-graal.sh postgres
+  tags:
+    - aws
+    - speed
 
 jdk8:data-jdbc-oracle:micronaut-build:
   <<: *jdk8-build
@@ -341,6 +359,7 @@ jdk8:data-jdbc-oracle:micronaut-build:
     - ./build-micronaut-data-jdbc-graal.sh oracle
   tags:
     - aws
+    - memory
 
 jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
@@ -351,6 +370,7 @@ jdk11:data-jdbc-oracle:micronaut-build:
     - ./build-micronaut-data-jdbc-graal.sh oracle
   tags:
     - aws
+    - memory
 
 jdk8:data-jdbc-mariadb:micronaut-build:
   <<: *jdk8-build
@@ -359,6 +379,9 @@ jdk8:data-jdbc-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mariadb
   script:
     - ./build-micronaut-data-jdbc-graal.sh mariadb
+  tags:
+    - aws
+    - speed
 
 jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -367,6 +390,9 @@ jdk11:data-jdbc-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mariadb
   script:
     - ./build-micronaut-data-jdbc-graal.sh mariadb
+  tags:
+    - aws
+    - speed
 
 jdk8:data-jpa-h2:micronaut-build:
   <<: *jdk8-build
@@ -377,6 +403,7 @@ jdk8:data-jpa-h2:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh h2
   tags:
     - aws
+    - memory
 
 jdk11:data-jpa-h2:micronaut-build:
   <<: *jdk11-build
@@ -387,6 +414,7 @@ jdk11:data-jpa-h2:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh h2
   tags:
     - aws
+    - memory
 
 jdk8:data-jpa-postgres:micronaut-build:
   <<: *jdk8-build
@@ -397,6 +425,7 @@ jdk8:data-jpa-postgres:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh postgres
   tags:
     - aws
+    - memory
 
 jdk11:data-jpa-postgres:micronaut-build:
   <<: *jdk11-build
@@ -407,6 +436,7 @@ jdk11:data-jpa-postgres:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh postgres
   tags:
     - aws
+    - memory
 
 jdk8:data-jpa-mariadb:micronaut-build:
   <<: *jdk8-build
@@ -417,6 +447,7 @@ jdk8:data-jpa-mariadb:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh mariadb
   tags:
     - aws
+    - memory
 
 jdk11:data-jpa-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -427,6 +458,7 @@ jdk11:data-jpa-mariadb:micronaut-build:
     - ./build-micronaut-data-jpa-graal.sh mariadb
   tags:
     - aws
+    - memory
 
 jdk8:schedule:micronaut-build:
   <<: *jdk8-build
