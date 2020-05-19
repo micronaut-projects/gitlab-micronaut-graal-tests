@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl jq
+apk add curl jq libstdc++
 
 MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-data-jpa-postgres.yml $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-postgres &
 sleep 3

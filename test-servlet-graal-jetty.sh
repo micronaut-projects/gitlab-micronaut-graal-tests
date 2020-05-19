@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl
+apk add curl libstdc++
 
 $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal &
 sleep 3

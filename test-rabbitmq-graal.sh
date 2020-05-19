@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl jq
+apk add curl jq libstdc++
 
 MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
 sleep 3

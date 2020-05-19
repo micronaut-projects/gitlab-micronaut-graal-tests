@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl jq
+apk add curl jq libstdc++
 
 $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal &
 sleep 3
