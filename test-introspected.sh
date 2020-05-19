@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl
+apk add curl libstdc++
 
 $CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal &
 sleep 3

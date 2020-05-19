@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl
+apk add curl libstdc++
 
 MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-consul-http-client.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery &
 sleep 3

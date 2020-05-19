@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl jq
+apk add curl jq libstdc++
 
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2 &
 sleep 3

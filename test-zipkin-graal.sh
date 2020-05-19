@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl
+apk add curl libstdc++
 
 MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
 sleep 3

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 
-apk add curl
+apk add curl libstdc++
 
 $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf &
 sleep 3
