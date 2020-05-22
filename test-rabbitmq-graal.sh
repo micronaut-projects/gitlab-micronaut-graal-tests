@@ -3,7 +3,11 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-rabbitmq-graal.yml $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
+# Configuration using Environment Variables because Gitlab CI injects a RABBITMQ_PORT that messes up everything so
+# we need to override it
+export RABBITMQ_URI=amqp://rabbitmqhost:5672
+export RABBITMQ_PORT=5672
+$CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/books-fireandforget/1491950358)
