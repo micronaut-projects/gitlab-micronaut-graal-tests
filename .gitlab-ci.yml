@@ -569,7 +569,7 @@ jdk11:basic-app:test:
 jdk8:consul-http-client:test:
   <<: *micronaut-test-template
   services:
-    - name: consul:1.4.0
+    - name: consul:1.2.4
       alias: consulhost
   dependencies:
     - jdk8:consul-http-client:micronaut-build
@@ -580,7 +580,7 @@ jdk8:consul-http-client:test:
 jdk11:consul-http-client:test:
   <<: *micronaut-test-template
   services:
-    - name: consul:1.4.0
+    - name: consul:1.2.4
       alias: consulhost
   dependencies:
     - jdk11:consul-http-client:micronaut-build
