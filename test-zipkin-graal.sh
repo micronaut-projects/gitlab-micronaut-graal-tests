@@ -3,16 +3,15 @@ set -x
 
 apk add curl libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-zipkin-graal.yml $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
+export TRACING_ZIPKIN_HTTP_URL=http://openzipkin:9411
+$CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal &
 sleep 3
 
-curl -s localhost:8080/config
-curl -s http://openzipkin:9411/zipkin/api/v2/services
-curl -s http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
+RESPONSE=$(curl localhost:8080/hello/Micronaut)
+EXPECTED_RESPONSE='Hello Micronaut'
+if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-# Zipkin doesn't work properly on GitlabCI, so we only send a request
-curl -s localhost:8080/hello/Micronaut
-
-# And curl Zipkin API
-curl -s http://openzipkin:9411/zipkin/api/v2/services
-curl -s http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal
+sleep 3 # Just wait until everything is updated in Zipkin
+RESPONSE_ZIPKIN=$(curl http://openzipkin:9411/zipkin/api/v2/spans?serviceName=zipkin-graal)
+EXPECTED_RESPONSE_ZIPKIN='["get /hello/{name}","sayhi"]'
+if [ "$RESPONSE_ZIPKIN" != "$EXPECTED_RESPONSE_ZIPKIN" ]; then echo $RESPONSE_ZIPKIN && exit 1; fi
