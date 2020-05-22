@@ -635,8 +635,7 @@ jdk8:rabbitmq:test:
     - jdk8:rabbitmq:micronaut-build
   needs: ["jdk8:rabbitmq:micronaut-build"]
   script:
-     - exit 0
-#    - ./test-rabbitmq-graal.sh
+    - ./test-rabbitmq-graal.sh
 
 jdk11:rabbitmq:test:
   <<: *micronaut-test-template
@@ -647,8 +646,7 @@ jdk11:rabbitmq:test:
     - jdk11:rabbitmq:micronaut-build
   needs: ["jdk11:rabbitmq:micronaut-build"]
   script:
-     - exit 0
-#    - ./test-rabbitmq-graal.sh
+    - ./test-rabbitmq-graal.sh
 
 jdk8:management:test:
   <<: *micronaut-test-template
