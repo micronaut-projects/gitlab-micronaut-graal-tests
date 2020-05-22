@@ -1,5 +1,0 @@
----
-tracing:
-  zipkin:
-    http:
-      url: http://openzipkin:9411
