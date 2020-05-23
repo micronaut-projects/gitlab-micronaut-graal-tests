@@ -34,24 +34,21 @@ log-commits:
     key: ${GRAAL_NEW_COMMIT}-${CI_JOB_NAME}
     paths:
       - $CI_PROJECT_DIR/graal_dist
+  tags:
+    - aws
+    - speed
 
 jdk8:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graal.sh jdk8
-  tags:
-    - aws
-    - speed
 
 jdk11:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graal.sh jdk11
-  tags:
-    - aws
-    - speed
 
 
 #            _                                  _
