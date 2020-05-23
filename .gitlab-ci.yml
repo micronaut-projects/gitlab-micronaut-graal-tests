@@ -59,6 +59,7 @@ jdk11:build-graalvm:
 #
 .micronaut:build-template: &micronaut-build-template
   stage: micronaut
+  image: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/graalvm-builder
   artifacts:
     expire_in: 5 days
   allow_failure: true
