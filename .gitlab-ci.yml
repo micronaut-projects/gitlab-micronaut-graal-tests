@@ -103,6 +103,9 @@ jdk8:consul-http-client:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
   script:
     - ./build-micronaut-consul-http-client.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:consul-http-client:micronaut-build:
   <<: *jdk11-build
@@ -111,6 +114,9 @@ jdk11:consul-http-client:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
   script:
     - ./build-micronaut-consul-http-client.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:micronaut-build:
   <<: *jdk8-build
@@ -574,6 +580,9 @@ jdk8:consul-http-client:test:
   needs: ["jdk8:consul-http-client:micronaut-build"]
   script:
     - ./test-consul-http-client.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:consul-http-client:test:
   <<: *micronaut-test-template
@@ -585,6 +594,9 @@ jdk11:consul-http-client:test:
   needs: ["jdk11:consul-http-client:micronaut-build"]
   script:
     - ./test-consul-http-client.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:test:
   <<: *micronaut-test-template
