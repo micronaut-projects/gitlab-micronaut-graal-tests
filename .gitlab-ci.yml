@@ -96,21 +96,27 @@ jdk11:basic-app:micronaut-build:
   script:
     - ./build-micronaut-basic-app.sh
 
-jdk8:consul-http-client:micronaut-build:
+jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
+      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
-    - ./build-micronaut-consul-http-client.sh
+    - ./build-micronaut-service-discovery-consul.sh
+  tags:
+    - aws
+    - speed
 
-jdk11:consul-http-client:micronaut-build:
+jdk11:service-discovery-consul:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-service-discovery-consul-http-client/service-discovery
+      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
-    - ./build-micronaut-consul-http-client.sh
+    - ./build-micronaut-service-discovery-consul.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:micronaut-build:
   <<: *jdk8-build
@@ -564,27 +570,33 @@ jdk11:basic-app:test:
   script:
     - ./test-basic-app.sh
 
-jdk8:consul-http-client:test:
+jdk8:service-discovery-consul:test:
   <<: *micronaut-test-template
   services:
     - name: consul:1.2.4
       alias: consulhost
   dependencies:
-    - jdk8:consul-http-client:micronaut-build
-  needs: ["jdk8:consul-http-client:micronaut-build"]
+    - jdk8:service-discovery-consul:micronaut-build
+  needs: ["jdk8:service-discovery-consul:micronaut-build"]
   script:
-    - ./test-consul-http-client.sh
+    - ./test-service-discovery-consul.sh
+  tags:
+    - aws
+    - speed
 
-jdk11:consul-http-client:test:
+jdk11:service-discovery-consul:test:
   <<: *micronaut-test-template
   services:
     - name: consul:1.2.4
       alias: consulhost
   dependencies:
-    - jdk11:consul-http-client:micronaut-build
-  needs: ["jdk11:consul-http-client:micronaut-build"]
+    - jdk11:service-discovery-consul:micronaut-build
+  needs: ["jdk11:service-discovery-consul:micronaut-build"]
   script:
-    - ./test-consul-http-client.sh
+    - ./test-service-discovery-consul.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:test:
   <<: *micronaut-test-template
