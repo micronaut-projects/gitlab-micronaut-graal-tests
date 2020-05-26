@@ -1,0 +1,6 @@
+---
+datasources:
+  default:
+    url: 'jdbc:sqlserver://sqlserverhost:1433;databaseName=tempdb'
+    username: sa
+    password: 'My!Secret123'
