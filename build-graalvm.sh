@@ -2,30 +2,28 @@
 
 JDK_VERSION=$1
 
-# Change these variables to test different versions/snapshots
-GRAALVM_RELEASE=20.2.0-dev-20200527_0158
-GRAALVM_VERSION=20.2.0-dev
+apt update && apt install jq -y
 
-jdk8() {
-    echo "Downloading GraalVM release for JDK8..."
-    wget -q https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/${GRAALVM_RELEASE}/graalvm-ce-java8-linux-amd64-${GRAALVM_VERSION}.tar.gz
-    tar zxf graalvm-ce-java8-linux-amd64-${GRAALVM_VERSION}.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/graalvm-ce-java8-${GRAALVM_VERSION}
-    $JAVA_HOME/bin/gu install native-image
-}
+downloadGraalVMDevPreview() {
+    RELEASE_NAME=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0] | .name'`
+    GRAALVM_DOWNLOAD_URL=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .browser_download_url'`
+    GRAALVM_NAME=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .name'`
 
-jdk11() {
-    echo "Downloading GraalVM release for JDK11..."
-    wget -q https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/${GRAALVM_RELEASE}/graalvm-ce-java11-linux-amd64-${GRAALVM_VERSION}.tar.gz
-    tar zxf graalvm-ce-java11-linux-amd64-${GRAALVM_VERSION}.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/graalvm-ce-java11-${GRAALVM_VERSION}
+    echo "===================== Downloading GraalVM release ${RELEASE_NAME}..."
+    wget -q `echo $GRAALVM_DOWNLOAD_URL`
+    tar zxf `echo $GRAALVM_NAME`
+
+    TMP_NAME=`echo ${GRAALVM_NAME/linux-amd64-}`
+    JDK_DIRECTORY=`echo ${TMP_NAME%.tar.gz}`
+
+    export JAVA_HOME=${CI_PROJECT_DIR}/${JDK_DIRECTORY}
     $JAVA_HOME/bin/gu install native-image
 }
 
 if [ "${JDK_VERSION}" == "jdk8" ]; then
-    jdk8
+    downloadGraalVMDevPreview "java8"
 elif [ "$JDK_VERSION" == "jdk11" ]; then
-    jdk11
+    downloadGraalVMDevPreview "java11"
 else
     echo "Need to provide a valid JDK version: jdk8, jdk11"
     exit 1

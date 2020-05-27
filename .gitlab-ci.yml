@@ -37,13 +37,11 @@ log-commits:
 jdk8:build-graalvm:
   <<: *build-graalvm-template
   script:
-    - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graalvm.sh jdk8
 
 jdk11:build-graalvm:
   <<: *build-graalvm-template
   script:
-    - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graalvm.sh jdk11
 
 
