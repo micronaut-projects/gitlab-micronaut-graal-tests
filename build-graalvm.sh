@@ -3,8 +3,8 @@
 JDK_VERSION=$1
 
 # Change these variables to test different versions/snapshots
-GRAALVM_RELEASE=20.1.0-dev-20200510_2004
-GRAALVM_VERSION=20.1.0-dev
+GRAALVM_RELEASE=20.2.0-dev-20200527_0158
+GRAALVM_VERSION=20.2.0-dev
 
 jdk8() {
     echo "Downloading GraalVM release for JDK8..."
