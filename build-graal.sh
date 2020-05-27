@@ -2,18 +2,24 @@
 
 JDK_VERSION=$1
 
+# Change these variables to test different versions/snapshots
+GRAALVM_RELEASE=20.2.0-dev-20200527_0158
+GRAALVM_VERSION=20.2.0-dev
+
 jdk8() {
-    echo "Building GraalVM for JDK 8"
-    wget -q https://github.com/graalvm/graal-jvmci-8/releases/download/jvmci-20.2-b01/openjdk-8u252+09-jvmci-20.2-b01-linux-amd64.tar.gz
-    tar zxf openjdk-8u252+09-jvmci-20.2-b01-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_252-jvmci-20.2-b01
+    echo "Downloading GraalVM release for JDK8..."
+    wget -q https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/${GRAALVM_RELEASE}/graalvm-ce-java8-linux-amd64-${GRAALVM_VERSION}.tar.gz
+    tar zxf graalvm-ce-java8-linux-amd64-${GRAALVM_VERSION}.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/graalvm-ce-java8-${GRAALVM_VERSION}
+    $JAVA_HOME/bin/gu install native-image
 }
 
 jdk11() {
-    echo "Building GraalVM for JDK 11"
-    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-20.2-b01/labsjdk-ce-11.0.7+10-jvmci-20.2-b01-linux-amd64.tar.gz
-    tar zxf labsjdk-ce-11.0.7+10-jvmci-20.2-b01-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.7-jvmci-20.2-b01
+    echo "Downloading GraalVM release for JDK11..."
+    wget -q https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/${GRAALVM_RELEASE}/graalvm-ce-java11-linux-amd64-${GRAALVM_VERSION}.tar.gz
+    tar zxf graalvm-ce-java11-linux-amd64-${GRAALVM_VERSION}.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/graalvm-ce-java11-${GRAALVM_VERSION}
+    $JAVA_HOME/bin/gu install native-image
 }
 
 if [ "${JDK_VERSION}" == "jdk8" ]; then
@@ -25,18 +31,7 @@ else
     exit 1
 fi
 
-mkdir graal
-cd graal
-export PATH=$PWD/mx:$PATH
+# Copy GraalVM dist to new directory defined as artifact/cache
+echo "Copying GraalVM dist to ${CI_PROJECT_DIR}/graal_dist..."
+cp -R $JAVA_HOME/ $CI_PROJECT_DIR/graal_dist
 
-git clone --depth=1 https://github.com/oracle/graal
-git clone --depth=1 https://github.com/graalvm/mx
-
-cd graal/vm
-echo "Git commit: `git rev-parse HEAD`"
-mx clean
-mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm --skip-libraries=true build
-
-# Copy Graal SDK to new directory defined as artifact/cache
-echo "Copying Graal SDK to ${CI_PROJECT_DIR}/graal_dist..."
-cp -R $CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home/ $CI_PROJECT_DIR/graal_dist
