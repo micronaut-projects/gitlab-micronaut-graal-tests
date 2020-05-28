@@ -5,9 +5,12 @@ JDK_VERSION=$1
 apt update && apt install jq -y
 
 downloadGraalVMDevPreview() {
-    RELEASE_NAME=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0] | .name'`
-    GRAALVM_DOWNLOAD_URL=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .browser_download_url'`
-    GRAALVM_NAME=`curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases | jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .name'`
+    TMP_JSON=`tempfile`
+    curl -s https://api.github.com/repos/graalvm/graalvm-ce-dev-builds/releases > $TMP_JSON
+
+    RELEASE_NAME=`jq -r '.[0] | .name' ${TMP_JSON}`
+    GRAALVM_DOWNLOAD_URL=`jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .browser_download_url' ${TMP_JSON}`
+    GRAALVM_NAME=`jq -r '.[0].assets[] | select(.name | contains("graalvm-ce-'$1'-linux-amd64")) | .name' ${TMP_JSON}`
 
     echo "===================== Downloading GraalVM release ${RELEASE_NAME}..."
     wget -q `echo $GRAALVM_DOWNLOAD_URL`
