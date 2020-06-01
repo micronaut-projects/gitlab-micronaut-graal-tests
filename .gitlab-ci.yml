@@ -118,6 +118,22 @@ jdk11:service-discovery-consul:micronaut-build:
     - aws
     - speed
 
+jdk8:service-discovery-eureka:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
+  script:
+    - ./build-micronaut-service-discovery-eureka.sh
+
+jdk11:service-discovery-eureka:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
+  script:
+    - ./build-micronaut-service-discovery-eureka.sh
+
 jdk8:zipkin:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -619,6 +635,28 @@ jdk11:service-discovery-consul:test:
   tags:
     - aws
     - speed
+
+jdk8:service-discovery-eureka:test:
+  <<: *micronaut-test-template
+  services:
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
+      alias: eurekahost
+  dependencies:
+    - jdk8:service-discovery-eureka:micronaut-build
+  needs: ["jdk8:service-discovery-eureka:micronaut-build"]
+  script:
+    - ./test-service-discovery-eureka.sh
+
+jdk11:service-discovery-eureka:test:
+  <<: *micronaut-test-template
+  services:
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
+      alias: eurekahost
+  dependencies:
+    - jdk11:service-discovery-eureka:micronaut-build
+  needs: ["jdk11:service-discovery-eureka:micronaut-build"]
+  script:
+    - ./test-service-discovery-eureka.sh
 
 jdk8:zipkin:test:
   <<: *micronaut-test-template
