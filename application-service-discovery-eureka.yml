@@ -1,0 +1,6 @@
+---
+eureka:
+  client:
+    registration:
+      enabled: true
+    defaultZone: "eurekahost:8761"
