@@ -646,6 +646,9 @@ jdk8:service-discovery-eureka:test:
   needs: ["jdk8:service-discovery-eureka:micronaut-build"]
   script:
     - ./test-service-discovery-eureka.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:service-discovery-eureka:test:
   <<: *micronaut-test-template
@@ -657,6 +660,9 @@ jdk11:service-discovery-eureka:test:
   needs: ["jdk11:service-discovery-eureka:micronaut-build"]
   script:
     - ./test-service-discovery-eureka.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:test:
   <<: *micronaut-test-template
