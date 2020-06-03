@@ -125,6 +125,9 @@ jdk8:service-discovery-eureka:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
     - ./build-micronaut-service-discovery-eureka.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:service-discovery-eureka:micronaut-build:
   <<: *jdk11-build
@@ -133,6 +136,9 @@ jdk11:service-discovery-eureka:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
     - ./build-micronaut-service-discovery-eureka.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:zipkin:micronaut-build:
   <<: *jdk8-build
@@ -641,7 +647,6 @@ jdk8:service-discovery-eureka:test:
   services:
     - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
       alias: eurekahost
-  image: ruby:2.6
   dependencies:
     - jdk8:service-discovery-eureka:micronaut-build
   needs: ["jdk8:service-discovery-eureka:micronaut-build"]
@@ -656,7 +661,6 @@ jdk11:service-discovery-eureka:test:
   services:
     - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
       alias: eurekahost
-  image: ruby:2.6
   dependencies:
     - jdk11:service-discovery-eureka:micronaut-build
   needs: ["jdk11:service-discovery-eureka:micronaut-build"]
