@@ -398,7 +398,7 @@ jdk11:data-jdbc-oracle:micronaut-build:
     - aws
     - memory
 
-.jdk8:data-jdbc-mariadb:micronaut-build:
+jdk8:data-jdbc-mariadb:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
@@ -409,7 +409,7 @@ jdk11:data-jdbc-oracle:micronaut-build:
     - aws
     - speed
 
-.jdk11:data-jdbc-mariadb:micronaut-build:
+jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -942,7 +942,7 @@ jdk11:data-jdbc-oracle:test:
   script:
     - ./test-micronaut-data-jdbc-graal-oracle.sh
 
-.jdk8:data-jdbc-mariadb:test:
+jdk8:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -956,7 +956,7 @@ jdk11:data-jdbc-oracle:test:
   script:
     - ./test-micronaut-data-jdbc-graal-mariadb.sh
 
-.jdk11:data-jdbc-mariadb:test:
+jdk11:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
