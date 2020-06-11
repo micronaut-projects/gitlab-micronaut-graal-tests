@@ -555,6 +555,9 @@ jdk11:servlet-tomcat:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-tomcat-graal
   script:
     - ./build-micronaut-servlet-graal.sh tomcat
+  tags:
+    - aws
+    - speed
 
 jdk8:servlet-jetty:micronaut-build:
   <<: *jdk8-build
