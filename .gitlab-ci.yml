@@ -643,7 +643,7 @@ jdk8:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-.jdk11:flyway-mariadb:micronaut-build:
+jdk11:flyway-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -1280,7 +1280,7 @@ jdk8:flyway-mariadb:test:
   script:
     - ./test-micronaut-flyway-graal-mariadb.sh
 
-.jdk11:flyway-mariadb:test:
+jdk11:flyway-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
