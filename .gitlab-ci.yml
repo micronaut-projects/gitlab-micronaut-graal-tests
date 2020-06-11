@@ -588,6 +588,72 @@ jdk11:introspected:micronaut-build:
   script:
     - ./build-micronaut-introspected-graal.sh
 
+jdk8:flyway-h2:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-h2
+  script:
+    - ./build-micronaut-flyway-graal.sh h2
+  tags:
+    - aws
+    - speed
+
+jdk11:flyway-h2:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-h2
+  script:
+    - ./build-micronaut-flyway-graal.sh h2
+  tags:
+    - aws
+    - speed
+
+jdk8:flyway-postgres:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-postgres
+  script:
+    - ./build-micronaut-flyway-graal.sh postgres
+  tags:
+    - aws
+    - speed
+
+jdk11:flyway-postgres:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-postgres
+  script:
+    - ./build-micronaut-flyway-graal.sh postgres
+  tags:
+    - aws
+    - speed
+
+jdk8:flyway-mariadb:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-mariadb
+  script:
+    - ./build-micronaut-flyway-graal.sh mariadb
+  tags:
+    - aws
+    - speed
+
+.jdk11:flyway-mariadb:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-mariadb
+  script:
+    - ./build-micronaut-flyway-graal.sh mariadb
+  tags:
+    - aws
+    - speed
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1153,3 +1219,77 @@ jdk11:introspected:test:
   needs: ["jdk11:introspected:micronaut-build"]
   script:
     - ./test-introspected.sh
+
+jdk8:flyway-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:flyway-h2:micronaut-build
+  needs: ["jdk8:flyway-h2:micronaut-build"]
+  script:
+    - ./test-micronaut-flyway-graal-h2.sh
+
+jdk11:flyway-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:flyway-h2:micronaut-build
+  needs: ["jdk11:flyway-h2:micronaut-build"]
+  script:
+    - ./test-micronaut-flyway-graal-h2.sh
+
+jdk8:flyway-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk8:flyway-postgres:micronaut-build
+  needs: ["jdk8:flyway-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: users
+  script:
+    - ./test-micronaut-flyway-graal-postgres.sh
+
+jdk11:flyway-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk11:flyway-postgres:micronaut-build
+  needs: ["jdk11:flyway-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: users
+  script:
+    - ./test-micronaut-flyway-graal-postgres.sh
+
+jdk8:flyway-mariadb:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mariadb:10.4.8-bionic
+      alias: mariadbhost
+  dependencies:
+    - jdk8:flyway-mariadb:micronaut-build
+  needs: ["jdk8:flyway-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: users
+  script:
+    - ./test-micronaut-flyway-graal-mariadb.sh
+
+.jdk11:flyway-mariadb:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mariadb:10.4.8-bionic
+      alias: mariadbhost
+  dependencies:
+    - jdk11:flyway-mariadb:micronaut-build
+  needs: ["jdk11:flyway-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: users
+  script:
+    - ./test-micronaut-flyway-graal-mariadb.sh
