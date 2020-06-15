@@ -3,7 +3,7 @@
 DB_DIALECT=$1
 
 if [ -z "$DB_DIALECT" ]; then
-    echo "Need to provide the database dialect: h2, postgres, oracle, mariadb, sqlserver"
+    echo "Need to provide the database dialect: h2, postgres, oracle, mariadb, sqlserver, mysql"
     exit 1
 fi
 

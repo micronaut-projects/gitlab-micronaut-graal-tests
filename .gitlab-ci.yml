@@ -442,6 +442,28 @@ jdk11:data-jdbc-sqlserver:micronaut-build:
     - aws
     - speed
 
+jdk8:data-jdbc-mysql:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mysql
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh mysql
+  tags:
+    - aws
+    - speed
+
+jdk11:data-jdbc-mysql:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mysql
+  script:
+    - ./build-micronaut-data-jdbc-graal.sh mysql
+  tags:
+    - aws
+    - speed
+
 jdk8:data-jpa-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1068,6 +1090,34 @@ jdk11:data-jdbc-sqlserver:test:
     MSSQL_PID: Express
   script:
     - ./test-micronaut-data-jdbc-graal-sqlserver.sh
+
+jdk8:data-jdbc-mysql:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mysql:8.0.20
+      alias: mysqlhost
+  dependencies:
+    - jdk8:data-jdbc-mysql:micronaut-build
+  needs: ["jdk8:data-jdbc-mysql:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: pets
+  script:
+    - ./test-micronaut-data-jdbc-graal-mysql.sh
+
+jdk11:data-jdbc-mysql:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mysql:8.0.20
+      alias: mysqlhost
+  dependencies:
+    - jdk11:data-jdbc-mysql:micronaut-build
+  needs: ["jdk11:data-jdbc-mysql:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: pets
+  script:
+    - ./test-micronaut-data-jdbc-graal-mysql.sh
 
 jdk8:data-jpa-h2:test:
   <<: *micronaut-test-template
