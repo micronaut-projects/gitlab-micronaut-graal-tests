@@ -701,6 +701,22 @@ jdk11:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
+jdk8:elasticsearch:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/micronaut-elasticsearch-graal
+  script:
+    - ./build-micronaut-elasticsearch-graal.sh
+
+jdk11:elasticsearch:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/micronaut-elasticsearch-graal
+  script:
+    - ./build-micronaut-elasticsearch-graal.sh
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1396,3 +1412,27 @@ jdk11:flyway-mariadb:test:
     MYSQL_DATABASE: users
   script:
     - ./test-micronaut-flyway-graal-mariadb.sh
+
+jdk8:elasticsearch:test:
+  <<: *micronaut-test-template
+  services:
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+      alias: elasticsearchhost
+      command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
+  dependencies:
+    - jdk8:elasticsearch:micronaut-build
+  needs: ["jdk8:elasticsearch:micronaut-build"]
+  script:
+    - ./test-elasticsearch.sh
+
+jdk11:elasticsearch:test:
+  <<: *micronaut-test-template
+  services:
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+      alias: elasticsearchhost
+      command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
+  dependencies:
+    - jdk11:elasticsearch:micronaut-build
+  needs: ["jdk11:elasticsearch:micronaut-build"]
+  script:
+    - ./test-elasticsearch.sh
