@@ -717,6 +717,28 @@ jdk11:elasticsearch:micronaut-build:
   script:
     - ./build-micronaut-elasticsearch-graal.sh
 
+jdk8:jooq:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal
+  script:
+    - ./build-micronaut-jooq-graal.sh
+  tags:
+    - aws
+    - memory
+
+jdk11:jooq:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal
+  script:
+    - ./build-micronaut-jooq-graal.sh
+  tags:
+    - aws
+    - memory
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1436,3 +1458,19 @@ jdk11:elasticsearch:test:
   needs: ["jdk11:elasticsearch:micronaut-build"]
   script:
     - ./test-elasticsearch.sh
+
+jdk8:jooq:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:jooq:micronaut-build
+  needs: ["jdk8:jooq:micronaut-build"]
+  script:
+    - ./test-jooq.sh
+
+jdk11:jooq:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:jooq:micronaut-build
+  needs: ["jdk11:jooq:micronaut-build"]
+  script:
+    - ./test-jooq.sh
