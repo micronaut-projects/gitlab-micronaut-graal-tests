@@ -10,9 +10,16 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-jooq-graal
 cd micronaut-jooq-graal
-git checkout ${CI_BUILD_REF_NAME}_h2
+git checkout ${CI_BUILD_REF_NAME}_postgres
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
 export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
+
+# Needed for generating the jOOQ classes from the database schema
+export DATABASE_URL='jdbc:postgresql://postgreshost:5432/devDb'
+export DATABASE_USER=devDb
+export DATABASE_PASSWORD=devDb
+export DATABASE_SCHEMA=public
+
 ./build-native-image.sh

@@ -739,6 +739,42 @@ jdk11:jooq-h2:micronaut-build:
     - aws
     - memory
 
+jdk8:jooq-postgres:micronaut-build:
+  <<: *jdk8-build
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  variables:
+    POSTGRES_USER: devDb
+    POSTGRES_PASSWORD: devDb
+    POSTGRES_DB: devDb
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-postgres
+  script:
+    - ./build-micronaut-jooq-graal-postgres.sh
+  tags:
+    - aws
+    - memory
+
+jdk11:jooq-postgres:micronaut-build:
+  <<: *jdk11-build
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  variables:
+    POSTGRES_USER: devDb
+    POSTGRES_PASSWORD: devDb
+    POSTGRES_DB: devDb
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-postgres
+  script:
+    - ./build-micronaut-jooq-graal-postgres.sh
+  tags:
+    - aws
+    - memory
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1474,3 +1510,33 @@ jdk11:jooq-h2:test:
   needs: ["jdk11:jooq-h2:micronaut-build"]
   script:
     - ./test-jooq-h2-graal.sh
+
+jdk8:jooq-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  variables:
+    POSTGRES_USER: devDb
+    POSTGRES_PASSWORD: devDb
+    POSTGRES_DB: devDb
+  dependencies:
+    - jdk8:jooq-postgres:micronaut-build
+  needs: ["jdk8:jooq-postgres:micronaut-build"]
+  script:
+    - ./test-jooq-postgres-graal.sh
+
+jdk11:jooq-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  variables:
+    POSTGRES_USER: devDb
+    POSTGRES_PASSWORD: devDb
+    POSTGRES_DB: devDb
+  dependencies:
+    - jdk11:jooq-postgres:micronaut-build
+  needs: ["jdk11:jooq-postgres:micronaut-build"]
+  script:
+    - ./test-jooq-postgres-graal.sh
