@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Building micronaut-jooq-graal..."
+DB_DIALECT=$1
 
 export JAVA_HOME=$CI_PROJECT_DIR/graal_dist
 export PATH=$JAVA_HOME/bin:$PATH
@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-jooq-graal
 cd micronaut-jooq-graal
-git checkout $CI_BUILD_REF_NAME
+git checkout ${CI_BUILD_REF_NAME}_h2
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"

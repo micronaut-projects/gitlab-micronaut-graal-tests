@@ -717,24 +717,24 @@ jdk11:elasticsearch:micronaut-build:
   script:
     - ./build-micronaut-elasticsearch-graal.sh
 
-jdk8:jooq:micronaut-build:
+jdk8:jooq-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-h2
   script:
-    - ./build-micronaut-jooq-graal.sh
+    - ./build-micronaut-jooq-graal-h2.sh
   tags:
     - aws
     - memory
 
-jdk11:jooq:micronaut-build:
+jdk11:jooq-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-h2
   script:
-    - ./build-micronaut-jooq-graal.sh
+    - ./build-micronaut-jooq-graal-h2.sh
   tags:
     - aws
     - memory
@@ -1459,18 +1459,18 @@ jdk11:elasticsearch:test:
   script:
     - ./test-elasticsearch.sh
 
-jdk8:jooq:test:
+jdk8:jooq-h2:test:
   <<: *micronaut-test-template
   dependencies:
-    - jdk8:jooq:micronaut-build
-  needs: ["jdk8:jooq:micronaut-build"]
+    - jdk8:jooq-h2:micronaut-build
+  needs: ["jdk8:jooq-h2:micronaut-build"]
   script:
-    - ./test-jooq.sh
+    - ./test-jooq-h2-graal.sh
 
-jdk11:jooq:test:
+jdk11:jooq-h2:test:
   <<: *micronaut-test-template
   dependencies:
-    - jdk11:jooq:micronaut-build
-  needs: ["jdk11:jooq:micronaut-build"]
+    - jdk11:jooq-h2:micronaut-build
+  needs: ["jdk11:jooq-h2:micronaut-build"]
   script:
-    - ./test-jooq.sh
+    - ./test-jooq-h2-graal.sh
