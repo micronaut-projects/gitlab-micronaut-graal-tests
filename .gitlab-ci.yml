@@ -1474,7 +1474,7 @@ jdk11:flyway-mariadb:test:
 jdk8:elasticsearch:test:
   <<: *micronaut-test-template
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
       alias: elasticsearchhost
       command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
   dependencies:
@@ -1486,7 +1486,7 @@ jdk8:elasticsearch:test:
 jdk11:elasticsearch:test:
   <<: *micronaut-test-template
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
       alias: elasticsearchhost
       command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
   dependencies:
