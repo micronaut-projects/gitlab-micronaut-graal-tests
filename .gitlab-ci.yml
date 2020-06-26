@@ -775,6 +775,22 @@ jdk11:jooq-postgres:micronaut-build:
     - aws
     - memory
 
+jdk8:redis:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-redis-graal/mn-redis-graal
+  script:
+    - ./build-micronaut-redis-graal.sh
+
+jdk11:redis:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-redis-graal/mn-redis-graal
+  script:
+    - ./build-micronaut-redis-graal.sh
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1540,3 +1556,25 @@ jdk11:jooq-postgres:test:
   needs: ["jdk11:jooq-postgres:micronaut-build"]
   script:
     - ./test-jooq-postgres-graal.sh
+
+jdk8:redis:test:
+  <<: *micronaut-test-template
+  services:
+    - name: redislabs/redisearch:1.6.13
+      alias: redishost
+  dependencies:
+    - jdk8:redis:micronaut-build
+  needs: ["jdk8:redis:micronaut-build"]
+  script:
+    - ./test-redis.sh
+
+jdk11:redis:test:
+  <<: *micronaut-test-template
+  services:
+    - name: redislabs/redisearch:1.6.13
+      alias: redishost
+  dependencies:
+    - jdk11:redis:micronaut-build
+  needs: ["jdk11:redis:micronaut-build"]
+  script:
+    - ./test-redis.sh
