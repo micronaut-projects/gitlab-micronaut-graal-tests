@@ -791,6 +791,24 @@ jdk11:redis:micronaut-build:
   script:
     - ./build-micronaut-redis-graal.sh
 
+jdk8:function-aws:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-function-aws-graal/build/function.zip
+      - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
+  script:
+    - ./build-micronaut-function-aws-graal.sh
+
+jdk11:function-aws:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-function-aws-graal/build/function.zip
+      - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
+  script:
+    - ./build-micronaut-function-aws-graal.sh
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1578,3 +1596,21 @@ jdk11:redis:test:
   needs: ["jdk11:redis:micronaut-build"]
   script:
     - ./test-redis.sh
+
+jdk8:function-aws:test:
+  <<: *micronaut-test-template
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  dependencies:
+    - jdk8:function-aws:micronaut-build
+  needs: ["jdk8:function-aws:micronaut-build"]
+  script:
+    - ./test-function-aws.sh
+
+jdk11:function-aws:test:
+  <<: *micronaut-test-template
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  dependencies:
+    - jdk11:function-aws:micronaut-build
+  needs: ["jdk11:function-aws:micronaut-build"]
+  script:
+    - ./test-function-aws.sh
