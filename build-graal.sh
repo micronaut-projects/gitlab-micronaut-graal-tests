@@ -4,9 +4,9 @@ JDK_VERSION=$1
 
 jdk8() {
     echo "Building GraalVM for JDK 8"
-    wget -q https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-20.1-b02/openjdk-8u252+09-jvmci-20.1-b02-linux-amd64.tar.gz
-    tar zxf openjdk-8u252+09-jvmci-20.1-b02-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_252-jvmci-20.1-b02
+    wget -q https://github.com/graalvm/graal-jvmci-8/releases/download/jvmci-20.2-b01/openjdk-8u252+09-jvmci-20.2-b01-linux-amd64.tar.gz
+    tar zxf openjdk-8u252+09-jvmci-20.2-b01-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/openjdk1.8.0_252-jvmci-20.2-b01
 }
 
 jdk11() {
