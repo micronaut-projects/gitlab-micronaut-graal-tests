@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-data-jpa-graal
 cd micronaut-data-jpa-graal
-git checkout ${CI_BUILD_REF_NAME}_${DB_DIALECT}
+git checkout 1.3.x_${DB_DIALECT}
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
