@@ -809,6 +809,24 @@ jdk11:function-aws:micronaut-build:
   script:
     - ./build-micronaut-function-aws-graal.sh
 
+jdk8:aws-app:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-aws-app-graal/build/function.zip
+      - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
+  script:
+    - ./build-micronaut-aws-app-graal.sh
+
+jdk11:aws-app:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-aws-app-graal/build/function.zip
+      - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
+  script:
+    - ./build-micronaut-aws-app-graal.sh
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1614,3 +1632,21 @@ jdk11:function-aws:test:
   needs: ["jdk11:function-aws:micronaut-build"]
   script:
     - ./test-function-aws.sh
+
+jdk8:aws-app:test:
+  <<: *micronaut-test-template
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  dependencies:
+    - jdk8:aws-app:micronaut-build
+  needs: ["jdk8:aws-app:micronaut-build"]
+  script:
+    - ./test-aws-app.sh
+
+jdk11:aws-app:test:
+  <<: *micronaut-test-template
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  dependencies:
+    - jdk11:aws-app:micronaut-build
+  needs: ["jdk11:aws-app:micronaut-build"]
+  script:
+    - ./test-aws-app.sh
