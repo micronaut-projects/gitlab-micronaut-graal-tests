@@ -856,7 +856,7 @@ jdk11:basic-app:test:
 jdk8:service-discovery-consul:test:
   <<: *micronaut-test-template
   services:
-    - name: consul:1.2.4
+    - name: consul:1.8.0
       alias: consulhost
   dependencies:
     - jdk8:service-discovery-consul:micronaut-build
@@ -870,7 +870,7 @@ jdk8:service-discovery-consul:test:
 jdk11:service-discovery-consul:test:
   <<: *micronaut-test-template
   services:
-    - name: consul:1.2.4
+    - name: consul:1.8.0
       alias: consulhost
   dependencies:
     - jdk11:service-discovery-consul:micronaut-build
