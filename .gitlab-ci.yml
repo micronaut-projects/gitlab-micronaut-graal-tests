@@ -716,6 +716,9 @@ jdk11:elasticsearch:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/micronaut-elasticsearch-graal
   script:
     - ./build-micronaut-elasticsearch-graal.sh
+  tags:
+    - aws
+    - memory
 
 jdk8:jooq-h2:micronaut-build:
   <<: *jdk8-build
