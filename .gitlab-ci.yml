@@ -830,6 +830,31 @@ jdk11:aws-app:micronaut-build:
   script:
     - ./build-micronaut-aws-app-graal.sh
 
+jdk8:grpc:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-server-graal
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-client-graal
+  script:
+    - ./build-micronaut-grpc-graal.sh
+  tags:
+    - aws
+    - speed
+
+jdk11:grpc:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-server-graal
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-client-graal
+  script:
+    - ./build-micronaut-grpc-graal.sh
+  tags:
+    - aws
+    - speed
+
+
 #  _            _
 # | |_ ___  ___| |_
 # | __/ _ \/ __| __|
@@ -1653,3 +1678,19 @@ jdk11:aws-app:test:
   needs: ["jdk11:aws-app:micronaut-build"]
   script:
     - ./test-aws-app.sh
+
+jdk8:grpc:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:grpc:micronaut-build
+  needs: ["jdk8:grpc:micronaut-build"]
+  script:
+    - ./test-grpc.sh
+
+jdk11:grpc:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:grpc:micronaut-build
+  needs: ["jdk11:grpc:micronaut-build"]
+  script:
+    - ./test-grpc.sh
