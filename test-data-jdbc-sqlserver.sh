@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-data-jdbc-sqlserver.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-sqlserver &
+MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jdbc-sqlserver.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

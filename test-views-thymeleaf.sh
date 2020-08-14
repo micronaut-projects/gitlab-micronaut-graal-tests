@@ -3,7 +3,7 @@ set -x
 
 apk add curl libstdc++
 
-$CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity &
+$CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/)
@@ -14,14 +14,14 @@ RESPONSE=$(curl -s localhost:8080/folder1/link1.html)
 EXPECTED_RESPONSE_CONTAINS='<a href="https://micronaut.io/documentation.html">Micronaut documentation</a>'
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
-RESPONSE=$(curl -s localhost:8080/views/velocity)
+RESPONSE=$(curl -s localhost:8080/views/thymeleaf)
 EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-EXPECTED_RESPONSE_CONTAINS="Velocity"
+EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
-RESPONSE=$(curl -s localhost:8080/views/velocity-view)
+RESPONSE=$(curl -s localhost:8080/views/thymeleaf-view)
 EXPECTED_RESPONSE_CONTAINS="<span>Iván</span>"
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
-EXPECTED_RESPONSE_CONTAINS="Velocity"
+EXPECTED_RESPONSE_CONTAINS="Thymeleaf"
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi

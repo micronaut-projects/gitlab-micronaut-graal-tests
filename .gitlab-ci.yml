@@ -42,13 +42,13 @@ jdk8:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
-    - ./build-graal.sh jdk8
+    - ./build-graalvm.sh jdk8
 
 jdk11:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
-    - ./build-graal.sh jdk11
+    - ./build-graalvm.sh jdk11
 
 
 #            _                                  _
@@ -86,7 +86,7 @@ jdk8:basic-app:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
-    - ./build-micronaut-basic-app.sh
+    - ./build-basic-app.sh
 
 jdk11:basic-app:micronaut-build:
   <<: *jdk11-build
@@ -94,7 +94,7 @@ jdk11:basic-app:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
-    - ./build-micronaut-basic-app.sh
+    - ./build-basic-app.sh
 
 jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
@@ -102,7 +102,7 @@ jdk8:service-discovery-consul:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
-    - ./build-micronaut-service-discovery-consul.sh
+    - ./build-service-discovery-consul.sh
   tags:
     - aws
     - speed
@@ -113,7 +113,7 @@ jdk11:service-discovery-consul:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
-    - ./build-micronaut-service-discovery-consul.sh
+    - ./build-service-discovery-consul.sh
   tags:
     - aws
     - speed
@@ -124,7 +124,7 @@ jdk8:service-discovery-eureka:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
-    - ./build-micronaut-service-discovery-eureka.sh
+    - ./build-service-discovery-eureka.sh
   tags:
     - aws
     - speed
@@ -135,7 +135,7 @@ jdk11:service-discovery-eureka:micronaut-build:
     paths:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
-    - ./build-micronaut-service-discovery-eureka.sh
+    - ./build-service-discovery-eureka.sh
   tags:
     - aws
     - speed
@@ -144,201 +144,201 @@ jdk8:zipkin:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
+      - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
-    - ./build-micronaut-zipkin-graal.sh
+    - ./build-zipkin.sh
 
 jdk11:zipkin:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin-graal
+      - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
-    - ./build-micronaut-zipkin-graal.sh
+    - ./build-zipkin.sh
 
 jdk8:function:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
+      - $CI_PROJECT_DIR/micronaut-function-graal/function
   script:
-    - ./build-micronaut-function-graal.sh
+    - ./build-function.sh
 
 jdk11:function:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-function-graal/function-graal
+      - $CI_PROJECT_DIR/micronaut-function-graal/function
   script:
-    - ./build-micronaut-function-graal.sh
+    - ./build-function.sh
 
 jdk8:rabbitmq:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
+      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
-    - ./build-micronaut-rabbitmq-graal.sh
+    - ./build-rabbitmq.sh
 
 jdk11:rabbitmq:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq
+      - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
-    - ./build-micronaut-rabbitmq-graal.sh
+    - ./build-rabbitmq.sh
 
 jdk8:management:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
+      - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
-    - ./build-micronaut-management-graal.sh
+    - ./build-management.sh
 
 jdk11:management:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-management-graal/management-graal
+      - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
-    - ./build-micronaut-management-graal.sh
+    - ./build-management.sh
 
 jdk8:views-freemarker:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
-    - ./build-micronaut-views-graal.sh freemarker
+    - ./build-views.sh freemarker
 
 jdk11:views-freemarker:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-freemarker
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
-    - ./build-micronaut-views-graal.sh freemarker
+    - ./build-views.sh freemarker
 
 jdk8:views-handlebars:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
-    - ./build-micronaut-views-graal.sh handlebars
+    - ./build-views.sh handlebars
 
 jdk11:views-handlebars:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-handlebars
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
-    - ./build-micronaut-views-graal.sh handlebars
+    - ./build-views.sh handlebars
 
 jdk8:views-thymeleaf:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
-    - ./build-micronaut-views-graal.sh thymeleaf
+    - ./build-views.sh thymeleaf
 
 jdk11:views-thymeleaf:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-thymeleaf
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
-    - ./build-micronaut-views-graal.sh thymeleaf
+    - ./build-views.sh thymeleaf
 
 jdk8:views-velocity:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
-    - ./build-micronaut-views-graal.sh velocity
+    - ./build-views.sh velocity
 
 jdk11:views-velocity:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-views-graal/views-graal-velocity
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
-    - ./build-micronaut-views-graal.sh velocity
+    - ./build-views.sh velocity
 
 jdk8:security-jwt:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
+      - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
-    - ./build-micronaut-security-jwt-graal.sh
+    - ./build-security-jwt.sh
 
 jdk11:security-jwt:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt-graal
+      - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
-    - ./build-micronaut-security-jwt-graal.sh
+    - ./build-security-jwt.sh
 
 jdk8:security-basic-auth:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal
+      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
-    - ./build-micronaut-security-basic-auth-graal.sh
+    - ./build-security-basic-auth.sh
 
 jdk11:security-basic-auth:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth-graal
+      - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
-    - ./build-micronaut-security-basic-auth-graal.sh
+    - ./build-security-basic-auth.sh
 
 jdk8:security-cookie:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie-graal
+      - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
-    - ./build-micronaut-security-cookie-graal.sh
+    - ./build-security-cookie.sh
 
 jdk11:security-cookie:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie-graal
+      - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
-    - ./build-micronaut-security-cookie-graal.sh
+    - ./build-security-cookie.sh
 
 jdk8:security-session:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session-graal
+      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
-    - ./build-micronaut-security-session-graal.sh
+    - ./build-security-session.sh
 
 jdk11:security-session:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session-graal
+      - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
-    - ./build-micronaut-security-session-graal.sh
+    - ./build-security-session.sh
 
 jdk8:data-jdbc-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-h2
   script:
-    - ./build-micronaut-data-jdbc-graal.sh h2
+    - ./build-data-jdbc.sh h2
   tags:
     - aws
     - speed
@@ -347,9 +347,9 @@ jdk11:data-jdbc-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-h2
   script:
-    - ./build-micronaut-data-jdbc-graal.sh h2
+    - ./build-data-jdbc.sh h2
   tags:
     - aws
     - speed
@@ -358,9 +358,9 @@ jdk8:data-jdbc-postgres:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres
   script:
-    - ./build-micronaut-data-jdbc-graal.sh postgres
+    - ./build-data-jdbc.sh postgres
   tags:
     - aws
     - speed
@@ -369,9 +369,9 @@ jdk11:data-jdbc-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres
   script:
-    - ./build-micronaut-data-jdbc-graal.sh postgres
+    - ./build-data-jdbc.sh postgres
   tags:
     - aws
     - speed
@@ -380,9 +380,9 @@ jdk8:data-jdbc-oracle:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle
   script:
-    - ./build-micronaut-data-jdbc-graal.sh oracle
+    - ./build-data-jdbc.sh oracle
   tags:
     - aws
     - memory
@@ -391,9 +391,9 @@ jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle
   script:
-    - ./build-micronaut-data-jdbc-graal.sh oracle
+    - ./build-data-jdbc.sh oracle
   tags:
     - aws
     - memory
@@ -402,9 +402,9 @@ jdk8:data-jdbc-mariadb:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb
   script:
-    - ./build-micronaut-data-jdbc-graal.sh mariadb
+    - ./build-data-jdbc.sh mariadb
   tags:
     - aws
     - speed
@@ -413,9 +413,9 @@ jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb
   script:
-    - ./build-micronaut-data-jdbc-graal.sh mariadb
+    - ./build-data-jdbc.sh mariadb
   tags:
     - aws
     - speed
@@ -424,9 +424,9 @@ jdk8:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-sqlserver
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver
   script:
-    - ./build-micronaut-data-jdbc-graal.sh sqlserver
+    - ./build-data-jdbc.sh sqlserver
   tags:
     - aws
     - speed
@@ -435,9 +435,9 @@ jdk11:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-sqlserver
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver
   script:
-    - ./build-micronaut-data-jdbc-graal.sh sqlserver
+    - ./build-data-jdbc.sh sqlserver
   tags:
     - aws
     - speed
@@ -446,9 +446,9 @@ jdk8:data-jdbc-mysql:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mysql
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql
   script:
-    - ./build-micronaut-data-jdbc-graal.sh mysql
+    - ./build-data-jdbc.sh mysql
   tags:
     - aws
     - speed
@@ -457,9 +457,9 @@ jdk11:data-jdbc-mysql:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-mysql
+      - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql
   script:
-    - ./build-micronaut-data-jdbc-graal.sh mysql
+    - ./build-data-jdbc.sh mysql
   tags:
     - aws
     - speed
@@ -468,9 +468,9 @@ jdk8:data-jpa-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-h2
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-h2
   script:
-    - ./build-micronaut-data-jpa-graal.sh h2
+    - ./build-data-jpa.sh h2
   tags:
     - aws
     - memory
@@ -479,9 +479,9 @@ jdk11:data-jpa-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-h2
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-h2
   script:
-    - ./build-micronaut-data-jpa-graal.sh h2
+    - ./build-data-jpa.sh h2
   tags:
     - aws
     - memory
@@ -490,9 +490,9 @@ jdk8:data-jpa-postgres:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-postgres
   script:
-    - ./build-micronaut-data-jpa-graal.sh postgres
+    - ./build-data-jpa.sh postgres
   tags:
     - aws
     - memory
@@ -501,9 +501,9 @@ jdk11:data-jpa-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-postgres
   script:
-    - ./build-micronaut-data-jpa-graal.sh postgres
+    - ./build-data-jpa.sh postgres
   tags:
     - aws
     - memory
@@ -512,9 +512,9 @@ jdk8:data-jpa-mariadb:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mariadb
   script:
-    - ./build-micronaut-data-jpa-graal.sh mariadb
+    - ./build-data-jpa.sh mariadb
   tags:
     - aws
     - memory
@@ -523,9 +523,9 @@ jdk11:data-jpa-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mariadb
   script:
-    - ./build-micronaut-data-jpa-graal.sh mariadb
+    - ./build-data-jpa.sh mariadb
   tags:
     - aws
     - memory
@@ -534,9 +534,9 @@ jdk8:data-jpa-mysql:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-mysql
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mysql
   script:
-    - ./build-micronaut-data-jpa-graal.sh mysql
+    - ./build-data-jpa.sh mysql
   tags:
     - aws
     - memory
@@ -545,9 +545,9 @@ jdk11:data-jpa-mysql:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/mn-data-jpa-graal-mysql
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mysql
   script:
-    - ./build-micronaut-data-jpa-graal.sh mysql
+    - ./build-data-jpa.sh mysql
   tags:
     - aws
     - memory
@@ -556,49 +556,49 @@ jdk8:schedule:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal
+      - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
-    - ./build-micronaut-schedule-graal.sh
+    - ./build-schedule.sh
 
 jdk11:schedule:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal
+      - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
-    - ./build-micronaut-schedule-graal.sh
+    - ./build-schedule.sh
 
 jdk8:cache:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-cache-graal/mn-cache-graal
+      - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
-    - ./build-micronaut-cache-graal.sh
+    - ./build-cache.sh
 
 jdk11:cache:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-cache-graal/mn-cache-graal
+      - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
-    - ./build-micronaut-cache-graal.sh
+    - ./build-cache.sh
 
 jdk8:servlet-tomcat:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-tomcat-graal
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-tomcat
   script:
-    - ./build-micronaut-servlet-graal.sh tomcat
+    - ./build-servlet.sh tomcat
 
 jdk11:servlet-tomcat:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-tomcat-graal
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-tomcat
   script:
-    - ./build-micronaut-servlet-graal.sh tomcat
+    - ./build-servlet.sh tomcat
   tags:
     - aws
     - speed
@@ -607,41 +607,41 @@ jdk8:servlet-jetty:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
-    - ./build-micronaut-servlet-graal.sh jetty
+    - ./build-servlet.sh jetty
 
 jdk11:servlet-jetty:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal
+      - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
-    - ./build-micronaut-servlet-graal.sh jetty
+    - ./build-servlet.sh jetty
 
 jdk8:introspected:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal
+      - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
-    - ./build-micronaut-introspected-graal.sh
+    - ./build-introspected.sh
 
 jdk11:introspected:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal
+      - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
-    - ./build-micronaut-introspected-graal.sh
+    - ./build-introspected.sh
 
 jdk8:flyway-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-h2
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-h2
   script:
-    - ./build-micronaut-flyway-graal.sh h2
+    - ./build-flyway.sh h2
   tags:
     - aws
     - speed
@@ -650,9 +650,9 @@ jdk11:flyway-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-h2
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-h2
   script:
-    - ./build-micronaut-flyway-graal.sh h2
+    - ./build-flyway.sh h2
   tags:
     - aws
     - speed
@@ -661,9 +661,9 @@ jdk8:flyway-postgres:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres
   script:
-    - ./build-micronaut-flyway-graal.sh postgres
+    - ./build-flyway.sh postgres
   tags:
     - aws
     - speed
@@ -672,9 +672,9 @@ jdk11:flyway-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres
   script:
-    - ./build-micronaut-flyway-graal.sh postgres
+    - ./build-flyway.sh postgres
   tags:
     - aws
     - speed
@@ -683,9 +683,9 @@ jdk8:flyway-mariadb:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb
   script:
-    - ./build-micronaut-flyway-graal.sh mariadb
+    - ./build-flyway.sh mariadb
   tags:
     - aws
     - speed
@@ -694,9 +694,9 @@ jdk11:flyway-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-mariadb
+      - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb
   script:
-    - ./build-micronaut-flyway-graal.sh mariadb
+    - ./build-flyway.sh mariadb
   tags:
     - aws
     - speed
@@ -705,17 +705,17 @@ jdk8:elasticsearch:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/micronaut-elasticsearch-graal
+      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch
   script:
-    - ./build-micronaut-elasticsearch-graal.sh
+    - ./build-elasticsearch.sh
 
 jdk11:elasticsearch:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/micronaut-elasticsearch-graal
+      - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch
   script:
-    - ./build-micronaut-elasticsearch-graal.sh
+    - ./build-elasticsearch.sh
   tags:
     - aws
     - memory
@@ -724,9 +724,9 @@ jdk8:jooq-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-h2
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-h2
   script:
-    - ./build-micronaut-jooq-graal-h2.sh
+    - ./build-jooq-h2.sh
   tags:
     - aws
     - memory
@@ -735,9 +735,9 @@ jdk11:jooq-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-h2
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-h2
   script:
-    - ./build-micronaut-jooq-graal-h2.sh
+    - ./build-jooq-h2.sh
   tags:
     - aws
     - memory
@@ -753,9 +753,9 @@ jdk8:jooq-postgres:micronaut-build:
     POSTGRES_DB: devDb
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-postgres
   script:
-    - ./build-micronaut-jooq-graal-postgres.sh
+    - ./build-jooq-postgres.sh
   tags:
     - aws
     - memory
@@ -771,9 +771,9 @@ jdk11:jooq-postgres:micronaut-build:
     POSTGRES_DB: devDb
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-postgres
+      - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-postgres
   script:
-    - ./build-micronaut-jooq-graal-postgres.sh
+    - ./build-jooq-postgres.sh
   tags:
     - aws
     - memory
@@ -782,17 +782,17 @@ jdk8:redis:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-redis-graal/mn-redis-graal
+      - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
-    - ./build-micronaut-redis-graal.sh
+    - ./build-redis.sh
 
 jdk11:redis:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-redis-graal/mn-redis-graal
+      - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
-    - ./build-micronaut-redis-graal.sh
+    - ./build-redis.sh
 
 jdk8:function-aws:micronaut-build:
   <<: *jdk8-build
@@ -801,7 +801,7 @@ jdk8:function-aws:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/build/function.zip
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
   script:
-    - ./build-micronaut-function-aws-graal.sh
+    - ./build-function-aws.sh
 
 jdk11:function-aws:micronaut-build:
   <<: *jdk11-build
@@ -810,7 +810,7 @@ jdk11:function-aws:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/build/function.zip
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
   script:
-    - ./build-micronaut-function-aws-graal.sh
+    - ./build-function-aws.sh
 
 jdk8:aws-app:micronaut-build:
   <<: *jdk8-build
@@ -819,7 +819,7 @@ jdk8:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/build/function.zip
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
-    - ./build-micronaut-aws-app-graal.sh
+    - ./build-aws-app.sh
 
 jdk11:aws-app:micronaut-build:
   <<: *jdk11-build
@@ -828,16 +828,16 @@ jdk11:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/build/function.zip
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
-    - ./build-micronaut-aws-app-graal.sh
+    - ./build-aws-app.sh
 
 jdk8:grpc:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-server-graal
-      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-client-graal
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-server
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-client
   script:
-    - ./build-micronaut-grpc-graal.sh
+    - ./build-grpc.sh
   tags:
     - aws
     - speed
@@ -846,10 +846,10 @@ jdk11:grpc:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-server-graal
-      - $CI_PROJECT_DIR/micronaut-grpc-graal/mn-grpc-client-graal
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-server
+      - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-client
   script:
-    - ./build-micronaut-grpc-graal.sh
+    - ./build-grpc.sh
   tags:
     - aws
     - speed
@@ -946,7 +946,7 @@ jdk8:zipkin:test:
     - jdk8:zipkin:micronaut-build
   needs: ["jdk8:zipkin:micronaut-build"]
   script:
-    - ./test-zipkin-graal.sh
+    - ./test-zipkin.sh
 
 jdk11:zipkin:test:
   <<: *micronaut-test-template
@@ -957,7 +957,7 @@ jdk11:zipkin:test:
     - jdk11:zipkin:micronaut-build
   needs: ["jdk11:zipkin:micronaut-build"]
   script:
-    - ./test-zipkin-graal.sh
+    - ./test-zipkin.sh
 
 jdk8:function:test:
   <<: *micronaut-test-template
@@ -965,7 +965,7 @@ jdk8:function:test:
     - jdk8:function:micronaut-build
   needs: ["jdk8:function:micronaut-build"]
   script:
-    - ./test-function-graal.sh
+    - ./test-function.sh
 
 jdk11:function:test:
   <<: *micronaut-test-template
@@ -973,7 +973,7 @@ jdk11:function:test:
     - jdk11:function:micronaut-build
   needs: ["jdk11:function:micronaut-build"]
   script:
-    - ./test-function-graal.sh
+    - ./test-function.sh
 
 jdk8:rabbitmq:test:
   <<: *micronaut-test-template
@@ -984,7 +984,7 @@ jdk8:rabbitmq:test:
     - jdk8:rabbitmq:micronaut-build
   needs: ["jdk8:rabbitmq:micronaut-build"]
   script:
-    - ./test-rabbitmq-graal.sh
+    - ./test-rabbitmq.sh
 
 jdk11:rabbitmq:test:
   <<: *micronaut-test-template
@@ -995,7 +995,7 @@ jdk11:rabbitmq:test:
     - jdk11:rabbitmq:micronaut-build
   needs: ["jdk11:rabbitmq:micronaut-build"]
   script:
-    - ./test-rabbitmq-graal.sh
+    - ./test-rabbitmq.sh
 
 jdk8:management:test:
   <<: *micronaut-test-template
@@ -1003,7 +1003,7 @@ jdk8:management:test:
     - jdk8:management:micronaut-build
   needs: ["jdk8:management:micronaut-build"]
   script:
-    - ./test-management-graal.sh
+    - ./test-management.sh
 
 jdk11:management:test:
   <<: *micronaut-test-template
@@ -1011,7 +1011,7 @@ jdk11:management:test:
     - jdk11:management:micronaut-build
   needs: ["jdk11:management:micronaut-build"]
   script:
-    - ./test-management-graal.sh
+    - ./test-management.sh
 
 jdk8:views-freemarker:test:
   <<: *micronaut-test-template
@@ -1019,7 +1019,7 @@ jdk8:views-freemarker:test:
     - jdk8:views-freemarker:micronaut-build
   needs: ["jdk8:views-freemarker:micronaut-build"]
   script:
-    - ./test-views-graal-freemarker.sh
+    - ./test-views-freemarker.sh
 
 jdk11:views-freemarker:test:
   <<: *micronaut-test-template
@@ -1027,7 +1027,7 @@ jdk11:views-freemarker:test:
     - jdk11:views-freemarker:micronaut-build
   needs: ["jdk11:views-freemarker:micronaut-build"]
   script:
-    - ./test-views-graal-freemarker.sh
+    - ./test-views-freemarker.sh
 
 jdk8:views-handlebars:test:
   <<: *micronaut-test-template
@@ -1035,7 +1035,7 @@ jdk8:views-handlebars:test:
     - jdk8:views-handlebars:micronaut-build
   needs: ["jdk8:views-handlebars:micronaut-build"]
   script:
-    - ./test-views-graal-handlebars.sh
+    - ./test-views-handlebars.sh
 
 jdk11:views-handlebars:test:
   <<: *micronaut-test-template
@@ -1043,7 +1043,7 @@ jdk11:views-handlebars:test:
     - jdk11:views-handlebars:micronaut-build
   needs: ["jdk11:views-handlebars:micronaut-build"]
   script:
-    - ./test-views-graal-handlebars.sh
+    - ./test-views-handlebars.sh
 
 jdk8:views-thymeleaf:test:
   <<: *micronaut-test-template
@@ -1051,7 +1051,7 @@ jdk8:views-thymeleaf:test:
     - jdk8:views-thymeleaf:micronaut-build
   needs: ["jdk8:views-thymeleaf:micronaut-build"]
   script:
-    - ./test-views-graal-thymeleaf.sh
+    - ./test-views-thymeleaf.sh
 
 jdk11:views-thymeleaf:test:
   <<: *micronaut-test-template
@@ -1059,7 +1059,7 @@ jdk11:views-thymeleaf:test:
     - jdk11:views-thymeleaf:micronaut-build
   needs: ["jdk11:views-thymeleaf:micronaut-build"]
   script:
-    - ./test-views-graal-thymeleaf.sh
+    - ./test-views-thymeleaf.sh
 
 jdk8:views-velocity:test:
   <<: *micronaut-test-template
@@ -1067,7 +1067,7 @@ jdk8:views-velocity:test:
     - jdk8:views-velocity:micronaut-build
   needs: ["jdk8:views-velocity:micronaut-build"]
   script:
-    - ./test-views-graal-velocity.sh
+    - ./test-views-velocity.sh
 
 jdk11:views-velocity:test:
   <<: *micronaut-test-template
@@ -1075,7 +1075,7 @@ jdk11:views-velocity:test:
     - jdk11:views-velocity:micronaut-build
   needs: ["jdk11:views-velocity:micronaut-build"]
   script:
-    - ./test-views-graal-velocity.sh
+    - ./test-views-velocity.sh
 
 jdk8:security-jwt:test:
   <<: *micronaut-test-template
@@ -1083,7 +1083,7 @@ jdk8:security-jwt:test:
     - jdk8:security-jwt:micronaut-build
   needs: ["jdk8:security-jwt:micronaut-build"]
   script:
-    - ./test-security-jwt-graal.sh
+    - ./test-security-jwt.sh
 
 jdk11:security-jwt:test:
   <<: *micronaut-test-template
@@ -1091,7 +1091,7 @@ jdk11:security-jwt:test:
     - jdk11:security-jwt:micronaut-build
   needs: ["jdk11:security-jwt:micronaut-build"]
   script:
-    - ./test-security-jwt-graal.sh
+    - ./test-security-jwt.sh
 
 jdk8:security-basic-auth:test:
   <<: *micronaut-test-template
@@ -1099,7 +1099,7 @@ jdk8:security-basic-auth:test:
     - jdk8:security-basic-auth:micronaut-build
   needs: ["jdk8:security-basic-auth:micronaut-build"]
   script:
-    - ./test-security-basic-auth-graal.sh
+    - ./test-security-basic-auth.sh
 
 jdk11:security-basic-auth:test:
   <<: *micronaut-test-template
@@ -1107,7 +1107,7 @@ jdk11:security-basic-auth:test:
     - jdk11:security-basic-auth:micronaut-build
   needs: ["jdk11:security-basic-auth:micronaut-build"]
   script:
-    - ./test-security-basic-auth-graal.sh
+    - ./test-security-basic-auth.sh
 
 jdk8:security-cookie:test:
   <<: *micronaut-test-template
@@ -1115,7 +1115,7 @@ jdk8:security-cookie:test:
     - jdk8:security-cookie:micronaut-build
   needs: ["jdk8:security-cookie:micronaut-build"]
   script:
-    - ./test-security-cookie-graal.sh
+    - ./test-security-cookie.sh
 
 jdk11:security-cookie:test:
   <<: *micronaut-test-template
@@ -1123,7 +1123,7 @@ jdk11:security-cookie:test:
     - jdk11:security-cookie:micronaut-build
   needs: ["jdk11:security-cookie:micronaut-build"]
   script:
-    - ./test-security-cookie-graal.sh
+    - ./test-security-cookie.sh
 
 jdk8:security-session:test:
   <<: *micronaut-test-template
@@ -1131,7 +1131,7 @@ jdk8:security-session:test:
     - jdk8:security-session:micronaut-build
   needs: ["jdk8:security-session:micronaut-build"]
   script:
-    - ./test-security-session-graal.sh
+    - ./test-security-session.sh
 
 jdk11:security-session:test:
   <<: *micronaut-test-template
@@ -1139,7 +1139,7 @@ jdk11:security-session:test:
     - jdk11:security-session:micronaut-build
   needs: ["jdk11:security-session:micronaut-build"]
   script:
-    - ./test-security-session-graal.sh
+    - ./test-security-session.sh
 
 jdk8:data-jdbc-h2:test:
   <<: *micronaut-test-template
@@ -1147,7 +1147,7 @@ jdk8:data-jdbc-h2:test:
     - jdk8:data-jdbc-h2:micronaut-build
   needs: ["jdk8:data-jdbc-h2:micronaut-build"]
   script:
-    - ./test-micronaut-data-jdbc-graal-h2.sh
+    - ./test-data-jdbc-h2.sh
 
 jdk11:data-jdbc-h2:test:
   <<: *micronaut-test-template
@@ -1155,7 +1155,7 @@ jdk11:data-jdbc-h2:test:
     - jdk11:data-jdbc-h2:micronaut-build
   needs: ["jdk11:data-jdbc-h2:micronaut-build"]
   script:
-    - ./test-micronaut-data-jdbc-graal-h2.sh
+    - ./test-data-jdbc-h2.sh
 
 jdk8:data-jdbc-postgres:test:
   <<: *micronaut-test-template
@@ -1170,7 +1170,7 @@ jdk8:data-jdbc-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-postgres.sh
+    - ./test-data-jdbc-postgres.sh
 
 jdk11:data-jdbc-postgres:test:
   <<: *micronaut-test-template
@@ -1185,7 +1185,7 @@ jdk11:data-jdbc-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-postgres.sh
+    - ./test-data-jdbc-postgres.sh
 
 jdk8:data-jdbc-oracle:test:
   <<: *micronaut-test-template
@@ -1196,7 +1196,7 @@ jdk8:data-jdbc-oracle:test:
     - jdk8:data-jdbc-oracle:micronaut-build
   needs: ["jdk8:data-jdbc-oracle:micronaut-build"]
   script:
-    - ./test-micronaut-data-jdbc-graal-oracle.sh
+    - ./test-data-jdbc-oracle.sh
 
 jdk11:data-jdbc-oracle:test:
   <<: *micronaut-test-template
@@ -1207,7 +1207,7 @@ jdk11:data-jdbc-oracle:test:
     - jdk11:data-jdbc-oracle:micronaut-build
   needs: ["jdk11:data-jdbc-oracle:micronaut-build"]
   script:
-    - ./test-micronaut-data-jdbc-graal-oracle.sh
+    - ./test-data-jdbc-oracle.sh
 
 jdk8:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
@@ -1221,7 +1221,7 @@ jdk8:data-jdbc-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-mariadb.sh
+    - ./test-data-jdbc-mariadb.sh
 
 jdk11:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
@@ -1235,7 +1235,7 @@ jdk11:data-jdbc-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-mariadb.sh
+    - ./test-data-jdbc-mariadb.sh
 
 jdk8:data-jdbc-sqlserver:test:
   <<: *micronaut-test-template
@@ -1250,7 +1250,7 @@ jdk8:data-jdbc-sqlserver:test:
     SA_PASSWORD: My!Secret123
     MSSQL_PID: Express
   script:
-    - ./test-micronaut-data-jdbc-graal-sqlserver.sh
+    - ./test-data-jdbc-sqlserver.sh
 
 jdk11:data-jdbc-sqlserver:test:
   <<: *micronaut-test-template
@@ -1265,7 +1265,7 @@ jdk11:data-jdbc-sqlserver:test:
     SA_PASSWORD: My!Secret123
     MSSQL_PID: Express
   script:
-    - ./test-micronaut-data-jdbc-graal-sqlserver.sh
+    - ./test-data-jdbc-sqlserver.sh
 
 jdk8:data-jdbc-mysql:test:
   <<: *micronaut-test-template
@@ -1279,7 +1279,7 @@ jdk8:data-jdbc-mysql:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-mysql.sh
+    - ./test-data-jdbc-mysql.sh
 
 jdk11:data-jdbc-mysql:test:
   <<: *micronaut-test-template
@@ -1293,7 +1293,7 @@ jdk11:data-jdbc-mysql:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jdbc-graal-mysql.sh
+    - ./test-data-jdbc-mysql.sh
 
 jdk8:data-jpa-h2:test:
   <<: *micronaut-test-template
@@ -1301,7 +1301,7 @@ jdk8:data-jpa-h2:test:
     - jdk8:data-jpa-h2:micronaut-build
   needs: ["jdk8:data-jpa-h2:micronaut-build"]
   script:
-    - ./test-micronaut-data-jpa-graal-h2.sh
+    - ./test-data-jpa-h2.sh
 
 jdk11:data-jpa-h2:test:
   <<: *micronaut-test-template
@@ -1309,7 +1309,7 @@ jdk11:data-jpa-h2:test:
     - jdk11:data-jpa-h2:micronaut-build
   needs: ["jdk11:data-jpa-h2:micronaut-build"]
   script:
-    - ./test-micronaut-data-jpa-graal-h2.sh
+    - ./test-data-jpa-h2.sh
 
 jdk8:data-jpa-postgres:test:
   <<: *micronaut-test-template
@@ -1324,7 +1324,7 @@ jdk8:data-jpa-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: pets
   script:
-    - ./test-micronaut-data-jpa-graal-postgres.sh
+    - ./test-data-jpa-postgres.sh
 
 jdk11:data-jpa-postgres:test:
   <<: *micronaut-test-template
@@ -1339,7 +1339,7 @@ jdk11:data-jpa-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: pets
   script:
-    - ./test-micronaut-data-jpa-graal-postgres.sh
+    - ./test-data-jpa-postgres.sh
 
 jdk8:data-jpa-mariadb:test:
   <<: *micronaut-test-template
@@ -1353,7 +1353,7 @@ jdk8:data-jpa-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jpa-graal-mariadb.sh
+    - ./test-data-jpa-mariadb.sh
 
 jdk11:data-jpa-mariadb:test:
   <<: *micronaut-test-template
@@ -1367,7 +1367,7 @@ jdk11:data-jpa-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jpa-graal-mariadb.sh
+    - ./test-data-jpa-mariadb.sh
 
 jdk8:data-jpa-mysql:test:
   <<: *micronaut-test-template
@@ -1381,7 +1381,7 @@ jdk8:data-jpa-mysql:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jpa-graal-mysql.sh
+    - ./test-data-jpa-mysql.sh
 
 jdk11:data-jpa-mysql:test:
   <<: *micronaut-test-template
@@ -1395,7 +1395,7 @@ jdk11:data-jpa-mysql:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: pets
   script:
-    - ./test-micronaut-data-jpa-graal-mysql.sh
+    - ./test-data-jpa-mysql.sh
 
 jdk8:schedule:test:
   <<: *micronaut-test-template
@@ -1435,7 +1435,7 @@ jdk8:servlet-tomcat:test:
     - jdk8:servlet-tomcat:micronaut-build
   needs: ["jdk8:servlet-tomcat:micronaut-build"]
   script:
-    - ./test-servlet-graal-tomcat.sh
+    - ./test-servlet-tomcat.sh
 
 jdk11:servlet-tomcat:test:
   <<: *micronaut-test-template
@@ -1443,7 +1443,7 @@ jdk11:servlet-tomcat:test:
     - jdk11:servlet-tomcat:micronaut-build
   needs: ["jdk11:servlet-tomcat:micronaut-build"]
   script:
-    - ./test-servlet-graal-tomcat.sh
+    - ./test-servlet-tomcat.sh
 
 jdk8:servlet-jetty:test:
   <<: *micronaut-test-template
@@ -1451,7 +1451,7 @@ jdk8:servlet-jetty:test:
     - jdk8:servlet-jetty:micronaut-build
   needs: ["jdk8:servlet-jetty:micronaut-build"]
   script:
-    - ./test-servlet-graal-jetty.sh
+    - ./test-servlet-jetty.sh
 
 jdk11:servlet-jetty:test:
   <<: *micronaut-test-template
@@ -1459,7 +1459,7 @@ jdk11:servlet-jetty:test:
     - jdk11:servlet-jetty:micronaut-build
   needs: ["jdk11:servlet-jetty:micronaut-build"]
   script:
-    - ./test-servlet-graal-jetty.sh
+    - ./test-servlet-jetty.sh
 
 jdk8:introspected:test:
   <<: *micronaut-test-template
@@ -1483,7 +1483,7 @@ jdk8:flyway-h2:test:
     - jdk8:flyway-h2:micronaut-build
   needs: ["jdk8:flyway-h2:micronaut-build"]
   script:
-    - ./test-micronaut-flyway-graal-h2.sh
+    - ./test-flyway-h2.sh
 
 jdk11:flyway-h2:test:
   <<: *micronaut-test-template
@@ -1491,7 +1491,7 @@ jdk11:flyway-h2:test:
     - jdk11:flyway-h2:micronaut-build
   needs: ["jdk11:flyway-h2:micronaut-build"]
   script:
-    - ./test-micronaut-flyway-graal-h2.sh
+    - ./test-flyway-h2.sh
 
 jdk8:flyway-postgres:test:
   <<: *micronaut-test-template
@@ -1506,7 +1506,7 @@ jdk8:flyway-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: users
   script:
-    - ./test-micronaut-flyway-graal-postgres.sh
+    - ./test-flyway-postgres.sh
 
 jdk11:flyway-postgres:test:
   <<: *micronaut-test-template
@@ -1521,7 +1521,7 @@ jdk11:flyway-postgres:test:
     POSTGRES_PASSWORD: secret
     POSTGRES_DB: users
   script:
-    - ./test-micronaut-flyway-graal-postgres.sh
+    - ./test-flyway-postgres.sh
 
 jdk8:flyway-mariadb:test:
   <<: *micronaut-test-template
@@ -1535,7 +1535,7 @@ jdk8:flyway-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: users
   script:
-    - ./test-micronaut-flyway-graal-mariadb.sh
+    - ./test-flyway-mariadb.sh
 
 jdk11:flyway-mariadb:test:
   <<: *micronaut-test-template
@@ -1549,7 +1549,7 @@ jdk11:flyway-mariadb:test:
     MYSQL_ROOT_PASSWORD: secret
     MYSQL_DATABASE: users
   script:
-    - ./test-micronaut-flyway-graal-mariadb.sh
+    - ./test-flyway-mariadb.sh
 
 jdk8:elasticsearch:test:
   <<: *micronaut-test-template
@@ -1581,7 +1581,7 @@ jdk8:jooq-h2:test:
     - jdk8:jooq-h2:micronaut-build
   needs: ["jdk8:jooq-h2:micronaut-build"]
   script:
-    - ./test-jooq-h2-graal.sh
+    - ./test-jooq-h2.sh
 
 jdk11:jooq-h2:test:
   <<: *micronaut-test-template
@@ -1589,7 +1589,7 @@ jdk11:jooq-h2:test:
     - jdk11:jooq-h2:micronaut-build
   needs: ["jdk11:jooq-h2:micronaut-build"]
   script:
-    - ./test-jooq-h2-graal.sh
+    - ./test-jooq-h2.sh
 
 jdk8:jooq-postgres:test:
   <<: *micronaut-test-template
@@ -1604,7 +1604,7 @@ jdk8:jooq-postgres:test:
     - jdk8:jooq-postgres:micronaut-build
   needs: ["jdk8:jooq-postgres:micronaut-build"]
   script:
-    - ./test-jooq-postgres-graal.sh
+    - ./test-jooq-postgres.sh
 
 jdk11:jooq-postgres:test:
   <<: *micronaut-test-template
@@ -1619,7 +1619,7 @@ jdk11:jooq-postgres:test:
     - jdk11:jooq-postgres:micronaut-build
   needs: ["jdk11:jooq-postgres:micronaut-build"]
   script:
-    - ./test-jooq-postgres-graal.sh
+    - ./test-jooq-postgres.sh
 
 jdk8:redis:test:
   <<: *micronaut-test-template

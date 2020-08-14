@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-$CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-h2 &
+MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jdbc-mariadb.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

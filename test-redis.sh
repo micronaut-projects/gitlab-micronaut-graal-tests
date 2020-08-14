@@ -4,7 +4,7 @@ set -x
 apk add curl jq libstdc++
 
 export REDIS_URI=redis://redishost
-$CI_PROJECT_DIR/micronaut-redis-graal/mn-redis-graal &
+$CI_PROJECT_DIR/micronaut-redis-graal/redis &
 sleep 3
 
 curl -s localhost:8080/set

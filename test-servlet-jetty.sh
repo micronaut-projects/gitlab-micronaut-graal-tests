@@ -3,7 +3,7 @@ set -x
 
 apk add curl libstdc++
 
-$CI_PROJECT_DIR/micronaut-servlet-graal/mn-servlet-jetty-graal &
+$CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/hello/Micronaut)

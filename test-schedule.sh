@@ -3,7 +3,7 @@ set -x
 
 apk add curl libstdc++
 
-$CI_PROJECT_DIR/micronaut-schedule-graal/mn-schedule-graal &
+$CI_PROJECT_DIR/micronaut-schedule-graal/schedule &
 sleep 5
 
 RESPONSE=$(curl -s localhost:8080/count)

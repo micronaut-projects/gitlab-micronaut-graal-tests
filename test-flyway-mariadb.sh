@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-flyway-mariadb.yml $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-mariadb &
+MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-flyway-mariadb.yml $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/users)

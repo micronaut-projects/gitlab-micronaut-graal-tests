@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-$CI_PROJECT_DIR/micronaut-cache-graal/mn-cache-graal &
+$CI_PROJECT_DIR/micronaut-cache-graal/cache &
 sleep 3
 
 EXPECTED='{"month":"OCTOBER","headlines":["Micronaut AOP: Awesome flexibility without the complexity"]}'

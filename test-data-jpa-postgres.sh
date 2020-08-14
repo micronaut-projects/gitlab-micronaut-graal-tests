@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-data-jdbc-postgres.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-postgres &
+MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jpa-postgres.yml $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-postgres &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

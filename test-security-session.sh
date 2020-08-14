@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-$CI_PROJECT_DIR/micronaut-security-session-graal/security-session-graal &
+$CI_PROJECT_DIR/micronaut-security-session-graal/security-session &
 sleep 3
 
 # Unauthenticated request

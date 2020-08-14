@@ -3,10 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-echo "Waiting for Oracle to start..."
-sleep 10
-
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-data-jdbc-oracle.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/mn-data-jdbc-graal-oracle -Doracle.jdbc.timezoneAsRegion=false &
+MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jpa-mariadb.yml $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mariadb &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

@@ -7,7 +7,7 @@ apk add curl jq libstdc++
 # we need to override it
 export RABBITMQ_URI=amqp://rabbitmqhost:5672
 export RABBITMQ_PORT=5672
-$CI_PROJECT_DIR/micronaut-rabbitmq-graal/graal-rabbitmq &
+$CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/books-fireandforget/1491950358)

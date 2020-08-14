@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-$CI_PROJECT_DIR/micronaut-management-graal/management-graal &
+$CI_PROJECT_DIR/micronaut-management-graal/management &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/hello/Micronaut)

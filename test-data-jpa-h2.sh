@@ -3,11 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-export DATABASE_URL='jdbc:postgresql://postgreshost:5432/devDb'
-export DATABASE_USER=devDb
-export DATABASE_PASSWORD=devDb
-export DATABASE_SCHEMA=public
-$CI_PROJECT_DIR/micronaut-jooq-graal/mn-jooq-graal-postgres &
+$CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-h2 &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

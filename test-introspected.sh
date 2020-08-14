@@ -3,7 +3,7 @@ set -x
 
 apk add curl libstdc++
 
-$CI_PROJECT_DIR/micronaut-introspected-graal/mn-introspected-graal &
+$CI_PROJECT_DIR/micronaut-introspected-graal/introspected &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/books)

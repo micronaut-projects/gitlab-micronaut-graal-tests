@@ -3,7 +3,7 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-micronaut-flyway-postgres.yml $CI_PROJECT_DIR/micronaut-flyway-graal/mn-flyway-graal-postgres &
+$CI_PROJECT_DIR/micronaut-flyway-graal/flyway-h2 &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/users)
