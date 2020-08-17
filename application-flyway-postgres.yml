@@ -1,6 +1,0 @@
----
-datasources:
-  default:
-    url: 'jdbc:postgresql://postgreshost:5432/users'
-    username: postgres
-    password: secret

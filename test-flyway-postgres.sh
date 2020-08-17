@@ -3,7 +3,8 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-flyway-postgres.yml $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres &
+export DATASOURCES_DEFAULT_URL=jdbc:postgresql://postgreshost:5432/users
+$CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/users)

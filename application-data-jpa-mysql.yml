@@ -1,6 +1,0 @@
----
-datasources:
-  default:
-    url: 'jdbc:mysql://mysqlhost:3306/pets'
-    username: root
-    password: secret

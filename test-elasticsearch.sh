@@ -3,7 +3,8 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-elasticsearch.yml $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch &
+export ELASTICSEARCH_HTTP_HOSTS=http://elasticsearchhost:9200
+$CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch &
 sleep 3
 
 curl -s -X POST -H 'Content-Type:application/json' -d '{"imdb":"matrix", "title":"The Matrix"}' localhost:8080/api/movies

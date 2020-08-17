@@ -3,7 +3,8 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jdbc-postgres.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres &
+export DATASOURCES_DEFAULT_URL=jdbc:postgresql://postgreshost:5432/pets
+$CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

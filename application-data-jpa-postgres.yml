@@ -1,6 +1,0 @@
----
-datasources:
-  default:
-    url: 'jdbc:postgresql://postgreshost:5432/pets'
-    username: postgres
-    password: secret

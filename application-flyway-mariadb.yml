@@ -1,6 +1,0 @@
----
-datasources:
-  default:
-    url: jdbc:mariadb://mariadbhost:3306/users
-    username: root
-    password: secret

@@ -3,7 +3,8 @@ set -x
 
 apk add curl jq libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-data-jdbc-mysql.yml $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql &
+export DATASOURCES_DEFAULT_URL=jdbc:mysql://mysqlhost:3306/pets
+$CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)

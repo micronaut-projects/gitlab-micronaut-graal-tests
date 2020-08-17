@@ -3,7 +3,8 @@ set -x
 
 apk add curl libstdc++
 
-MICRONAUT_CONFIG_FILES=$CI_PROJECT_DIR/application-service-discovery-consul.yml $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul &
+export CONSUL_CLIENT_DEFAULT_ZONE=consulhost:8500
+$CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/hello/Micronaut)

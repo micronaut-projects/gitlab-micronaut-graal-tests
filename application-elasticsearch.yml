@@ -1,3 +1,0 @@
----
-elasticsearch:
-  httpHosts: http://elasticsearchhost:9200

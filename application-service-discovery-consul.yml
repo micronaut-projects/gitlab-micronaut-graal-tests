@@ -1,4 +1,0 @@
----
-consul:
-  client:
-    defaultZone: "consulhost:8500"
