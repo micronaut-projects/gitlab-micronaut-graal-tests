@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-elasticsearch-graal
 cd micronaut-elasticsearch-graal
-git checkout master
+git checkout 2.0.x
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
