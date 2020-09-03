@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-security-cookie-graal
 cd micronaut-security-cookie-graal
-git checkout master
+git checkout 2.0.x
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
