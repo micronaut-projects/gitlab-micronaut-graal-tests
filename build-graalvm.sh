@@ -16,8 +16,7 @@ downloadGraalVMDevPreview() {
     wget -q `echo $GRAALVM_DOWNLOAD_URL`
     tar zxf `echo $GRAALVM_NAME`
 
-    TMP_NAME=`echo ${GRAALVM_NAME/linux-amd64-}`
-    JDK_DIRECTORY=`echo ${TMP_NAME%.tar.gz}`
+    JDK_DIRECTORY=`ls -1d graalvm* | head -1`
 
     export JAVA_HOME=${CI_PROJECT_DIR}/${JDK_DIRECTORY}
     $JAVA_HOME/bin/gu install native-image
