@@ -4,7 +4,7 @@ set -x
 apk add curl jq libstdc++
 
 echo "Waiting for Oracle to start..."
-sleep 10
+sleep 20
 
 export DATASOURCES_DEFAULT_URL=jdbc:oracle:thin:@oraclehost:1521/xe
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle -Doracle.jdbc.timezoneAsRegion=false &
