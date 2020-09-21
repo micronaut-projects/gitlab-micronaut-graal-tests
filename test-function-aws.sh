@@ -17,8 +17,12 @@ echo "-- Getting API endpoint..."
 API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
 
 echo "-- Testing..."
-RESPONSE=$(curl -s -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' $API_ENDPOINT | jq -r '.type')
-EXPECTED_RESPONSE='success'
+#RESPONSE=$(curl -s -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' $API_ENDPOINT | jq -r '.type')
+#EXPECTED_RESPONSE='success'
+#if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
+
+RESPONSE=$(curl -X POST -H 'Content-Type:application/json' -d '{"micronautPackage":"security-jwt"}' $API_ENDPOINT)
+EXPECTED_RESPONSE='{"name":"security-jwt","linked":false}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
 # Cleanup

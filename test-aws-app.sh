@@ -17,12 +17,16 @@ echo "-- Getting API endpoint..."
 API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
 
 echo "-- Testing..."
-RESPONSE=$(curl -s $API_ENDPOINT/jokes/nerdy | jq -r '.type')
-EXPECTED_RESPONSE='success'
-if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
+#RESPONSE=$(curl -s $API_ENDPOINT/jokes/nerdy | jq -r '.type')
+#EXPECTED_RESPONSE='success'
+#if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
+#
+#RESPONSE=$(curl -s $API_ENDPOINT/jokes/566)
+#EXPECTED_RESPONSE='{"type":"success","factId":566,"value":"Chuck Norris could use anything in java.util.* to kill you, including the javadocs."}'
+#if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
-RESPONSE=$(curl -s $API_ENDPOINT/jokes/566)
-EXPECTED_RESPONSE='{"type":"success","factId":566,"value":"Chuck Norris could use anything in java.util.* to kill you, including the javadocs."}'
+RESPONSE=$(curl -s $API_ENDPOINT/bintray/packages | jq '.[] | {name:.name} | select(.name | contains("security-jwt")) | length')
+EXPECTED_RESPONSE='1'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
 # Cleanup
