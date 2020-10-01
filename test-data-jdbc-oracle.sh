@@ -4,11 +4,11 @@ set -x
 apk add curl jq libstdc++
 
 echo "Waiting for Oracle to start..."
-sleep 20
+sleep 30
 
 export DATASOURCES_DEFAULT_URL=jdbc:oracle:thin:@oraclehost:1521/xe
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle -Doracle.jdbc.timezoneAsRegion=false &
-sleep 3
+sleep 5
 
 RESPONSE=$(curl -s localhost:8080/owners)
 EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
