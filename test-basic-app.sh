@@ -36,3 +36,8 @@ if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $R
 RESPONSE=$(curl -s localhost:8080/bintray/packages-lowlevel)
 EXPECTED_RESPONSE_CONTAINS='{"name":"core","linked":false}'
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+# Micronaut Version
+RESPONSE=$(curl -s localhost:8080/version)
+EXPECTED_RESPONSE_CONTAINS='BUILD-SNAPSHOT'
+if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
