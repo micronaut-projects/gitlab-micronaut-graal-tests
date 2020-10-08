@@ -708,6 +708,9 @@ jdk8:elasticsearch:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch
   script:
     - ./build-elasticsearch.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:elasticsearch:micronaut-build:
   <<: *jdk11-build
