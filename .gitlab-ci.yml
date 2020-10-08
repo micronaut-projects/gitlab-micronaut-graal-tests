@@ -830,7 +830,7 @@ jdk11:aws-app:micronaut-build:
   script:
     - ./build-aws-app.sh
 
-.jdk8:grpc:micronaut-build:
+jdk8:grpc:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
@@ -842,7 +842,7 @@ jdk11:aws-app:micronaut-build:
     - aws
     - speed
 
-.jdk11:grpc:micronaut-build:
+jdk11:grpc:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -1689,7 +1689,7 @@ jdk11:aws-app:test:
   script:
     - ./test-aws-app.sh
 
-.jdk8:grpc:test:
+jdk8:grpc:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk8:grpc:micronaut-build
@@ -1697,7 +1697,7 @@ jdk11:aws-app:test:
   script:
     - ./test-grpc.sh
 
-.jdk11:grpc:test:
+jdk11:grpc:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:grpc:micronaut-build
