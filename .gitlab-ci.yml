@@ -1199,7 +1199,7 @@ jdk8:data-jdbc-oracle:test:
     when:
       - always
   services:
-    - name: wnameless/oracle-xe-11g-r2
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
       alias: oraclehost
   dependencies:
     - jdk8:data-jdbc-oracle:micronaut-build
@@ -1214,7 +1214,7 @@ jdk11:data-jdbc-oracle:test:
     when:
       - always
   services:
-    - name: wnameless/oracle-xe-11g-r2
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
       alias: oraclehost
   dependencies:
     - jdk11:data-jdbc-oracle:micronaut-build
