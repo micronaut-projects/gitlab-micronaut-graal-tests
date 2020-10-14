@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-servlet-graal
 cd micronaut-servlet-graal
-git checkout 2.1.x_${SERVLET_ENGINE}
+git checkout 2.2.x_${SERVLET_ENGINE}
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"

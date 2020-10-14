@@ -10,7 +10,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-jooq-graal
 cd micronaut-jooq-graal
-git checkout 2.1.x_h2
+git checkout 2.2.x_h2
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
