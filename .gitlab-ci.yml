@@ -365,7 +365,7 @@ jdk8:data-jdbc-postgres:micronaut-build:
     - aws
     - speed
 
-jdk11:data-jdbc-postgres:micronaut-build:
+.jdk11:data-jdbc-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -387,7 +387,7 @@ jdk8:data-jdbc-oracle:micronaut-build:
     - aws
     - memory
 
-jdk11:data-jdbc-oracle:micronaut-build:
+.jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -409,7 +409,7 @@ jdk8:data-jdbc-mariadb:micronaut-build:
     - aws
     - speed
 
-jdk11:data-jdbc-mariadb:micronaut-build:
+.jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -453,7 +453,7 @@ jdk8:data-jdbc-mysql:micronaut-build:
     - aws
     - speed
 
-jdk11:data-jdbc-mysql:micronaut-build:
+.jdk11:data-jdbc-mysql:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -497,7 +497,7 @@ jdk8:data-jpa-postgres:micronaut-build:
     - aws
     - memory
 
-jdk11:data-jpa-postgres:micronaut-build:
+.jdk11:data-jpa-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -519,7 +519,7 @@ jdk8:data-jpa-mariadb:micronaut-build:
     - aws
     - memory
 
-jdk11:data-jpa-mariadb:micronaut-build:
+.jdk11:data-jpa-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -541,7 +541,7 @@ jdk8:data-jpa-mysql:micronaut-build:
     - aws
     - memory
 
-jdk11:data-jpa-mysql:micronaut-build:
+.jdk11:data-jpa-mysql:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -668,7 +668,7 @@ jdk8:flyway-postgres:micronaut-build:
     - aws
     - speed
 
-jdk11:flyway-postgres:micronaut-build:
+.jdk11:flyway-postgres:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -690,7 +690,7 @@ jdk8:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-jdk11:flyway-mariadb:micronaut-build:
+.jdk11:flyway-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -763,7 +763,7 @@ jdk8:jooq-postgres:micronaut-build:
     - aws
     - memory
 
-jdk11:jooq-postgres:micronaut-build:
+.jdk11:jooq-postgres:micronaut-build:
   <<: *jdk11-build
   services:
     - name: postgres:11.5-alpine
@@ -1180,7 +1180,7 @@ jdk8:data-jdbc-postgres:test:
   script:
     - ./test-data-jdbc-postgres.sh
 
-jdk11:data-jdbc-postgres:test:
+.jdk11:data-jdbc-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -1210,7 +1210,7 @@ jdk8:data-jdbc-oracle:test:
   script:
     - ./test-data-jdbc-oracle.sh
 
-jdk11:data-jdbc-oracle:test:
+.jdk11:data-jdbc-oracle:test:
   <<: *micronaut-test-template
   retry:
     max: 2
@@ -1239,7 +1239,7 @@ jdk8:data-jdbc-mariadb:test:
   script:
     - ./test-data-jdbc-mariadb.sh
 
-jdk11:data-jdbc-mariadb:test:
+.jdk11:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -1297,7 +1297,7 @@ jdk8:data-jdbc-mysql:test:
   script:
     - ./test-data-jdbc-mysql.sh
 
-jdk11:data-jdbc-mysql:test:
+.jdk11:data-jdbc-mysql:test:
   <<: *micronaut-test-template
   services:
     - name: mysql:8.0.20
@@ -1342,7 +1342,7 @@ jdk8:data-jpa-postgres:test:
   script:
     - ./test-data-jpa-postgres.sh
 
-jdk11:data-jpa-postgres:test:
+.jdk11:data-jpa-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -1371,7 +1371,7 @@ jdk8:data-jpa-mariadb:test:
   script:
     - ./test-data-jpa-mariadb.sh
 
-jdk11:data-jpa-mariadb:test:
+.jdk11:data-jpa-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -1399,7 +1399,7 @@ jdk8:data-jpa-mysql:test:
   script:
     - ./test-data-jpa-mysql.sh
 
-jdk11:data-jpa-mysql:test:
+.jdk11:data-jpa-mysql:test:
   <<: *micronaut-test-template
   services:
     - name: mysql:8.0.20
@@ -1524,7 +1524,7 @@ jdk8:flyway-postgres:test:
   script:
     - ./test-flyway-postgres.sh
 
-jdk11:flyway-postgres:test:
+.jdk11:flyway-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -1553,7 +1553,7 @@ jdk8:flyway-mariadb:test:
   script:
     - ./test-flyway-mariadb.sh
 
-jdk11:flyway-mariadb:test:
+.jdk11:flyway-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -1622,7 +1622,7 @@ jdk8:jooq-postgres:test:
   script:
     - ./test-jooq-postgres.sh
 
-jdk11:jooq-postgres:test:
+.jdk11:jooq-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
