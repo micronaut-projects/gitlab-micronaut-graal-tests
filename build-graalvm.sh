@@ -11,9 +11,9 @@ jdk8() {
 
 jdk11() {
     echo "Building GraalVM for JDK 11"
-    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-20.2-b01/labsjdk-ce-11.0.7+10-jvmci-20.2-b01-linux-amd64.tar.gz
-    tar zxf labsjdk-ce-11.0.7+10-jvmci-20.2-b01-linux-amd64.tar.gz
-    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.7-jvmci-20.2-b01
+    wget -q https://github.com/graalvm/labs-openjdk-11/releases/download/jvmci-20.3-b04/labsjdk-ce-11.0.9+10-jvmci-20.3-b04-linux-amd64.tar.gz
+    tar zxf labsjdk-ce-11.0.9+10-jvmci-20.3-b04-linux-amd64.tar.gz
+    export JAVA_HOME=${CI_PROJECT_DIR}/labsjdk-ce-11.0.9-jvmci-20.3-b04
 }
 
 if [ "${JDK_VERSION}" == "jdk8" ]; then
