@@ -1,6 +1,7 @@
 #!/bin/bash
 
 JDK_VERSION=$1
+GRAALVM_BRANCH="release/graal-vm/20.3"
 
 jdk8() {
     echo "Building GraalVM for JDK 8"
@@ -29,11 +30,13 @@ mkdir graal
 cd graal
 export PATH=$PWD/mx:$PATH
 
-git clone --depth=1 https://github.com/oracle/graal
+git clone --branch ${GRAALVM_BRANCH} https://github.com/oracle/graal
 git clone --depth=1 https://github.com/graalvm/mx
 
 cd graal/vm
-echo "Git commit: `git rev-parse HEAD`"
+echo "------------------------------------"
+git log -1
+echo "------------------------------------"
 mx clean
 mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm --skip-libraries=true build
 
