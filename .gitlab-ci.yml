@@ -788,6 +788,9 @@ jdk8:redis:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
     - ./build-redis.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:redis:micronaut-build:
   <<: *jdk11-build
@@ -796,6 +799,9 @@ jdk11:redis:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
     - ./build-redis.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:function-aws:micronaut-build:
   <<: *jdk8-build
