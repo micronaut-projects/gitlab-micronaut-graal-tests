@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JDK_VERSION=$1
-GRAALVM_BRANCH="master"
+GRAALVM_BRANCH="release/graal-vm/20.3"
 
 jdk8() {
     echo "Building GraalVM for JDK 8"
