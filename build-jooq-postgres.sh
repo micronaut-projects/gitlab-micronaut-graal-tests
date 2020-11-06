@@ -10,7 +10,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-jooq-graal
 cd micronaut-jooq-graal
-git checkout ${CI_BUILD_REF_NAME}_postgres
+git checkout ${APP_BRANCH}_postgres
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
