@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-function-aws-graal
 cd micronaut-function-aws-graal
-git checkout $CI_BUILD_REF_NAME
+git checkout $APP_BRANCH
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"

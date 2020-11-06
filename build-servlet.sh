@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-servlet-graal
 cd micronaut-servlet-graal
-git checkout ${CI_BUILD_REF_NAME}_${SERVLET_ENGINE}
+git checkout ${APP_BRANCH}_${SERVLET_ENGINE}
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"

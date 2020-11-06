@@ -12,7 +12,7 @@ echo "------------------------------------"
 
 git clone https://github.com/micronaut-graal-tests/micronaut-security-cookie-graal
 cd micronaut-security-cookie-graal
-git checkout $CI_BUILD_REF_NAME
+git checkout $APP_BRANCH
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
