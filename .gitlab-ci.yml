@@ -30,10 +30,6 @@ log-commits:
     expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/graal_dist
-  cache:
-    key: ${GRAAL_NEW_COMMIT}-${CI_JOB_NAME}
-    paths:
-      - $CI_PROJECT_DIR/graal_dist
   tags:
     - aws
     - speed
