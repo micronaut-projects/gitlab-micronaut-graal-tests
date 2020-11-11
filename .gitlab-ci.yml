@@ -315,6 +315,9 @@ jdk11:security-cookie:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
     - ./build-security-cookie.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:security-session:micronaut-build:
   <<: *jdk8-build
