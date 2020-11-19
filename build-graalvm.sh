@@ -28,22 +28,33 @@ fi
 
 mkdir graal
 cd graal
+export GRAALVM_DIR=`pwd`
 export PATH=$PWD/mx:$PATH
 
 git clone --branch ${GRAALVM_BRANCH} https://github.com/oracle/graal
+git clone --branch ${GRAALVM_BRANCH} https://github.com/graalvm/graaljs
 git clone --depth=1 https://github.com/graalvm/mx
 
 echo "------------------------------------"
-git "GraalVM branch: ${GRAALVM_BRANCH}"
+echo "GraalVM branch: ${GRAALVM_BRANCH}"
 echo "------------------------------------"
 
-cd graal/vm
+echo "Building Graal-JS..."
+cd ${GRAALVM_DIR}/graaljs/graal-js
 echo "------------------------------------"
 git log -1
 echo "------------------------------------"
 mx clean
-mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm --skip-libraries=true build
+mx --dynamicimports /compiler build
+
+echo "Building GraalVM..."
+cd ${GRAALVM_DIR}/graal/vm
+echo "------------------------------------"
+git log -1
+echo "------------------------------------"
+mx clean
+mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm,/graal-js --force-bash-launchers=native-image-configure,gu --skip-libraries=true build
 
 # Copy Graal SDK to new directory defined as artifact/cache
 echo "Copying Graal SDK to ${CI_PROJECT_DIR}/graal_dist..."
-cp -R $CI_PROJECT_DIR/graal/graal/vm/latest_graalvm_home/ $CI_PROJECT_DIR/graal_dist
+cp -R ${GRAALVM_DIR}/graal/vm/latest_graalvm_home/ $CI_PROJECT_DIR/graal_dist

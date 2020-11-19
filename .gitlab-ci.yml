@@ -36,7 +36,7 @@ log-commits:
       - $CI_PROJECT_DIR/graal_dist
   tags:
     - aws
-    - speed
+    - graalvm-builder
 
 jdk8:build-graalvm:
   <<: *build-graalvm-template
