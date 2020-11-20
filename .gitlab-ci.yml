@@ -30,9 +30,6 @@ log-commits:
     expire_in: 5 days
     paths:
       - $CI_PROJECT_DIR/graal_dist
-  tags:
-    - aws
-    - speed
 
 jdk8:build-graalvm:
   <<: *build-graalvm-template
