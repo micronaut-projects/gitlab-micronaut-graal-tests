@@ -952,6 +952,7 @@ jdk11:grpc:micronaut-build:
 .micronaut:test-template: &micronaut-test-template
   stage: test
   image: frolvlad/alpine-glibc
+  timeout: 20m
   retry:
     max: 1
 
