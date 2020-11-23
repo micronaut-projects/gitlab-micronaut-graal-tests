@@ -942,6 +942,54 @@ jdk11:grpc:micronaut-build:
     - aws
     - speed
 
+jdk8:mqtt-v3:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
+  script:
+    - *micronaut-build-template-common
+    - ./build-mqtt.sh v3
+  tags:
+    - aws
+    - speed
+
+jdk11:mqtt-v3:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
+  script:
+    - *micronaut-build-template-common
+    - ./build-mqtt.sh v3
+  tags:
+    - aws
+    - speed
+
+jdk8:mqtt-v5:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
+  script:
+    - *micronaut-build-template-common
+    - ./build-mqtt.sh v5
+  tags:
+    - aws
+    - speed
+
+jdk11:mqtt-v5:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
+  script:
+    - *micronaut-build-template-common
+    - ./build-mqtt.sh v5
+  tags:
+    - aws
+    - speed
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -1793,3 +1841,47 @@ jdk11:grpc:test:
   needs: ["jdk11:grpc:micronaut-build"]
   script:
     - ./test-grpc.sh
+
+jdk8:mqtt-v3:test:
+  <<: *micronaut-test-template
+  services:
+    - name: eclipse-mosquitto:1.6.12
+      alias: mqtthost
+  dependencies:
+    - jdk8:mqtt-v3:micronaut-build
+  needs: ["jdk8:mqtt-v3:micronaut-build"]
+  script:
+    - ./test-mqtt-v3.sh
+
+jdk11:mqtt-v3:test:
+  <<: *micronaut-test-template
+  services:
+    - name: eclipse-mosquitto:1.6.12
+      alias: mqtthost
+  dependencies:
+    - jdk11:mqtt-v3:micronaut-build
+  needs: ["jdk11:mqtt-v3:micronaut-build"]
+  script:
+    - ./test-mqtt-v3.sh
+
+jdk8:mqtt-v5:test:
+  <<: *micronaut-test-template
+  services:
+    - name: eclipse-mosquitto:1.6.12
+      alias: mqtthost
+  dependencies:
+    - jdk8:mqtt-v5:micronaut-build
+  needs: ["jdk8:mqtt-v5:micronaut-build"]
+  script:
+    - ./test-mqtt-v5.sh
+
+jdk11:mqtt-v5:test:
+  <<: *micronaut-test-template
+  services:
+    - name: eclipse-mosquitto:1.6.12
+      alias: mqtthost
+  dependencies:
+    - jdk11:mqtt-v5:micronaut-build
+  needs: ["jdk11:mqtt-v5:micronaut-build"]
+  script:
+    - ./test-mqtt-v5.sh
