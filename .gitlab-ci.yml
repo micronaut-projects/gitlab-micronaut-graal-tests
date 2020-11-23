@@ -766,7 +766,7 @@ jdk11:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-jdk8:elasticsearch:micronaut-build:
+.jdk8:elasticsearch:micronaut-build:
   <<: *jdk8-build
   artifacts:
     paths:
@@ -778,7 +778,7 @@ jdk8:elasticsearch:micronaut-build:
     - aws
     - speed
 
-jdk11:elasticsearch:micronaut-build:
+.jdk11:elasticsearch:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -1650,7 +1650,7 @@ jdk11:flyway-mariadb:test:
   script:
     - ./test-flyway-mariadb.sh
 
-jdk8:elasticsearch:test:
+.jdk8:elasticsearch:test:
   <<: *micronaut-test-template
   services:
     - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
@@ -1662,7 +1662,7 @@ jdk8:elasticsearch:test:
   script:
     - ./test-elasticsearch.sh
 
-jdk11:elasticsearch:test:
+.jdk11:elasticsearch:test:
   <<: *micronaut-test-template
   services:
     - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
