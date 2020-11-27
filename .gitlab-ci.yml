@@ -1002,7 +1002,7 @@ jdk8:liquibase-h2:micronaut-build:
     - aws
     - memory
 
-jdk11:liquibase-h2:micronaut-build:
+.jdk11:liquibase-h2:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -1966,7 +1966,7 @@ jdk8:liquibase-h2:test:
   script:
     - ./test-liquibase-h2.sh
 
-jdk11:liquibase-h2:test:
+.jdk11:liquibase-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:liquibase-h2:micronaut-build
