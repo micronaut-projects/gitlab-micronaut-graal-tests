@@ -997,6 +997,78 @@ jdk11:mqtt-v5:micronaut-build:
     - aws
     - speed
 
+jdk8:liquibase-h2:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-h2
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh h2
+  tags:
+    - aws
+    - memory
+
+jdk11:liquibase-h2:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-h2
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh h2
+  tags:
+    - aws
+    - memory
+
+jdk8:liquibase-postgres:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-postgres
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh postgres
+  tags:
+    - aws
+    - memory
+
+jdk11:liquibase-postgres:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-postgres
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh postgres
+  tags:
+    - aws
+    - memory
+
+jdk8:liquibase-mariadb:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-mariadb
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh mariadb
+  tags:
+    - aws
+    - memory
+
+jdk11:liquibase-mariadb:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-mariadb
+  script:
+    - *micronaut-build-template-common
+    - ./build-liquibase.sh mariadb
+  tags:
+    - aws
+    - memory
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -1892,3 +1964,77 @@ jdk11:mqtt-v5:test:
   needs: ["jdk11:mqtt-v5:micronaut-build"]
   script:
     - ./test-mqtt-v5.sh
+
+jdk8:liquibase-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:liquibase-h2:micronaut-build
+  needs: ["jdk8:liquibase-h2:micronaut-build"]
+  script:
+    - ./test-liquibase-h2.sh
+
+jdk11:liquibase-h2:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:liquibase-h2:micronaut-build
+  needs: ["jdk11:liquibase-h2:micronaut-build"]
+  script:
+    - ./test-liquibase-h2.sh
+
+jdk8:liquibase-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk8:liquibase-postgres:micronaut-build
+  needs: ["jdk8:liquibase-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: users
+  script:
+    - ./test-liquibase-postgres.sh
+
+jdk11:liquibase-postgres:test:
+  <<: *micronaut-test-template
+  services:
+    - name: postgres:11.5-alpine
+      alias: postgreshost
+  dependencies:
+    - jdk11:liquibase-postgres:micronaut-build
+  needs: ["jdk11:liquibase-postgres:micronaut-build"]
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: users
+  script:
+    - ./test-liquibase-postgres.sh
+
+jdk8:liquibase-mariadb:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mariadb:10.4.8-bionic
+      alias: mariadbhost
+  dependencies:
+    - jdk8:liquibase-mariadb:micronaut-build
+  needs: ["jdk8:liquibase-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: users
+  script:
+    - ./test-liquibase-mariadb.sh
+
+jdk11:liquibase-mariadb:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mariadb:10.4.8-bionic
+      alias: mariadbhost
+  dependencies:
+    - jdk11:liquibase-mariadb:micronaut-build
+  needs: ["jdk11:liquibase-mariadb:micronaut-build"]
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: users
+  script:
+    - ./test-liquibase-mariadb.sh
