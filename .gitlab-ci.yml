@@ -1000,7 +1000,7 @@ jdk8:liquibase-h2:micronaut-build:
     - ./build-liquibase.sh h2
   tags:
     - aws
-    - memory
+    - memory2x
 
 .jdk11:liquibase-h2:micronaut-build:
   <<: *jdk11-build
