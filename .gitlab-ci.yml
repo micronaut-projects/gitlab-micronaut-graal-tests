@@ -293,6 +293,24 @@ jdk11:views-velocity:micronaut-build:
     - *micronaut-build-template-common
     - ./build-views.sh velocity
 
+jdk8:views-pebble:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
+  script:
+    - *micronaut-build-template-common
+    - ./build-views.sh pebble
+
+jdk11:views-pebble:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
+  script:
+    - *micronaut-build-template-common
+    - ./build-views.sh pebble
+
 jdk8:security-jwt:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1294,6 +1312,22 @@ jdk11:views-velocity:test:
   needs: ["jdk11:views-velocity:micronaut-build"]
   script:
     - ./test-views-velocity.sh
+
+jdk8:views-pebble:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:views-pebble:micronaut-build
+  needs: ["jdk8:views-pebble:micronaut-build"]
+  script:
+    - ./test-views-pebble.sh
+
+jdk11:views-pebble:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:views-pebble:micronaut-build
+  needs: ["jdk11:views-pebble:micronaut-build"]
+  script:
+    - ./test-views-pebble.sh
 
 jdk8:security-jwt:test:
   <<: *micronaut-test-template

@@ -3,7 +3,7 @@
 TEMPLATE_TECHNOLOGY=$1
 
 if [ -z "$TEMPLATE_TECHNOLOGY" ]; then
-    echo "Need to provide the template technology: freemarker, handlebars, thymeleaf, velocity"
+    echo "Need to provide the template technology: freemarker, handlebars, thymeleaf, velocity, pebble"
     exit 1
 fi
 
