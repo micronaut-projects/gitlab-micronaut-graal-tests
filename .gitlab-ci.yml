@@ -1214,7 +1214,7 @@ jdk11:function:test:
 jdk8:rabbitmq:test:
   <<: *micronaut-test-template
   services:
-    - name: rabbitmq:3.7.11
+    - name: rabbitmq:3.8.9-management-alpine
       alias: rabbitmqhost
   dependencies:
     - jdk8:rabbitmq:micronaut-build
@@ -1225,7 +1225,7 @@ jdk8:rabbitmq:test:
 jdk11:rabbitmq:test:
   <<: *micronaut-test-template
   services:
-    - name: rabbitmq:3.7.11
+    - name: rabbitmq:3.8.9-management-alpine
       alias: rabbitmqhost
   dependencies:
     - jdk11:rabbitmq:micronaut-build
