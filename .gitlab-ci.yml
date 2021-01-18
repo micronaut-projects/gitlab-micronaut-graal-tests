@@ -560,7 +560,7 @@ jdk8:data-jpa-mysql:micronaut-build:
     - ./build-data-jpa.sh mysql
   tags:
     - aws
-    - memory
+    - memory2x
 
 jdk11:data-jpa-mysql:micronaut-build:
   <<: *jdk11-build
