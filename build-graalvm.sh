@@ -2,11 +2,12 @@
 
 JDK_VERSION=$1
 GRAALVM_BRANCH="release/graal-vm/21.0"
+MX_TAG="5.280.5"
 
 downloadJdk() {
     JAVA_VERSION=$1
     cd ${GRAALVM_DIR}/graal
-    export JAVA_HOME=`yes | mx fetch-jdk --to ${CI_PROJECT_DIR} --java-distribution ${JAVA_VERSION} | tail -1 | sed 's/export JAVA_HOME=//'`
+    export JAVA_HOME=`yes | mx fetch-jdk --to ${CI_PROJECT_DIR} --java-distribution ${JAVA_VERSION} --configuration ${GRAALVM_DIR}/mx/common.json | tail -1 | sed 's/export JAVA_HOME=//'`
 }
 
 mkdir graal
@@ -16,7 +17,7 @@ export PATH=$PWD/mx:$PATH
 
 git clone --branch ${GRAALVM_BRANCH} https://github.com/oracle/graal
 git clone --branch ${GRAALVM_BRANCH} https://github.com/graalvm/graaljs
-git clone --depth=1 https://github.com/graalvm/mx
+git clone --branch ${MX_TAG} https://github.com/graalvm/mx
 
 if [ "${JDK_VERSION}" == "jdk8" ]; then
     downloadJdk openjdk8
