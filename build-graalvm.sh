@@ -46,7 +46,7 @@ echo "Building GraalVM"
 git log -1
 echo "------------------------------------"
 mx clean
-mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm,/graal-js --force-bash-launchers=native-image-configure,gu --skip-libraries=true build
+mx --disable-polyglot --disable-libpolyglot --dynamicimports /substratevm,/graal-js --force-bash-launchers=native-image-configure,gu,polybench --skip-libraries=true build
 
 # Copy Graal SDK to new directory defined as artifact/cache
 echo "Copying Graal SDK to ${CI_PROJECT_DIR}/graal_dist..."
