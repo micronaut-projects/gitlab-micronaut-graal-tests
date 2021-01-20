@@ -359,7 +359,7 @@ jdk8:data-jdbc-h2:micronaut-build:
     - ./build-data-jdbc.sh h2
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jdbc-h2:micronaut-build:
   <<: *jdk11-build
@@ -381,7 +381,7 @@ jdk8:data-jdbc-postgres:micronaut-build:
     - ./build-data-jdbc.sh postgres
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:data-jdbc-postgres:micronaut-build:
   <<: *jdk11-build
@@ -403,7 +403,7 @@ jdk8:data-jdbc-oracle:micronaut-build:
     - ./build-data-jdbc.sh oracle
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
@@ -436,7 +436,7 @@ jdk11:data-jdbc-mariadb:micronaut-build:
     - ./build-data-jdbc.sh mariadb
   tags:
     - aws
-    - speed
+    - memory
 
 jdk8:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk8-build
@@ -447,7 +447,7 @@ jdk8:data-jdbc-sqlserver:micronaut-build:
     - ./build-data-jdbc.sh sqlserver
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk11-build
@@ -469,7 +469,7 @@ jdk8:data-jdbc-mysql:micronaut-build:
     - ./build-data-jdbc.sh mysql
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:data-jdbc-mysql:micronaut-build:
   <<: *jdk11-build
@@ -491,7 +491,7 @@ jdk8:data-jpa-h2:micronaut-build:
     - ./build-data-jpa.sh h2
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jpa-h2:micronaut-build:
   <<: *jdk11-build
@@ -502,7 +502,7 @@ jdk11:data-jpa-h2:micronaut-build:
     - ./build-data-jpa.sh h2
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:data-jpa-postgres:micronaut-build:
   <<: *jdk8-build
@@ -513,7 +513,7 @@ jdk8:data-jpa-postgres:micronaut-build:
     - ./build-data-jpa.sh postgres
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jpa-postgres:micronaut-build:
   <<: *jdk11-build
@@ -524,7 +524,7 @@ jdk11:data-jpa-postgres:micronaut-build:
     - ./build-data-jpa.sh postgres
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:data-jpa-mariadb:micronaut-build:
   <<: *jdk8-build
@@ -535,7 +535,7 @@ jdk8:data-jpa-mariadb:micronaut-build:
     - ./build-data-jpa.sh mariadb
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jpa-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -546,7 +546,7 @@ jdk11:data-jpa-mariadb:micronaut-build:
     - ./build-data-jpa.sh mariadb
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:data-jpa-mysql:micronaut-build:
   <<: *jdk8-build
@@ -557,7 +557,7 @@ jdk8:data-jpa-mysql:micronaut-build:
     - ./build-data-jpa.sh mysql
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:data-jpa-mysql:micronaut-build:
   <<: *jdk11-build
@@ -568,7 +568,7 @@ jdk11:data-jpa-mysql:micronaut-build:
     - ./build-data-jpa.sh mysql
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:schedule:micronaut-build:
   <<: *jdk8-build
@@ -739,7 +739,7 @@ jdk11:flyway-mariadb:micronaut-build:
     - ./build-elasticsearch.sh
   tags:
     - aws
-    - memory
+    - speed
 
 jdk8:jooq-h2:micronaut-build:
   <<: *jdk8-build
@@ -750,7 +750,7 @@ jdk8:jooq-h2:micronaut-build:
     - ./build-jooq-h2.sh
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:jooq-h2:micronaut-build:
   <<: *jdk11-build
@@ -761,7 +761,7 @@ jdk11:jooq-h2:micronaut-build:
     - ./build-jooq-h2.sh
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:jooq-postgres:micronaut-build:
   <<: *jdk8-build
@@ -779,7 +779,7 @@ jdk8:jooq-postgres:micronaut-build:
     - ./build-jooq-postgres.sh
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:jooq-postgres:micronaut-build:
   <<: *jdk11-build
@@ -797,7 +797,7 @@ jdk11:jooq-postgres:micronaut-build:
     - ./build-jooq-postgres.sh
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:redis:micronaut-build:
   <<: *jdk8-build
@@ -934,7 +934,7 @@ jdk8:liquibase-h2:micronaut-build:
     - ./build-liquibase.sh h2
   tags:
     - aws
-    - memory2x
+    - memory
 
 .jdk11:liquibase-h2:micronaut-build:
   <<: *jdk11-build
@@ -945,7 +945,7 @@ jdk8:liquibase-h2:micronaut-build:
     - ./build-liquibase.sh h2
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:liquibase-postgres:micronaut-build:
   <<: *jdk8-build
@@ -956,7 +956,7 @@ jdk8:liquibase-postgres:micronaut-build:
     - ./build-liquibase.sh postgres
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:liquibase-postgres:micronaut-build:
   <<: *jdk11-build
@@ -967,7 +967,7 @@ jdk11:liquibase-postgres:micronaut-build:
     - ./build-liquibase.sh postgres
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk8:liquibase-mariadb:micronaut-build:
   <<: *jdk8-build
@@ -978,7 +978,7 @@ jdk8:liquibase-mariadb:micronaut-build:
     - ./build-liquibase.sh mariadb
   tags:
     - aws
-    - memory2x
+    - memory
 
 jdk11:liquibase-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -989,7 +989,7 @@ jdk11:liquibase-mariadb:micronaut-build:
     - ./build-liquibase.sh mariadb
   tags:
     - aws
-    - memory2x
+    - memory
 
 
 #  _            _
