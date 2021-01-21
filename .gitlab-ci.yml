@@ -222,6 +222,9 @@ jdk11:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
     - ./build-views.sh freemarker
+  tags:
+    - aws
+    - speed
 
 jdk8:views-handlebars:micronaut-build:
   <<: *jdk8-build
@@ -238,6 +241,9 @@ jdk11:views-handlebars:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
     - ./build-views.sh handlebars
+  tags:
+    - aws
+    - speed
 
 jdk8:views-thymeleaf:micronaut-build:
   <<: *jdk8-build
@@ -254,6 +260,9 @@ jdk11:views-thymeleaf:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
     - ./build-views.sh thymeleaf
+  tags:
+    - aws
+    - speed
 
 jdk8:views-velocity:micronaut-build:
   <<: *jdk8-build
@@ -270,6 +279,9 @@ jdk11:views-velocity:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
     - ./build-views.sh velocity
+  tags:
+    - aws
+    - speed
 
 jdk8:views-pebble:micronaut-build:
   <<: *jdk8-build
@@ -286,6 +298,9 @@ jdk11:views-pebble:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
   script:
     - ./build-views.sh pebble
+  tags:
+    - aws
+    - speed
 
 jdk8:security-jwt:micronaut-build:
   <<: *jdk8-build
@@ -353,6 +368,9 @@ jdk11:security-session:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
     - ./build-security-session.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:data-jdbc-h2:micronaut-build:
   <<: *jdk8-build
@@ -613,6 +631,9 @@ jdk8:servlet-tomcat:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-tomcat
   script:
     - ./build-servlet.sh tomcat
+  tags:
+    - aws
+    - speed
 
 jdk11:servlet-tomcat:micronaut-build:
   <<: *jdk11-build
