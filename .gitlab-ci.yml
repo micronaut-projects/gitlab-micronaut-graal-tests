@@ -1025,7 +1025,7 @@ jdk11:liquibase-mariadb:micronaut-build:
 #
 .micronaut:test-template: &micronaut-test-template
   stage: test
-  image: frolvlad/alpine-glibc
+  image: frolvlad/alpine-glibc:alpine-3.12
   timeout: 20m
   retry:
     max: 1
