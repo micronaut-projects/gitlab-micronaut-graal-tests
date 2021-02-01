@@ -895,7 +895,7 @@ jdk8:mqtt-v3:micronaut-build:
     - ./build-mqtt.sh v3
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:mqtt-v3:micronaut-build:
   <<: *jdk11-build
@@ -917,7 +917,7 @@ jdk8:mqtt-v5:micronaut-build:
     - ./build-mqtt.sh v5
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:mqtt-v5:micronaut-build:
   <<: *jdk11-build
