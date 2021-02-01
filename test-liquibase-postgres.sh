@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATASOURCES_DEFAULT_URL=jdbc:postgresql://postgreshost:5432/users
 $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-postgres &
 sleep 3

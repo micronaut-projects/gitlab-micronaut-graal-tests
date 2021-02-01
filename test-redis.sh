@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export REDIS_URI=redis://redishost
 $CI_PROJECT_DIR/micronaut-redis-graal/redis &
 sleep 3

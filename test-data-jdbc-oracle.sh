@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 echo "Waiting for Oracle to start..."
 sleep 120
 

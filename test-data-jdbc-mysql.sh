@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATASOURCES_DEFAULT_URL=jdbc:mysql://mysqlhost:3306/pets
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql &
 sleep 3

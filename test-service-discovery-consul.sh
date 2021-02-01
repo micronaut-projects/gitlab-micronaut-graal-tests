@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl libstdc++
-
 export CONSUL_CLIENT_DEFAULT_ZONE=consulhost:8500
 $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul &
 sleep 3

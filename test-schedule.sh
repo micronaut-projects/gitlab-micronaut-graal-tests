@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl libstdc++
-
 $CI_PROJECT_DIR/micronaut-schedule-graal/schedule &
 sleep 5
 

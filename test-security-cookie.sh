@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie &
 sleep 3
 

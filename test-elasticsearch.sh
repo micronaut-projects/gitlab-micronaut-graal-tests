@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export ELASTICSEARCH_HTTP_HOSTS=http://elasticsearchhost:9200
 $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch &
 sleep 3

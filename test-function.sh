@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add libstdc++
-
 export MICRONAUT_FUNCTION_NAME=greeting
 $(echo 'Micronaut' | $CI_PROJECT_DIR/micronaut-function-graal/function > RESPONSE.txt)
 RESPONSE=`cat RESPONSE.txt | tail -n 1`

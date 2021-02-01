@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl libstdc++
-
 $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars &
 sleep 3
 

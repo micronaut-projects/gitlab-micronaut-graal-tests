@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export MQTT_CLIENT_SERVER_URI=tcp://mqtthost:1883
 $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5 &
 sleep 10

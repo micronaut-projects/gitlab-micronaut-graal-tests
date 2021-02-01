@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATASOURCES_DEFAULT_URL=jdbc:postgresql://postgreshost:5432/pets
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres &
 sleep 3

@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATASOURCES_DEFAULT_URL=jdbc:mariadb://mariadbhost:3306/users
 $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb &
 sleep 3
