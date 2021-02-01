@@ -155,22 +155,6 @@ jdk11:zipkin:micronaut-build:
   script:
     - ./build-zipkin.sh
 
-jdk8:function:micronaut-build:
-  <<: *jdk8-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-function-graal/function
-  script:
-    - ./build-function.sh
-
-jdk11:function:micronaut-build:
-  <<: *jdk11-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-function-graal/function
-  script:
-    - ./build-function.sh
-
 jdk8:rabbitmq:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1123,22 +1107,6 @@ jdk11:zipkin:test:
   needs: ["jdk11:zipkin:micronaut-build"]
   script:
     - ./test-zipkin.sh
-
-jdk8:function:test:
-  <<: *micronaut-test-template
-  dependencies:
-    - jdk8:function:micronaut-build
-  needs: ["jdk8:function:micronaut-build"]
-  script:
-    - ./test-function.sh
-
-jdk11:function:test:
-  <<: *micronaut-test-template
-  dependencies:
-    - jdk11:function:micronaut-build
-  needs: ["jdk11:function:micronaut-build"]
-  script:
-    - ./test-function.sh
 
 jdk8:rabbitmq:test:
   <<: *micronaut-test-template
