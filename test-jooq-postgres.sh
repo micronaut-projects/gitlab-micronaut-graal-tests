@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATABASE_URL='jdbc:postgresql://postgreshost:5432/devDb'
 export DATABASE_USER=devDb
 export DATABASE_PASSWORD=devDb

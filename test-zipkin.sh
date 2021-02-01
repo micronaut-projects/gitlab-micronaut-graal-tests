@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl libstdc++
-
 export TRACING_ZIPKIN_HTTP_URL=http://openzipkin:9411
 $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin &
 sleep 3

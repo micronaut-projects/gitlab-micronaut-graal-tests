@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl libstdc++
-
 export EUREKA_CLIENT_DEFAULT_ZONE=eurekahost:8761
 $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka &
 sleep 20 # For some reason the app takes too long to start on CI when using Eureka.

@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 export DATASOURCES_DEFAULT_URL=jdbc:sqlserver://sqlserverhost:1433;databaseName=tempdb
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver &
 sleep 3

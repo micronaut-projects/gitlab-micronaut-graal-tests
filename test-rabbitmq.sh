@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 # Configuration using Environment Variables because Gitlab CI injects a RABBITMQ_PORT that messes up everything so
 # we need to override it
 export RABBITMQ_URI=amqp://rabbitmqhost:5672

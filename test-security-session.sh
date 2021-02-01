@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 $CI_PROJECT_DIR/micronaut-security-session-graal/security-session &
 sleep 3
 

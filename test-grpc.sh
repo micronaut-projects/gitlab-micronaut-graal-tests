@@ -1,8 +1,6 @@
 #!/bin/sh
 set -x
 
-apk add curl jq libstdc++
-
 $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-server &
 $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-client &
 sleep 5

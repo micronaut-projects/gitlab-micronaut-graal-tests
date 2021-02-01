@@ -1021,7 +1021,11 @@ jdk11:liquibase-mariadb:micronaut-build:
 #
 .micronaut:test-template: &micronaut-test-template
   stage: test
-  image: frolvlad/alpine-glibc:alpine-3.12
+  image:
+    name: gcr.io/distroless/cc-debian10:debug
+    entrypoint: [ "" ]
+  before_script:
+    - ./test-before-script.sh
   timeout: 20m
   retry:
     max: 1
@@ -1831,6 +1835,8 @@ jdk11:redis:test:
 jdk8:function-aws:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  before_script:
+    - echo "" # just to override and skip parent before_script
   dependencies:
     - jdk8:function-aws:micronaut-build
   needs: ["jdk8:function-aws:micronaut-build"]
@@ -1840,6 +1846,8 @@ jdk8:function-aws:test:
 jdk11:function-aws:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  before_script:
+    - echo "" # just to override and skip parent before_script
   dependencies:
     - jdk11:function-aws:micronaut-build
   needs: ["jdk11:function-aws:micronaut-build"]
@@ -1849,6 +1857,8 @@ jdk11:function-aws:test:
 jdk8:aws-app:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  before_script:
+    - echo "" # just to override and skip parent before_script
   dependencies:
     - jdk8:aws-app:micronaut-build
   needs: ["jdk8:aws-app:micronaut-build"]
@@ -1858,6 +1868,8 @@ jdk8:aws-app:test:
 jdk11:aws-app:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
+  before_script:
+    - echo "" # just to override and skip parent before_script
   dependencies:
     - jdk11:aws-app:micronaut-build
   needs: ["jdk11:aws-app:micronaut-build"]
