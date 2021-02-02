@@ -98,6 +98,9 @@ jdk11:basic-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
     - ./build-basic-app.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
@@ -158,6 +161,9 @@ jdk11:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
     - ./build-zipkin.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:rabbitmq:micronaut-build:
   <<: *jdk8-build
@@ -174,6 +180,9 @@ jdk11:rabbitmq:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
     - ./build-rabbitmq.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:management:micronaut-build:
   <<: *jdk8-build
@@ -190,6 +199,9 @@ jdk11:management:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
     - ./build-management.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:views-freemarker:micronaut-build:
   <<: *jdk8-build
@@ -301,6 +313,9 @@ jdk11:security-jwt:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
     - ./build-security-jwt.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:security-basic-auth:micronaut-build:
   <<: *jdk8-build
@@ -317,6 +332,9 @@ jdk11:security-basic-auth:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
     - ./build-security-basic-auth.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:security-cookie:micronaut-build:
   <<: *jdk8-build
@@ -325,6 +343,9 @@ jdk8:security-cookie:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
     - ./build-security-cookie.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:security-cookie:micronaut-build:
   <<: *jdk11-build
@@ -431,7 +452,7 @@ jdk8:data-jdbc-mariadb:micronaut-build:
     - ./build-data-jdbc.sh mariadb
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -591,6 +612,9 @@ jdk11:schedule:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
     - ./build-schedule.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:cache:micronaut-build:
   <<: *jdk8-build
@@ -645,6 +669,9 @@ jdk11:servlet-jetty:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
     - ./build-servlet.sh jetty
+  tags:
+    - aws
+    - speed
 
 jdk8:introspected:micronaut-build:
   <<: *jdk8-build
@@ -661,6 +688,9 @@ jdk11:introspected:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
     - ./build-introspected.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:flyway-h2:micronaut-build:
   <<: *jdk8-build
@@ -847,6 +877,9 @@ jdk11:function-aws:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
   script:
     - ./build-function-aws.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:aws-app:micronaut-build:
   <<: *jdk8-build
@@ -865,6 +898,9 @@ jdk11:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
     - ./build-aws-app.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:grpc:micronaut-build:
   <<: *jdk8-build
