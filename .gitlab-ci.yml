@@ -345,7 +345,7 @@ jdk8:security-cookie:micronaut-build:
     - ./build-security-cookie.sh
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:security-cookie:micronaut-build:
   <<: *jdk11-build
@@ -641,7 +641,7 @@ jdk8:servlet-tomcat:micronaut-build:
     - ./build-servlet.sh tomcat
   tags:
     - aws
-    - speed
+    - memory
 
 jdk11:servlet-tomcat:micronaut-build:
   <<: *jdk11-build
