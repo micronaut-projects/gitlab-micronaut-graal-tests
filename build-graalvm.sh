@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JDK_VERSION=$1
-GRAALVM_VERSION="21.0.0"
+GRAALVM_VERSION="21.0.0.2"
 
 apt update && apt install jq -y
 
