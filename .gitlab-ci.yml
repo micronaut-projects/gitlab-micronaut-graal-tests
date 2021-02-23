@@ -631,6 +631,9 @@ jdk11:cache:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
     - ./build-cache.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:servlet-tomcat:micronaut-build:
   <<: *jdk8-build
