@@ -58,7 +58,7 @@ jdk11:build-graalvm:
   stage: micronaut
   image: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/graalvm-builder
   before_script:
-    - export APP_BRANCH=$(echo $CI_BUILD_REF_NAME | sed "s/-dev//" | sed "s/-stable//" | sed "s/-release//")
+    - export APP_BRANCH=$(echo $CI_BUILD_REF_NAME | sed "s/-dev//" | sed "s/-stable//" | sed "s/-prerelease//")
   artifacts:
     expire_in: 5 days
   allow_failure: true
