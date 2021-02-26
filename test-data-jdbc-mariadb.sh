@@ -3,7 +3,7 @@ set -x
 
 export DATASOURCES_DEFAULT_URL=jdbc:mariadb://mariadbhost:3306/pets
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb &
-sleep 3
+sleep 10
 
 RESPONSE=$(curl -s localhost:8080/owners)
 EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
