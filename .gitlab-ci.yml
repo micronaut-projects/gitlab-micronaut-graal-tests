@@ -1035,6 +1035,28 @@ jdk11:liquibase-mariadb:micronaut-build:
     - aws
     - memory
 
+jdk8:aws-sdkv2-s3:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-s3
+  script:
+    - ./build-aws-sdkv2.sh s3
+  tags:
+    - aws
+    - speed
+
+jdk11:aws-sdkv2-s3:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-s3
+  script:
+    - ./build-aws-sdkv2.sh s3
+  tags:
+    - aws
+    - speed
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -2016,3 +2038,19 @@ jdk11:liquibase-mariadb:test:
     MYSQL_DATABASE: users
   script:
     - ./test-liquibase-mariadb.sh
+
+jdk8:aws-sdkv2-s3:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:aws-sdkv2-s3:micronaut-build
+  needs: ["jdk8:aws-sdkv2-s3:micronaut-build"]
+  script:
+    - ./test-aws-sdkv2-s3.sh
+
+jdk11:aws-sdkv2-s3:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:aws-sdkv2-s3:micronaut-build
+  needs: ["jdk11:aws-sdkv2-s3:micronaut-build"]
+  script:
+    - ./test-aws-sdkv2-s3.sh
