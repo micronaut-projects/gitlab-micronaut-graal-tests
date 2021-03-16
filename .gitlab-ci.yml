@@ -365,6 +365,9 @@ jdk8:security-session:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
     - ./build-security-session.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:security-session:micronaut-build:
   <<: *jdk11-build
