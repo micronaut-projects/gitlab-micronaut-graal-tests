@@ -14,7 +14,7 @@ EXPECTED_RESPONSE='{"id":1,"name":"Fred","age":45}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/pets)
-EXPECTED_RESPONSE='[{"name":"Dino"},{"name":"Baby Puss"},{"name":"Hoppy"}]'
+EXPECTED_RESPONSE='[{"name":"Baby Puss"},{"name":"Dino"},{"name":"Hoppy"}]'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/pets/Dino | jq -c '{name, owner, type}')
