@@ -1098,17 +1098,23 @@ jdk11:aws-sdkv2-paramstore:micronaut-build:
 #
 .micronaut:test-template: &micronaut-test-template
   stage: test
-  image:
-    name: gcr.io/distroless/cc-debian10:debug
-    entrypoint: [ "" ]
+  image: frolvlad/alpine-glibc:alpine-3.12
   before_script:
     - ./test-before-script.sh
   timeout: 20m
   retry:
     max: 1
 
-jdk8:basic-app:test:
+.micronaut:test-distroless-template: &micronaut-test-distroless-template
   <<: *micronaut-test-template
+  image:
+    name: gcr.io/distroless/cc-debian10:debug
+    entrypoint: [ "" ]
+  before_script:
+    - ./test-before-script-distroless.sh
+
+jdk8:basic-app:test:
+  <<: *micronaut-test-distroless-template
   dependencies:
     - jdk8:basic-app:micronaut-build
   needs: ["jdk8:basic-app:micronaut-build"]
@@ -1116,7 +1122,7 @@ jdk8:basic-app:test:
     - ./test-basic-app.sh
 
 jdk11:basic-app:test:
-  <<: *micronaut-test-template
+  <<: *micronaut-test-distroless-template
   dependencies:
     - jdk11:basic-app:micronaut-build
   needs: ["jdk11:basic-app:micronaut-build"]
