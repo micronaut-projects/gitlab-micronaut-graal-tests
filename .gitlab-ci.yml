@@ -305,6 +305,9 @@ jdk8:security-jwt:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
     - ./build-security-jwt.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:security-jwt:micronaut-build:
   <<: *jdk11-build
@@ -740,7 +743,7 @@ jdk11:flyway-postgres:micronaut-build:
     - ./build-flyway.sh postgres
   tags:
     - aws
-    - speed
+    - memory
 
 jdk8:flyway-mariadb:micronaut-build:
   <<: *jdk8-build
