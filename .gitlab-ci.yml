@@ -379,6 +379,17 @@ jdk11:security-session:micronaut-build:
     - aws
     - speed
 
+jdk11:security-ldap:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-security-ldap-graal/security-ldap
+  script:
+    - ./build-security-ldap.sh
+  tags:
+    - aws
+    - speed
+
 jdk8:data-jdbc-h2:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1384,6 +1395,14 @@ jdk11:security-session:test:
   needs: ["jdk11:security-session:micronaut-build"]
   script:
     - ./test-security-session.sh
+
+jdk11:security-ldap:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:security-ldap:micronaut-build
+  needs: ["jdk11:security-ldap:micronaut-build"]
+  script:
+    - ./test-security-ldap.sh
 
 jdk8:data-jdbc-h2:test:
   <<: *micronaut-test-template
