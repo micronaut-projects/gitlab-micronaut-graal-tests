@@ -102,6 +102,28 @@ jdk11:basic-app:micronaut-build:
     - aws
     - speed
 
+jdk8:kotlin:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-kotlin-graal/kotlin
+  script:
+    - ./build-kotlin.sh
+  tags:
+    - aws
+    - memory
+
+jdk11:kotlin:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-kotlin-graal/kotlin
+  script:
+    - ./build-kotlin.sh
+  tags:
+    - aws
+    - memory
+
 jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1139,6 +1161,22 @@ jdk11:basic-app:test:
   needs: ["jdk11:basic-app:micronaut-build"]
   script:
     - ./test-basic-app.sh
+
+jdk8:kotlin:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:kotlin:micronaut-build
+  needs: ["jdk8:kotlin:micronaut-build"]
+  script:
+    - ./test-kotlin.sh
+
+jdk11:kotlin:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:kotlin:micronaut-build
+  needs: ["jdk11:kotlin:micronaut-build"]
+  script:
+    - ./test-kotlin.sh
 
 jdk8:service-discovery-consul:test:
   <<: *micronaut-test-template
