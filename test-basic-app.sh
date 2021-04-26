@@ -39,3 +39,8 @@ if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $R
 RESPONSE=$(curl -s localhost:8080/version)
 EXPECTED_RESPONSE_CONTAINS='-SNAPSHOT'
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
+
+# Enum
+RESPONSE=$(curl -s localhost:8080/color/blue)
+EXPECTED_RESPONSE_CONTAINS='BLUE'
+if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
