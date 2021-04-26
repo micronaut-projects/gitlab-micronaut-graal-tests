@@ -124,6 +124,22 @@ jdk11:kotlin:micronaut-build:
     - aws
     - memory
 
+jdk8:maven:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-maven-graal/maven
+  script:
+    - ./build-maven.sh
+
+jdk11:maven:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-maven-graal/maven
+  script:
+    - ./build-maven.sh
+
 jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
   artifacts:
@@ -1177,6 +1193,22 @@ jdk11:kotlin:test:
   needs: ["jdk11:kotlin:micronaut-build"]
   script:
     - ./test-kotlin.sh
+
+jdk8:maven:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:maven:micronaut-build
+  needs: ["jdk8:maven:micronaut-build"]
+  script:
+    - ./test-maven.sh
+
+jdk11:maven:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:maven:micronaut-build
+  needs: ["jdk11:maven:micronaut-build"]
+  script:
+    - ./test-maven.sh
 
 jdk8:service-discovery-consul:test:
   <<: *micronaut-test-template
