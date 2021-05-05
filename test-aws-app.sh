@@ -25,8 +25,8 @@ echo "-- Testing..."
 #EXPECTED_RESPONSE='{"type":"success","factId":566,"value":"Chuck Norris could use anything in java.util.* to kill you, including the javadocs."}'
 #if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
-RESPONSE=$(curl -s $API_ENDPOINT/bintray/packages | jq '.[] | {name:.name} | select(.name | contains("security-jwt")) | length')
-EXPECTED_RESPONSE='1'
+RESPONSE=$(curl -s $API_ENDPOINT/github/releases | jq -c '.[] | {name:.name} | select(.name | contains("Micronaut 2.5.0"))')
+EXPECTED_RESPONSE='{"name":"Micronaut 2.5.0"}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
 # Cleanup
