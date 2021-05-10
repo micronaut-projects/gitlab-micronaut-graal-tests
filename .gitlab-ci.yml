@@ -1138,6 +1138,28 @@ jdk11:aws-sdkv2-paramstore:micronaut-build:
     - aws
     - speed
 
+jdk8:cassandra:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-cassandra-graal/cassandra
+  script:
+    - ./build-cassandra.sh
+  tags:
+    - aws
+    - speed
+
+jdk11:cassandra:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-cassandra-graal/cassandra
+  script:
+    - ./build-cassandra.sh
+  tags:
+    - aws
+    - speed
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -2197,3 +2219,25 @@ jdk11:aws-sdkv2-paramstore:test:
   needs: ["jdk11:aws-sdkv2-paramstore:micronaut-build"]
   script:
     - ./test-aws-sdkv2-paramstore.sh
+
+jdk8:cassandra:test:
+  <<: *micronaut-test-template
+  services:
+    - name: cassandra:3.11.10
+      alias: cassandrahost
+  dependencies:
+    - jdk8:cassandra:micronaut-build
+  needs: ["jdk8:cassandra:micronaut-build"]
+  script:
+    - ./test-cassandra.sh
+
+jdk11:cassandra:test:
+  <<: *micronaut-test-template
+  services:
+    - name: cassandra:3.11.10
+      alias: cassandrahost
+  dependencies:
+    - jdk11:cassandra:micronaut-build
+  needs: ["jdk11:cassandra:micronaut-build"]
+  script:
+    - ./test-cassandra.sh
