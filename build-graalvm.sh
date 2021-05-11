@@ -5,7 +5,7 @@ GRAALVM_BRANCH="master"
 
 downloadJdk() {
     JAVA_VERSION=$1
-    cd ${GRAALVM_DIR}/graaljs
+    cd ${GRAALVM_DIR}/graal
     export JAVA_HOME=`mx -y fetch-jdk --to ${CI_PROJECT_DIR} --configuration common.json --java-distribution ${JAVA_VERSION} | tail -1 | sed 's/export JAVA_HOME=//'`
 }
 
@@ -22,6 +22,8 @@ if [ "${JDK_VERSION}" == "jdk8" ]; then
     downloadJdk openjdk8
 elif [ "$JDK_VERSION" == "jdk11" ]; then
     downloadJdk labsjdk-ce-11
+elif [ "$JDK_VERSION" == "jdk16" ]; then
+    downloadJdk labsjdk-ce-16
 else
     echo "Need to provide a valid JDK version: jdk8, jdk11"
     exit 1
