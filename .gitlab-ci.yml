@@ -26,6 +26,9 @@ log-commits:
 #                              |___/
 .build-graalvm:template: &build-graalvm-template
   stage: build-graalvm
+  dependencies:
+    - log-commits
+  needs: ["log-commits"]
   artifacts:
     expire_in: 5 days
     paths:
