@@ -950,6 +950,9 @@ jdk8:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
     - ./build-aws-app.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:aws-app:micronaut-build:
   <<: *jdk11-build
