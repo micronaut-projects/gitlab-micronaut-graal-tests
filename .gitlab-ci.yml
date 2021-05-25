@@ -1166,6 +1166,28 @@ jdk11:cassandra:micronaut-build:
     - aws
     - speed
 
+jdk8:graphql:micronaut-build:
+  <<: *jdk8-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-graphql-graal/graphql
+  script:
+    - ./build-graphql.sh
+  tags:
+    - aws
+    - speed
+
+jdk11:graphql:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-graphql-graal/graphql
+  script:
+    - ./build-graphql.sh
+  tags:
+    - aws
+    - speed
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -2247,3 +2269,19 @@ jdk11:cassandra:test:
   needs: ["jdk11:cassandra:micronaut-build"]
   script:
     - ./test-cassandra.sh
+
+jdk8:graphql:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk8:graphql:micronaut-build
+  needs: ["jdk8:graphql:micronaut-build"]
+  script:
+    - ./test-graphql.sh
+
+jdk11:graphql:test:
+  <<: *micronaut-test-template
+  dependencies:
+    - jdk11:graphql:micronaut-build
+  needs: ["jdk11:graphql:micronaut-build"]
+  script:
+    - ./test-graphql.sh
