@@ -93,6 +93,9 @@ jdk8:basic-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
     - ./build-basic-app.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:basic-app:micronaut-build:
   <<: *jdk11-build
@@ -134,6 +137,9 @@ jdk8:maven:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-maven-graal/maven
   script:
     - ./build-maven.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:maven:micronaut-build:
   <<: *jdk11-build
@@ -142,6 +148,9 @@ jdk11:maven:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-maven-graal/maven
   script:
     - ./build-maven.sh
+  tags:
+    - aws
+    - speed
 
 jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
@@ -213,6 +222,9 @@ jdk8:rabbitmq:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
     - ./build-rabbitmq.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:rabbitmq:micronaut-build:
   <<: *jdk11-build
@@ -232,6 +244,9 @@ jdk8:management:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
     - ./build-management.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:management:micronaut-build:
   <<: *jdk11-build
@@ -251,6 +266,9 @@ jdk8:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
     - ./build-views.sh freemarker
+  tags:
+    - aws
+    - speed
 
 jdk11:views-freemarker:micronaut-build:
   <<: *jdk11-build
@@ -270,6 +288,9 @@ jdk8:views-handlebars:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
     - ./build-views.sh handlebars
+  tags:
+    - aws
+    - speed
 
 jdk11:views-handlebars:micronaut-build:
   <<: *jdk11-build
@@ -289,6 +310,9 @@ jdk8:views-thymeleaf:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
     - ./build-views.sh thymeleaf
+  tags:
+    - aws
+    - speed
 
 jdk11:views-thymeleaf:micronaut-build:
   <<: *jdk11-build
@@ -308,6 +332,9 @@ jdk8:views-velocity:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
     - ./build-views.sh velocity
+  tags:
+    - aws
+    - speed
 
 jdk11:views-velocity:micronaut-build:
   <<: *jdk11-build
@@ -327,6 +354,9 @@ jdk8:views-pebble:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
   script:
     - ./build-views.sh pebble
+  tags:
+    - aws
+    - speed
 
 jdk11:views-pebble:micronaut-build:
   <<: *jdk11-build
@@ -368,6 +398,9 @@ jdk8:security-basic-auth:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
     - ./build-security-basic-auth.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:security-basic-auth:micronaut-build:
   <<: *jdk11-build
@@ -662,6 +695,9 @@ jdk8:schedule:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
     - ./build-schedule.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:schedule:micronaut-build:
   <<: *jdk11-build
@@ -722,6 +758,9 @@ jdk8:servlet-jetty:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
     - ./build-servlet.sh jetty
+  tags:
+    - aws
+    - speed
 
 jdk11:servlet-jetty:micronaut-build:
   <<: *jdk11-build
@@ -741,6 +780,9 @@ jdk8:introspected:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
     - ./build-introspected.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:introspected:micronaut-build:
   <<: *jdk11-build
