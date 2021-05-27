@@ -203,6 +203,9 @@ jdk8:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
     - ./build-zipkin.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:zipkin:micronaut-build:
   <<: *jdk11-build
@@ -717,6 +720,9 @@ jdk8:cache:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
     - ./build-cache.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:cache:micronaut-build:
   <<: *jdk11-build
