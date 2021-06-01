@@ -2,11 +2,11 @@
 set -x
 
 echo "Waiting for Oracle to start..."
-sleep 120
+sleep 150
 
 export DATASOURCES_DEFAULT_URL=jdbc:oracle:thin:@oraclehost:1521/xe
 $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle -Doracle.jdbc.timezoneAsRegion=false &
-sleep 120 # For some reason the app takes too long to start on CI when using Oracle.
+sleep 150 # For some reason the app takes too long to start on CI when using Oracle.
 
 RESPONSE=$(curl -s localhost:8080/owners)
 EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
