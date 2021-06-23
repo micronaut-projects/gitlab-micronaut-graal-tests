@@ -6,6 +6,7 @@ GRAALVM_BRANCH="master"
 downloadJdk() {
     JAVA_VERSION=$1
     cd ${GRAALVM_DIR}/graaljs
+    export MX_PYTHON_VERSION=3
     export JAVA_HOME=`mx -y fetch-jdk --to ${CI_PROJECT_DIR} --configuration common.json --java-distribution ${JAVA_VERSION} | tail -1 | sed 's/export JAVA_HOME=//'`
 }
 
