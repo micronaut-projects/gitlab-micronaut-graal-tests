@@ -57,5 +57,5 @@ if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $R
 
 # Gradle Git plugin
 RESPONSE=$(curl -s http://localhost:8080/info | jq -r '.git.remote.origin.url')
-EXPECTED_RESPONSE='git@github.com:micronaut-graal-tests/micronaut-basic-app.git'
+EXPECTED_RESPONSE='https://github.com/micronaut-graal-tests/micronaut-basic-app'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
