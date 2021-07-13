@@ -12,12 +12,12 @@ RESPONSE=$(curl -s localhost:8080/health)
 EXPECTED_RESPONSE='{"status":"UP"}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
-RESPONSE=$(curl -s curl localhost:8080/info | jq -c '{remote: .git.remote.origin.url}')
+RESPONSE=$(curl -s localhost:8080/info | jq -c '{remote: .git.remote.origin.url}')
 EXPECTED_RESPONSE='{"remote":"https://github.com/micronaut-graal-tests/micronaut-management-graal"}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/metrics | jq '.names | length')
-EXPECTED_RESPONSE='18'
+EXPECTED_RESPONSE='22'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/loggers | jq '.levels | length')
