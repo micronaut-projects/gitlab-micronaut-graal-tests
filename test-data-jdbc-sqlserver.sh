@@ -6,7 +6,7 @@ $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver &
 sleep 3
 
 RESPONSE=$(curl -s localhost:8080/owners)
-EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age":40}]'
+EXPECTED_RESPONSE='[{"age":45,"name":"Fred","id":1},{"age":40,"name":"Barney","id":2}]'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/owners/Fred)
