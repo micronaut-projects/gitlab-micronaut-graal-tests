@@ -34,13 +34,9 @@ log-commits:
     paths:
       - $CI_PROJECT_DIR/graal_dist
   cache:
-    key: ${GRAAL_NEW_COMMIT}-${CI_JOB_NAME}
+    key: graalvm-21.2.0-${CI_JOB_NAME}
     paths:
       - $CI_PROJECT_DIR/graal_dist
-  tags:
-    - aws
-    - speed2x
-    - memory2x
 
 jdk11:build-graalvm:
   <<: *build-graalvm-template
