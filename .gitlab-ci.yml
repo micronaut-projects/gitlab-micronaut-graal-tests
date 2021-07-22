@@ -138,6 +138,9 @@ jdk11:maven:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-maven-graal/maven
   script:
     - ./build-maven.sh
+  tags:
+    - aws
+    - speed
 
 .jdk8:service-discovery-consul:micronaut-build:
   <<: *jdk8-build
