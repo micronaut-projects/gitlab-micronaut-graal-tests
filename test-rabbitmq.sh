@@ -22,3 +22,7 @@ if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 RESPONSE=$(curl -s localhost:8080/books-rpc)
 EXPECTED_RESPONSE='[{"name":"Building Microservices"}]'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
+
+RESPONSE=$(curl -s localhost:8080/metrics | jq -r '.names[]' | grep rabbitmq | wc -l)
+EXPECTED_RESPONSE='10'
+if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
