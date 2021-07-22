@@ -18,12 +18,12 @@ downloadGraalVM() {
     $JAVA_HOME/bin/gu install native-image
 }
 
-if [ "${JDK_VERSION}" == "jdk8" ]; then
-    downloadGraalVM "java8"
-elif [ "$JDK_VERSION" == "jdk11" ]; then
+if [ "$JDK_VERSION" == "jdk11" ]; then
     downloadGraalVM "java11"
+elif [ "$JDK_VERSION" == "jdk16" ]; then
+    downloadJdk "labsjdk-ce-16"
 else
-    echo "Need to provide a valid JDK version: jdk8, jdk11"
+    echo "Need to provide a valid JDK version: jdk11, jdk16"
     exit 1
 fi
 
