@@ -10,7 +10,7 @@ EXPECTED_RESPONSE='[{"id":1,"name":"Fred","age":45},{"id":2,"name":"Barney","age
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/owners/Fred | jq -c '{id, name, age}')
-EXPECTED_RESPONSE='{"age":45,"name":"Fred","id":1}'
+EXPECTED_RESPONSE='{"id":1,"name":"Fred","age":45}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s 'localhost:8080/pets?sort=name' | jq -c '[.[] | {name}]')
