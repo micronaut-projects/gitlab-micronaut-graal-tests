@@ -698,6 +698,28 @@ jdk11:data-jpa-mysql:micronaut-build:
     - aws
     - memory
 
+jdk11:data-jpa-oracle:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-oracle
+  script:
+    - ./build-data-jpa.sh oracle
+  tags:
+    - aws
+    - memory
+
+.jdk16:data-jpa-oracle:micronaut-build:
+  <<: *jdk16-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-oracle
+  script:
+    - ./build-data-jpa.sh oracle
+  tags:
+    - aws
+    - memory
+
 jdk11:schedule:micronaut-build:
   <<: *jdk11-build
   artifacts:
@@ -1835,6 +1857,36 @@ jdk11:data-jpa-mysql:test:
     MYSQL_DATABASE: pets
   script:
     - ./test-data-jpa-mysql.sh
+
+jdk11:data-jpa-oracle:test:
+  <<: *micronaut-test-template
+  retry:
+    max: 2
+    when:
+      - always
+  services:
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+      alias: oraclehost
+  dependencies:
+    - jdk11:data-jpa-oracle:micronaut-build
+  needs: ["jdk11:data-jpa-oracle:micronaut-build"]
+  script:
+    - ./test-data-jpa-oracle.sh
+
+.jdk16:data-jpa-oracle:test:
+  <<: *micronaut-test-template
+  retry:
+    max: 2
+    when:
+      - always
+  services:
+    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+      alias: oraclehost
+  dependencies:
+    - jdk16:data-jpa-oracle:micronaut-build
+  needs: ["jdk16:data-jpa-oracle:micronaut-build"]
+  script:
+    - ./test-data-jpa-oracle.sh
 
 jdk11:schedule:test:
   <<: *micronaut-test-template
