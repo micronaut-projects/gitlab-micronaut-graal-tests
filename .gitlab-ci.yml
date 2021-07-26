@@ -724,6 +724,28 @@ jdk11:data-jpa-oracle:micronaut-build:
     - aws
     - memory
 
+jdk11:data-jpa-sqlserver:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-sqlserver
+  script:
+    - ./build-data-jpa.sh sqlserver
+  tags:
+    - aws
+    - memory
+
+.jdk16:data-jpa-sqlserver:micronaut-build:
+  <<: *jdk16-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-sqlserver
+  script:
+    - ./build-data-jpa.sh sqlserver
+  tags:
+    - aws
+    - memory
+
 jdk11:schedule:micronaut-build:
   <<: *jdk11-build
   artifacts:
@@ -1891,6 +1913,36 @@ jdk11:data-jpa-oracle:test:
   needs: ["jdk16:data-jpa-oracle:micronaut-build"]
   script:
     - ./test-data-jpa-oracle.sh
+
+jdk11:data-jpa-sqlserver:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+      alias: sqlserverhost
+  dependencies:
+    - jdk11:data-jpa-sqlserver:micronaut-build
+  needs: ["jdk11:data-jpa-sqlserver:micronaut-build"]
+  variables:
+    ACCEPT_EULA: Y
+    SA_PASSWORD: My!Secret123
+    MSSQL_PID: Express
+  script:
+    - ./test-data-jpa-sqlserver.sh
+
+.jdk16:data-jpa-sqlserver:test:
+  <<: *micronaut-test-template
+  services:
+    - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+      alias: sqlserverhost
+  dependencies:
+    - jdk16:data-jpa-sqlserver:micronaut-build
+  needs: ["jdk16:data-jpa-sqlserver:micronaut-build"]
+  variables:
+    ACCEPT_EULA: Y
+    SA_PASSWORD: My!Secret123
+    MSSQL_PID: Express
+  script:
+    - ./test-data-jpa-sqlserver.sh
 
 jdk11:schedule:test:
   <<: *micronaut-test-template
