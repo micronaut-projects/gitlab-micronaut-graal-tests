@@ -1268,6 +1268,28 @@ jdk11:cassandra:micronaut-build:
     - aws
     - speed
 
+jdk11:kafka:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-kafka-graal/kafka
+  script:
+    - ./build-kafka.sh
+  tags:
+    - aws
+    - speed
+
+.jdk16:kafka:micronaut-build:
+  <<: *jdk16-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-kafka-graal/kafka
+  script:
+    - ./build-kafka.sh
+  tags:
+    - aws
+    - speed
+
 
 #  _            _
 # | |_ ___  ___| |_
@@ -2418,3 +2440,24 @@ jdk11:cassandra:test:
   script:
     - ./test-cassandra.sh
 
+jdk11:kafka:test:
+  <<: *micronaut-test-template
+  services:
+    - name: lensesio/fast-data-dev
+      alias: kafkahost
+  dependencies:
+    - jdk11:kafka:micronaut-build
+  needs: ["jdk11:kafka:micronaut-build"]
+  script:
+    - ./test-kafka.sh
+
+.jdk16:kafka:test:
+  <<: *micronaut-test-template
+  services:
+    - name: lensesio/fast-data-dev
+      alias: kafkahost
+  dependencies:
+    - jdk16:kafka:micronaut-build
+  needs: ["jdk16:kafka:micronaut-build"]
+  script:
+    - ./test-kafka.sh
