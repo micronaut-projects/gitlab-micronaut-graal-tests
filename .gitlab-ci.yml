@@ -44,7 +44,7 @@ jdk11:build-graalvm:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
     - ./build-graalvm.sh jdk11
 
-.jdk16:build-graalvm:
+jdk16:build-graalvm:
   <<: *build-graalvm-template
   script:
     - if [ -d $CI_PROJECT_DIR/graal_dist ]; then exit 0; fi
@@ -93,7 +93,7 @@ jdk11:basic-app:micronaut-build:
     - aws
     - speed
 
-.jdk16:basic-app:micronaut-build:
+jdk16:basic-app:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -115,7 +115,7 @@ jdk11:kotlin:micronaut-build:
     - aws
     - memory
 
-.jdk16:kotlin:micronaut-build:
+jdk16:kotlin:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -137,7 +137,7 @@ jdk11:maven:micronaut-build:
     - aws
     - speed
 
-.jdk16:maven:micronaut-build:
+jdk16:maven:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -159,7 +159,7 @@ jdk11:service-discovery-consul:micronaut-build:
     - aws
     - speed
 
-.jdk16:service-discovery-consul:micronaut-build:
+jdk16:service-discovery-consul:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -181,7 +181,7 @@ jdk11:service-discovery-eureka:micronaut-build:
     - aws
     - speed
 
-.jdk16:service-discovery-eureka:micronaut-build:
+jdk16:service-discovery-eureka:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -203,7 +203,7 @@ jdk11:zipkin:micronaut-build:
     - aws
     - speed
 
-.jdk16:zipkin:micronaut-build:
+jdk16:zipkin:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -225,7 +225,7 @@ jdk11:rabbitmq:micronaut-build:
     - aws
     - speed
 
-.jdk16:rabbitmq:micronaut-build:
+jdk16:rabbitmq:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -247,7 +247,7 @@ jdk11:management:micronaut-build:
     - aws
     - speed
 
-.jdk16:management:micronaut-build:
+jdk16:management:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -269,7 +269,7 @@ jdk11:views-freemarker:micronaut-build:
     - aws
     - speed
 
-.jdk16:views-freemarker:micronaut-build:
+jdk16:views-freemarker:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -291,7 +291,7 @@ jdk11:views-handlebars:micronaut-build:
     - aws
     - speed
 
-.jdk16:views-handlebars:micronaut-build:
+jdk16:views-handlebars:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -313,7 +313,7 @@ jdk11:views-thymeleaf:micronaut-build:
     - aws
     - speed
 
-.jdk16:views-thymeleaf:micronaut-build:
+jdk16:views-thymeleaf:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -335,7 +335,7 @@ jdk11:views-velocity:micronaut-build:
     - aws
     - speed
 
-.jdk16:views-velocity:micronaut-build:
+jdk16:views-velocity:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -357,7 +357,7 @@ jdk11:views-pebble:micronaut-build:
     - aws
     - speed
 
-.jdk16:views-pebble:micronaut-build:
+jdk16:views-pebble:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -379,7 +379,7 @@ jdk11:security-jwt:micronaut-build:
     - aws
     - speed
 
-.jdk16:security-jwt:micronaut-build:
+jdk16:security-jwt:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -401,7 +401,7 @@ jdk11:security-basic-auth:micronaut-build:
     - aws
     - speed
 
-.jdk16:security-basic-auth:micronaut-build:
+jdk16:security-basic-auth:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -423,7 +423,7 @@ jdk11:security-cookie:micronaut-build:
     - aws
     - speed
 
-.jdk16:security-cookie:micronaut-build:
+jdk16:security-cookie:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -445,7 +445,7 @@ jdk11:security-session:micronaut-build:
     - aws
     - speed
 
-.jdk16:security-session:micronaut-build:
+jdk16:security-session:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -467,7 +467,7 @@ jdk11:security-ldap:micronaut-build:
     - aws
     - speed
 
-.jdk16:security-ldap:micronaut-build:
+jdk16:security-ldap:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -489,7 +489,7 @@ jdk11:data-jdbc-h2:micronaut-build:
     - aws
     - speed
 
-.jdk16:data-jdbc-h2:micronaut-build:
+jdk16:data-jdbc-h2:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -511,7 +511,7 @@ jdk11:data-jdbc-postgres:micronaut-build:
     - aws
     - speed
 
-.jdk16:data-jdbc-postgres:micronaut-build:
+jdk16:data-jdbc-postgres:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -533,7 +533,7 @@ jdk11:data-jdbc-oracle:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jdbc-oracle:micronaut-build:
+jdk16:data-jdbc-oracle:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -555,7 +555,7 @@ jdk11:data-jdbc-mariadb:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jdbc-mariadb:micronaut-build:
+jdk16:data-jdbc-mariadb:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -577,7 +577,7 @@ jdk11:data-jdbc-sqlserver:micronaut-build:
     - aws
     - speed
 
-.jdk16:data-jdbc-sqlserver:micronaut-build:
+jdk16:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -599,7 +599,7 @@ jdk11:data-jdbc-mysql:micronaut-build:
     - aws
     - speed
 
-.jdk16:data-jdbc-mysql:micronaut-build:
+jdk16:data-jdbc-mysql:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -621,7 +621,7 @@ jdk11:data-jpa-h2:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-h2:micronaut-build:
+jdk16:data-jpa-h2:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -643,7 +643,7 @@ jdk11:data-jpa-postgres:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-postgres:micronaut-build:
+jdk16:data-jpa-postgres:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -665,7 +665,7 @@ jdk11:data-jpa-mariadb:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-mariadb:micronaut-build:
+jdk16:data-jpa-mariadb:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -687,7 +687,7 @@ jdk11:data-jpa-mysql:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-mysql:micronaut-build:
+jdk16:data-jpa-mysql:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -709,7 +709,7 @@ jdk11:data-jpa-oracle:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-oracle:micronaut-build:
+jdk16:data-jpa-oracle:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -731,7 +731,7 @@ jdk11:data-jpa-sqlserver:micronaut-build:
     - aws
     - memory
 
-.jdk16:data-jpa-sqlserver:micronaut-build:
+jdk16:data-jpa-sqlserver:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -753,7 +753,7 @@ jdk11:schedule:micronaut-build:
     - aws
     - speed
 
-.jdk16:schedule:micronaut-build:
+jdk16:schedule:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -775,7 +775,7 @@ jdk11:cache:micronaut-build:
     - aws
     - speed
 
-.jdk16:cache:micronaut-build:
+jdk16:cache:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -797,7 +797,7 @@ jdk11:servlet-tomcat:micronaut-build:
     - aws
     - speed
 
-.jdk16:servlet-tomcat:micronaut-build:
+jdk16:servlet-tomcat:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -819,7 +819,7 @@ jdk11:servlet-jetty:micronaut-build:
     - aws
     - speed
 
-.jdk16:servlet-jetty:micronaut-build:
+jdk16:servlet-jetty:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -841,7 +841,7 @@ jdk11:introspected:micronaut-build:
     - aws
     - speed
 
-.jdk16:introspected:micronaut-build:
+jdk16:introspected:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -863,7 +863,7 @@ jdk11:flyway-h2:micronaut-build:
     - aws
     - speed
 
-.jdk16:flyway-h2:micronaut-build:
+jdk16:flyway-h2:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -885,7 +885,7 @@ jdk11:flyway-postgres:micronaut-build:
     - aws
     - memory
 
-.jdk16:flyway-postgres:micronaut-build:
+jdk16:flyway-postgres:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -907,7 +907,7 @@ jdk11:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-.jdk16:flyway-mariadb:micronaut-build:
+jdk16:flyway-mariadb:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -951,7 +951,7 @@ jdk11:jooq-h2:micronaut-build:
     - aws
     - memory
 
-.jdk16:jooq-h2:micronaut-build:
+jdk16:jooq-h2:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -980,7 +980,7 @@ jdk11:jooq-postgres:micronaut-build:
     - aws
     - memory
 
-.jdk16:jooq-postgres:micronaut-build:
+jdk16:jooq-postgres:micronaut-build:
   <<: *jdk16-build
   services:
     - name: postgres:11.5-alpine
@@ -1009,7 +1009,7 @@ jdk11:redis:micronaut-build:
     - aws
     - speed
 
-.jdk16:redis:micronaut-build:
+jdk16:redis:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1032,7 +1032,7 @@ jdk11:function-aws:micronaut-build:
     - aws
     - speed
 
-.jdk16:function-aws:micronaut-build:
+jdk16:function-aws:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1056,7 +1056,7 @@ jdk11:aws-app:micronaut-build:
     - aws
     - speed
 
-.jdk16:aws-app:micronaut-build:
+jdk16:aws-app:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1080,7 +1080,7 @@ jdk11:grpc:micronaut-build:
     - aws
     - speed
 
-.jdk16:grpc:micronaut-build:
+jdk16:grpc:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1103,7 +1103,7 @@ jdk11:mqtt-v3:micronaut-build:
     - aws
     - speed
 
-.jdk16:mqtt-v3:micronaut-build:
+jdk16:mqtt-v3:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1125,7 +1125,7 @@ jdk11:mqtt-v5:micronaut-build:
     - aws
     - speed
 
-.jdk16:mqtt-v5:micronaut-build:
+jdk16:mqtt-v5:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1147,7 +1147,7 @@ jdk11:liquibase-h2:micronaut-build:
     - aws
     - memory
 
-.jdk16:liquibase-h2:micronaut-build:
+jdk16:liquibase-h2:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1169,7 +1169,7 @@ jdk11:liquibase-postgres:micronaut-build:
     - aws
     - memory
 
-.jdk16:liquibase-postgres:micronaut-build:
+jdk16:liquibase-postgres:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1191,7 +1191,7 @@ jdk11:liquibase-mariadb:micronaut-build:
     - aws
     - memory
 
-.jdk16:liquibase-mariadb:micronaut-build:
+jdk16:liquibase-mariadb:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1213,7 +1213,7 @@ jdk11:aws-sdkv2-s3:micronaut-build:
     - aws
     - speed
 
-.jdk16:aws-sdkv2-s3:micronaut-build:
+jdk16:aws-sdkv2-s3:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1235,7 +1235,7 @@ jdk11:aws-sdkv2-paramstore:micronaut-build:
     - aws
     - speed
 
-.jdk16:aws-sdkv2-paramstore:micronaut-build:
+jdk16:aws-sdkv2-paramstore:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1257,7 +1257,7 @@ jdk11:cassandra:micronaut-build:
     - aws
     - speed
 
-.jdk16:cassandra:micronaut-build:
+jdk16:cassandra:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1279,7 +1279,7 @@ jdk11:kafka:micronaut-build:
     - aws
     - speed
 
-.jdk16:kafka:micronaut-build:
+jdk16:kafka:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1322,7 +1322,7 @@ jdk11:basic-app:test:
   script:
     - ./test-basic-app.sh
 
-.jdk16:basic-app:test:
+jdk16:basic-app:test:
   <<: *micronaut-test-distroless-template
   dependencies:
     - jdk16:basic-app:micronaut-build
@@ -1338,7 +1338,7 @@ jdk11:kotlin:test:
   script:
     - ./test-kotlin.sh
 
-.jdk16:kotlin:test:
+jdk16:kotlin:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:kotlin:micronaut-build
@@ -1354,7 +1354,7 @@ jdk11:maven:test:
   script:
     - ./test-maven.sh
 
-.jdk16:maven:test:
+jdk16:maven:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:maven:micronaut-build
@@ -1376,7 +1376,7 @@ jdk11:service-discovery-consul:test:
     - aws
     - speed
 
-.jdk16:service-discovery-consul:test:
+jdk16:service-discovery-consul:test:
   <<: *micronaut-test-template
   services:
     - name: consul:1.8.0
@@ -1404,7 +1404,7 @@ jdk11:service-discovery-eureka:test:
     - aws
     - speed
 
-.jdk16:service-discovery-eureka:test:
+jdk16:service-discovery-eureka:test:
   <<: *micronaut-test-template
   services:
     - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
@@ -1429,7 +1429,7 @@ jdk11:zipkin:test:
   script:
     - ./test-zipkin.sh
 
-.jdk16:zipkin:test:
+jdk16:zipkin:test:
   <<: *micronaut-test-template
   services:
     - name: openzipkin/zipkin:2.21.1
@@ -1451,7 +1451,7 @@ jdk11:rabbitmq:test:
   script:
     - ./test-rabbitmq.sh
 
-.jdk16:rabbitmq:test:
+jdk16:rabbitmq:test:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.8.9-management-alpine
@@ -1470,7 +1470,7 @@ jdk11:management:test:
   script:
     - ./test-management.sh
 
-.jdk16:management:test:
+jdk16:management:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:management:micronaut-build
@@ -1486,7 +1486,7 @@ jdk11:views-freemarker:test:
   script:
     - ./test-views-freemarker.sh
 
-.jdk16:views-freemarker:test:
+jdk16:views-freemarker:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:views-freemarker:micronaut-build
@@ -1502,7 +1502,7 @@ jdk11:views-handlebars:test:
   script:
     - ./test-views-handlebars.sh
 
-.jdk16:views-handlebars:test:
+jdk16:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:views-handlebars:micronaut-build
@@ -1518,7 +1518,7 @@ jdk11:views-thymeleaf:test:
   script:
     - ./test-views-thymeleaf.sh
 
-.jdk16:views-thymeleaf:test:
+jdk16:views-thymeleaf:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:views-thymeleaf:micronaut-build
@@ -1534,7 +1534,7 @@ jdk11:views-velocity:test:
   script:
     - ./test-views-velocity.sh
 
-.jdk16:views-velocity:test:
+jdk16:views-velocity:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:views-velocity:micronaut-build
@@ -1550,7 +1550,7 @@ jdk11:views-pebble:test:
   script:
     - ./test-views-pebble.sh
 
-.jdk16:views-pebble:test:
+jdk16:views-pebble:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:views-pebble:micronaut-build
@@ -1566,7 +1566,7 @@ jdk11:security-jwt:test:
   script:
     - ./test-security-jwt.sh
 
-.jdk16:security-jwt:test:
+jdk16:security-jwt:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:security-jwt:micronaut-build
@@ -1582,7 +1582,7 @@ jdk11:security-basic-auth:test:
   script:
     - ./test-security-basic-auth.sh
 
-.jdk16:security-basic-auth:test:
+jdk16:security-basic-auth:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:security-basic-auth:micronaut-build
@@ -1598,7 +1598,7 @@ jdk11:security-cookie:test:
   script:
     - ./test-security-cookie.sh
 
-.jdk16:security-cookie:test:
+jdk16:security-cookie:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:security-cookie:micronaut-build
@@ -1614,7 +1614,7 @@ jdk11:security-session:test:
   script:
     - ./test-security-session.sh
 
-.jdk16:security-session:test:
+jdk16:security-session:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:security-session:micronaut-build
@@ -1630,7 +1630,7 @@ jdk11:security-ldap:test:
   script:
     - ./test-security-ldap.sh
 
-.jdk16:security-ldap:test:
+jdk16:security-ldap:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:security-ldap:micronaut-build
@@ -1646,7 +1646,7 @@ jdk11:data-jdbc-h2:test:
   script:
     - ./test-data-jdbc-h2.sh
 
-.jdk16:data-jdbc-h2:test:
+jdk16:data-jdbc-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:data-jdbc-h2:micronaut-build
@@ -1669,7 +1669,7 @@ jdk11:data-jdbc-postgres:test:
   script:
     - ./test-data-jdbc-postgres.sh
 
-.jdk16:data-jdbc-postgres:test:
+jdk16:data-jdbc-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -1699,7 +1699,7 @@ jdk11:data-jdbc-oracle:test:
   script:
     - ./test-data-jdbc-oracle.sh
 
-.jdk16:data-jdbc-oracle:test:
+jdk16:data-jdbc-oracle:test:
   <<: *micronaut-test-template
   retry:
     max: 2
@@ -1728,7 +1728,7 @@ jdk11:data-jdbc-mariadb:test:
   script:
     - ./test-data-jdbc-mariadb.sh
 
-.jdk16:data-jdbc-mariadb:test:
+jdk16:data-jdbc-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -1757,7 +1757,7 @@ jdk11:data-jdbc-sqlserver:test:
   script:
     - ./test-data-jdbc-sqlserver.sh
 
-.jdk16:data-jdbc-sqlserver:test:
+jdk16:data-jdbc-sqlserver:test:
   <<: *micronaut-test-template
   services:
     - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
@@ -1786,7 +1786,7 @@ jdk11:data-jdbc-mysql:test:
   script:
     - ./test-data-jdbc-mysql.sh
 
-.jdk16:data-jdbc-mysql:test:
+jdk16:data-jdbc-mysql:test:
   <<: *micronaut-test-template
   services:
     - name: mysql:8.0.20
@@ -1808,7 +1808,7 @@ jdk11:data-jpa-h2:test:
   script:
     - ./test-data-jpa-h2.sh
 
-.jdk16:data-jpa-h2:test:
+jdk16:data-jpa-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:data-jpa-h2:micronaut-build
@@ -1831,7 +1831,7 @@ jdk11:data-jpa-postgres:test:
   script:
     - ./test-data-jpa-postgres.sh
 
-.jdk16:data-jpa-postgres:test:
+jdk16:data-jpa-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -1860,7 +1860,7 @@ jdk11:data-jpa-mariadb:test:
   script:
     - ./test-data-jpa-mariadb.sh
 
-.jdk16:data-jpa-mariadb:test:
+jdk16:data-jpa-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -1888,7 +1888,7 @@ jdk11:data-jpa-mysql:test:
   script:
     - ./test-data-jpa-mysql.sh
 
-.jdk16:data-jpa-mysql:test:
+jdk16:data-jpa-mysql:test:
   <<: *micronaut-test-template
   services:
     - name: mysql:8.0.20
@@ -1917,7 +1917,7 @@ jdk11:data-jpa-oracle:test:
   script:
     - ./test-data-jpa-oracle.sh
 
-.jdk16:data-jpa-oracle:test:
+jdk16:data-jpa-oracle:test:
   <<: *micronaut-test-template
   retry:
     max: 2
@@ -1947,7 +1947,7 @@ jdk11:data-jpa-sqlserver:test:
   script:
     - ./test-data-jpa-sqlserver.sh
 
-.jdk16:data-jpa-sqlserver:test:
+jdk16:data-jpa-sqlserver:test:
   <<: *micronaut-test-template
   services:
     - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
@@ -1970,7 +1970,7 @@ jdk11:schedule:test:
   script:
     - ./test-schedule.sh
 
-.jdk16:schedule:test:
+jdk16:schedule:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:schedule:micronaut-build
@@ -1986,7 +1986,7 @@ jdk11:cache:test:
   script:
     - ./test-cache.sh
 
-.jdk16:cache:test:
+jdk16:cache:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:cache:micronaut-build
@@ -2002,7 +2002,7 @@ jdk11:servlet-tomcat:test:
   script:
     - ./test-servlet-tomcat.sh
 
-.jdk16:servlet-tomcat:test:
+jdk16:servlet-tomcat:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:servlet-tomcat:micronaut-build
@@ -2018,7 +2018,7 @@ jdk11:servlet-jetty:test:
   script:
     - ./test-servlet-jetty.sh
 
-.jdk16:servlet-jetty:test:
+jdk16:servlet-jetty:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:servlet-jetty:micronaut-build
@@ -2034,7 +2034,7 @@ jdk11:introspected:test:
   script:
     - ./test-introspected.sh
 
-.jdk16:introspected:test:
+jdk16:introspected:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:introspected:micronaut-build
@@ -2050,7 +2050,7 @@ jdk11:flyway-h2:test:
   script:
     - ./test-flyway-h2.sh
 
-.jdk16:flyway-h2:test:
+jdk16:flyway-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:flyway-h2:micronaut-build
@@ -2073,7 +2073,7 @@ jdk11:flyway-postgres:test:
   script:
     - ./test-flyway-postgres.sh
 
-.jdk16:flyway-postgres:test:
+jdk16:flyway-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -2102,7 +2102,7 @@ jdk11:flyway-mariadb:test:
   script:
     - ./test-flyway-mariadb.sh
 
-.jdk16:flyway-mariadb:test:
+jdk16:flyway-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -2148,7 +2148,7 @@ jdk11:jooq-h2:test:
   script:
     - ./test-jooq-h2.sh
 
-.jdk16:jooq-h2:test:
+jdk16:jooq-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:jooq-h2:micronaut-build
@@ -2171,7 +2171,7 @@ jdk11:jooq-postgres:test:
   script:
     - ./test-jooq-postgres.sh
 
-.jdk16:jooq-postgres:test:
+jdk16:jooq-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -2197,7 +2197,7 @@ jdk11:redis:test:
   script:
     - ./test-redis.sh
 
-.jdk16:redis:test:
+jdk16:redis:test:
   <<: *micronaut-test-template
   services:
     - name: redislabs/redisearch:1.6.13
@@ -2219,7 +2219,7 @@ jdk11:function-aws:test:
   script:
     - ./test-function-aws.sh
 
-.jdk16:function-aws:test:
+jdk16:function-aws:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
   before_script:
@@ -2241,7 +2241,7 @@ jdk11:aws-app:test:
   script:
     - ./test-aws-app.sh
 
-.jdk16:aws-app:test:
+jdk16:aws-app:test:
   <<: *micronaut-test-template
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base
   before_script:
@@ -2260,7 +2260,7 @@ jdk11:grpc:test:
   script:
     - ./test-grpc.sh
 
-.jdk16:grpc:test:
+jdk16:grpc:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:grpc:micronaut-build
@@ -2279,7 +2279,7 @@ jdk11:mqtt-v3:test:
   script:
     - ./test-mqtt-v3.sh
 
-.jdk16:mqtt-v3:test:
+jdk16:mqtt-v3:test:
   <<: *micronaut-test-template
   services:
     - name: eclipse-mosquitto:1.6.12
@@ -2301,7 +2301,7 @@ jdk11:mqtt-v5:test:
   script:
     - ./test-mqtt-v5.sh
 
-.jdk16:mqtt-v5:test:
+jdk16:mqtt-v5:test:
   <<: *micronaut-test-template
   services:
     - name: eclipse-mosquitto:1.6.12
@@ -2320,7 +2320,7 @@ jdk11:liquibase-h2:test:
   script:
     - ./test-liquibase-h2.sh
 
-.jdk16:liquibase-h2:test:
+jdk16:liquibase-h2:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:liquibase-h2:micronaut-build
@@ -2343,7 +2343,7 @@ jdk11:liquibase-postgres:test:
   script:
     - ./test-liquibase-postgres.sh
 
-.jdk16:liquibase-postgres:test:
+jdk16:liquibase-postgres:test:
   <<: *micronaut-test-template
   services:
     - name: postgres:11.5-alpine
@@ -2372,7 +2372,7 @@ jdk11:liquibase-mariadb:test:
   script:
     - ./test-liquibase-mariadb.sh
 
-.jdk16:liquibase-mariadb:test:
+jdk16:liquibase-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -2394,7 +2394,7 @@ jdk11:aws-sdkv2-s3:test:
   script:
     - ./test-aws-sdkv2-s3.sh
 
-.jdk16:aws-sdkv2-s3:test:
+jdk16:aws-sdkv2-s3:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:aws-sdkv2-s3:micronaut-build
@@ -2410,7 +2410,7 @@ jdk11:aws-sdkv2-paramstore:test:
   script:
     - ./test-aws-sdkv2-paramstore.sh
 
-.jdk16:aws-sdkv2-paramstore:test:
+jdk16:aws-sdkv2-paramstore:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk16:aws-sdkv2-paramstore:micronaut-build
@@ -2429,7 +2429,7 @@ jdk11:cassandra:test:
   script:
     - ./test-cassandra.sh
 
-.jdk16:cassandra:test:
+jdk16:cassandra:test:
   <<: *micronaut-test-template
   services:
     - name: cassandra:3.11.10
@@ -2451,7 +2451,7 @@ jdk11:kafka:test:
   script:
     - ./test-kafka.sh
 
-.jdk16:kafka:test:
+jdk16:kafka:test:
   <<: *micronaut-test-template
   services:
     - name: lensesio/fast-data-dev
