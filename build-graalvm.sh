@@ -21,7 +21,7 @@ downloadGraalVM() {
 if [ "$JDK_VERSION" == "jdk11" ]; then
     downloadGraalVM "java11"
 elif [ "$JDK_VERSION" == "jdk16" ]; then
-    downloadJdk "labsjdk-ce-16"
+    downloadGraalVM "java16"
 else
     echo "Need to provide a valid JDK version: jdk11, jdk16"
     exit 1
