@@ -1283,7 +1283,7 @@ jdk11:kafka:micronaut-build:
     - aws
     - speed
 
-.jdk17:kafka:micronaut-build:
+jdk17:kafka:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -2455,7 +2455,7 @@ jdk11:kafka:test:
   script:
     - ./test-kafka.sh
 
-.jdk17:kafka:test:
+jdk17:kafka:test:
   <<: *micronaut-test-template
   services:
     - name: lensesio/fast-data-dev
