@@ -1981,6 +1981,9 @@ jdk17:schedule:test:
   needs: ["jdk17:schedule:micronaut-build"]
   script:
     - ./test-schedule.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:cache:test:
   <<: *micronaut-test-template
