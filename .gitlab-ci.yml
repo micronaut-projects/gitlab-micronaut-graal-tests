@@ -713,7 +713,7 @@ jdk11:data-jpa-oracle:micronaut-build:
     - aws
     - memory
 
-.jdk17:data-jpa-oracle:micronaut-build:
+jdk17:data-jpa-oracle:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -735,7 +735,7 @@ jdk11:data-jpa-sqlserver:micronaut-build:
     - aws
     - memory
 
-.jdk17:data-jpa-sqlserver:micronaut-build:
+jdk17:data-jpa-sqlserver:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
