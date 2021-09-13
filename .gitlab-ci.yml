@@ -918,7 +918,7 @@ jdk16:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-.jdk11:elasticsearch:micronaut-build:
+jdk11:elasticsearch:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -929,7 +929,7 @@ jdk16:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-.jdk16:elasticsearch:micronaut-build:
+jdk16:elasticsearch:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -2116,10 +2116,10 @@ jdk16:flyway-mariadb:test:
   script:
     - ./test-flyway-mariadb.sh
 
-.jdk11:elasticsearch:test:
+jdk11:elasticsearch:test:
   <<: *micronaut-test-template
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
       alias: elasticsearchhost
       command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
   dependencies:
@@ -2128,10 +2128,10 @@ jdk16:flyway-mariadb:test:
   script:
     - ./test-elasticsearch.sh
 
-.jdk16:elasticsearch:test:
+jdk16:elasticsearch:test:
   <<: *micronaut-test-template
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    - name: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
       alias: elasticsearchhost
       command: [ "/bin/elasticsearch", "-Ediscovery.type=single-node" ]
   dependencies:
