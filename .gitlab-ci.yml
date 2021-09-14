@@ -1921,7 +1921,7 @@ jdk11:data-jpa-oracle:test:
   script:
     - ./test-data-jpa-oracle.sh
 
-.jdk17:data-jpa-oracle:test:
+jdk17:data-jpa-oracle:test:
   <<: *micronaut-test-template
   retry:
     max: 2
@@ -1951,7 +1951,7 @@ jdk11:data-jpa-sqlserver:test:
   script:
     - ./test-data-jpa-sqlserver.sh
 
-.jdk17:data-jpa-sqlserver:test:
+jdk17:data-jpa-sqlserver:test:
   <<: *micronaut-test-template
   services:
     - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
