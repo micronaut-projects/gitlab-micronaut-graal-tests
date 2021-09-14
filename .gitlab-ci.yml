@@ -284,7 +284,7 @@ jdk17:views-freemarker:micronaut-build:
     - aws
     - speed
 
-jdk11:views-handlebars:micronaut-build:
+.jdk11:views-handlebars:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -295,7 +295,7 @@ jdk11:views-handlebars:micronaut-build:
     - aws
     - speed
 
-jdk17:views-handlebars:micronaut-build:
+.jdk17:views-handlebars:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -1498,7 +1498,7 @@ jdk17:views-freemarker:test:
   script:
     - ./test-views-freemarker.sh
 
-jdk11:views-handlebars:test:
+.jdk11:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk11:views-handlebars:micronaut-build
@@ -1506,7 +1506,7 @@ jdk11:views-handlebars:test:
   script:
     - ./test-views-handlebars.sh
 
-jdk17:views-handlebars:test:
+.jdk17:views-handlebars:test:
   <<: *micronaut-test-template
   dependencies:
     - jdk17:views-handlebars:micronaut-build
