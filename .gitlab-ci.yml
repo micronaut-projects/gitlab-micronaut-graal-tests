@@ -170,7 +170,7 @@ jdk16:service-discovery-consul:micronaut-build:
     - aws
     - speed
 
-jdk11:service-discovery-eureka:micronaut-build:
+.jdk11:service-discovery-eureka:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -181,7 +181,7 @@ jdk11:service-discovery-eureka:micronaut-build:
     - aws
     - speed
 
-jdk16:service-discovery-eureka:micronaut-build:
+.jdk16:service-discovery-eureka:micronaut-build:
   <<: *jdk16-build
   artifacts:
     paths:
@@ -1390,7 +1390,7 @@ jdk16:service-discovery-consul:test:
     - aws
     - speed
 
-jdk11:service-discovery-eureka:test:
+.jdk11:service-discovery-eureka:test:
   <<: *micronaut-test-template
   services:
     - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
@@ -1404,7 +1404,7 @@ jdk11:service-discovery-eureka:test:
     - aws
     - speed
 
-jdk16:service-discovery-eureka:test:
+.jdk16:service-discovery-eureka:test:
   <<: *micronaut-test-template
   services:
     - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/eureka-server:2.3.0
