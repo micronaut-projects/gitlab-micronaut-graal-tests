@@ -1002,7 +1002,7 @@ jdk17:jooq-postgres:micronaut-build:
     - aws
     - memory
 
-jdk11:redis:micronaut-build:
+.jdk11:redis:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -1013,7 +1013,7 @@ jdk11:redis:micronaut-build:
     - aws
     - speed
 
-jdk17:redis:micronaut-build:
+.jdk17:redis:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -2193,7 +2193,7 @@ jdk17:jooq-postgres:test:
   script:
     - ./test-jooq-postgres.sh
 
-jdk11:redis:test:
+.jdk11:redis:test:
   <<: *micronaut-test-template
   services:
     - name: redislabs/redisearch:1.6.13
@@ -2204,7 +2204,7 @@ jdk11:redis:test:
   script:
     - ./test-redis.sh
 
-jdk17:redis:test:
+.jdk17:redis:test:
   <<: *micronaut-test-template
   services:
     - name: redislabs/redisearch:1.6.13
