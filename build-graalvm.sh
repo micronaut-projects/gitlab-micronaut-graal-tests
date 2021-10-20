@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JDK_VERSION=$1
-GRAALVM_VERSION="21.2.0"
+GRAALVM_VERSION="21.3.0"
 
 apt update && apt install jq -y
 
@@ -20,10 +20,10 @@ downloadGraalVM() {
 
 if [ "$JDK_VERSION" == "jdk11" ]; then
     downloadGraalVM "java11"
-elif [ "$JDK_VERSION" == "jdk16" ]; then
-    downloadGraalVM "java16"
+elif [ "$JDK_VERSION" == "jdk17" ]; then
+    downloadGraalVM "java17"
 else
-    echo "Need to provide a valid JDK version: jdk11, jdk16"
+    echo "Need to provide a valid JDK version: jdk11, jdk17"
     exit 1
 fi
 
