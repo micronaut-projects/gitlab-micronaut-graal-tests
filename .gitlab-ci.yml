@@ -1695,11 +1695,13 @@ jdk11:data-jdbc-oracle:test:
     when:
       - always
   services:
-    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+    - name: gvenzl/oracle-xe:18.4.0
       alias: oraclehost
   dependencies:
     - jdk11:data-jdbc-oracle:micronaut-build
   needs: ["jdk11:data-jdbc-oracle:micronaut-build"]
+  variables:
+    ORACLE_PASSWORD: oracle
   script:
     - ./test-data-jdbc-oracle.sh
 
@@ -1710,11 +1712,13 @@ jdk17:data-jdbc-oracle:test:
     when:
       - always
   services:
-    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+    - name: gvenzl/oracle-xe:18.4.0
       alias: oraclehost
   dependencies:
     - jdk17:data-jdbc-oracle:micronaut-build
   needs: ["jdk17:data-jdbc-oracle:micronaut-build"]
+  variables:
+    ORACLE_PASSWORD: oracle
   script:
     - ./test-data-jdbc-oracle.sh
 
@@ -1913,11 +1917,13 @@ jdk11:data-jpa-oracle:test:
     when:
       - always
   services:
-    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+    - name: gvenzl/oracle-xe:18.4.0
       alias: oraclehost
   dependencies:
     - jdk11:data-jpa-oracle:micronaut-build
   needs: ["jdk11:data-jpa-oracle:micronaut-build"]
+  variables:
+    ORACLE_PASSWORD: oracle
   script:
     - ./test-data-jpa-oracle.sh
 
@@ -1928,11 +1934,13 @@ jdk17:data-jpa-oracle:test:
     when:
       - always
   services:
-    - name: registry.gitlab.com/micronaut-projects/micronaut-graal-tests/oracle-database:18.4.0-xe
+    - name: gvenzl/oracle-xe:18.4.0
       alias: oraclehost
   dependencies:
     - jdk17:data-jpa-oracle:micronaut-build
   needs: ["jdk17:data-jpa-oracle:micronaut-build"]
+  variables:
+    ORACLE_PASSWORD: oracle
   script:
     - ./test-data-jpa-oracle.sh
 
