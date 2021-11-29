@@ -487,7 +487,7 @@ jdk11:data-jdbc-h2:micronaut-build:
     - ./build-data-jdbc.sh h2
   tags:
     - aws
-    - speed
+    - memory
 
 jdk17:data-jdbc-h2:micronaut-build:
   <<: *jdk17-build
@@ -861,7 +861,7 @@ jdk11:flyway-h2:micronaut-build:
     - ./build-flyway.sh h2
   tags:
     - aws
-    - speed
+    - memory
 
 jdk17:flyway-h2:micronaut-build:
   <<: *jdk17-build
