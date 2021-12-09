@@ -21,7 +21,7 @@ echo "-- Testing..."
 #EXPECTED_RESPONSE='success'
 #if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
-RESPONSE=$(curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"2.5.0"}' $API_ENDPOINT)
+RESPONSE=$(curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"3.2.0"}' $API_ENDPOINT)
 EXPECTED_RESPONSE='{"name":"Micronaut 3.2.0","url":"https://api.github.com/repos/micronaut-projects/micronaut-core/releases/53949281"}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
