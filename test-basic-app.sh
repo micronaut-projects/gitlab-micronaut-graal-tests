@@ -28,11 +28,11 @@ if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 # HTTP Client
 RESPONSE=$(curl -s localhost:8080/github/releases)
-EXPECTED_RESPONSE_CONTAINS='{"name":"Micronaut 2.5.0","url":"https://api.github.com/repos/micronaut-projects/micronaut-core/releases/42092042"}'
+EXPECTED_RESPONSE_CONTAINS='{"name":"Micronaut 3.2.0","url":"https://api.github.com/repos/micronaut-projects/micronaut-core/releases/53949281"}'
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/github/releases-lowlevel)
-EXPECTED_RESPONSE_CONTAINS='{"name":"Micronaut 2.5.0","url":"https://api.github.com/repos/micronaut-projects/micronaut-core/releases/42092042"}'
+EXPECTED_RESPONSE_CONTAINS='{"name":"Micronaut 3.2.0","url":"https://api.github.com/repos/micronaut-projects/micronaut-core/releases/53949281"}'
 if [ "$RESPONSE" == "${RESPONSE%"$EXPECTED_RESPONSE_CONTAINS"*}" ]; then echo $RESPONSE && exit 1; fi
 
 # Micronaut Version
