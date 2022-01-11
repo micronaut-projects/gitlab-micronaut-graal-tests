@@ -575,7 +575,7 @@ jdk11:data-jdbc-sqlserver:micronaut-build:
     - ./build-data-jdbc.sh sqlserver
   tags:
     - aws
-    - speed
+    - memory
 
 jdk17:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk17-build
