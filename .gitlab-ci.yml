@@ -896,7 +896,7 @@ jdk17:flyway-postgres:micronaut-build:
     - aws
     - memory
 
-jdk11:flyway-mariadb:micronaut-build:
+.jdk11:flyway-mariadb:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -907,7 +907,7 @@ jdk11:flyway-mariadb:micronaut-build:
     - aws
     - speed
 
-jdk17:flyway-mariadb:micronaut-build:
+.jdk17:flyway-mariadb:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -2099,7 +2099,7 @@ jdk17:flyway-postgres:test:
   script:
     - ./test-flyway-postgres.sh
 
-jdk11:flyway-mariadb:test:
+.jdk11:flyway-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
@@ -2113,7 +2113,7 @@ jdk11:flyway-mariadb:test:
   script:
     - ./test-flyway-mariadb.sh
 
-jdk17:flyway-mariadb:test:
+.jdk17:flyway-mariadb:test:
   <<: *micronaut-test-template
   services:
     - name: mariadb:10.4.8-bionic
