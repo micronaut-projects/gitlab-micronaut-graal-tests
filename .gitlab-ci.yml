@@ -601,7 +601,7 @@ jdk11:data-jdbc-mysql:micronaut-build:
     - ./build-data-jdbc.sh mysql
   tags:
     - aws
-    - speed
+    - memory
 
 jdk17:data-jdbc-mysql:micronaut-build:
   <<: *jdk17-build
