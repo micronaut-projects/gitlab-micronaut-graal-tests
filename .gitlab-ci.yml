@@ -34,7 +34,7 @@ log-commits:
     paths:
       - $CI_PROJECT_DIR/graal_dist
   cache:
-    key: graalvm-22.1.0-${CI_JOB_NAME}
+    key: graalvm-22.1.0.1-${CI_JOB_NAME}
     paths:
       - $CI_PROJECT_DIR/graal_dist
 
