@@ -109,22 +109,22 @@ jdk11:email:micronaut-build:
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-email/email
-    script:
-      - ./build-email.sh
-    tags:
-      - aws
-      - speed
+  script:
+    - ./build-email.sh
+  tags:
+    - aws
+    - speed
     
 jdk17:email:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/micronaut-email/email
-    script:
-      - ./build-email.sh
-    tags:
-      - aws
-      - speed
+  script:
+    - ./build-email.sh
+  tags:
+    - aws
+    - speed
 
 jdk11:kotlin:micronaut-build:
   <<: *jdk11-build
