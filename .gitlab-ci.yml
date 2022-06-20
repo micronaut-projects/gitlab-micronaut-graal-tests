@@ -1357,7 +1357,7 @@ jdk17:basic-app:test:
     - ./test-basic-app.sh
 
 jdk11:email:test:
-  <<: *micronaut-test-distroless-template
+  <<: *micronaut-test-template
   dependencies:
     - jdk11:email:micronaut-build
   needs: ["jdk11:email:micronaut-build"]
@@ -1365,7 +1365,7 @@ jdk11:email:test:
     - ./test-email.sh
 
 jdk17:email:test:
-  <<: *micronaut-test-distroless-template
+  <<: *micronaut-test-template
   dependencies:
     - jdk17:email:micronaut-build
   needs: ["jdk17:email:micronaut-build"]
