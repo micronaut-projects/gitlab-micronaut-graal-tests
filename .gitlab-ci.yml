@@ -104,6 +104,28 @@ jdk17:basic-app:micronaut-build:
     - aws
     - speed
 
+jdk11:email:micronaut-build:
+  <<: *jdk11-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-email/email
+  script:
+    - ./build-email.sh
+  tags:
+    - aws
+    - speed
+    
+jdk17:email:micronaut-build:
+  <<: *jdk17-build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/micronaut-email/email
+  script:
+    - ./build-email.sh
+  tags:
+    - aws
+    - speed
+
 jdk11:kotlin:micronaut-build:
   <<: *jdk11-build
   artifacts:
@@ -1329,6 +1351,22 @@ jdk17:basic-app:test:
   needs: ["jdk17:basic-app:micronaut-build"]
   script:
     - ./test-basic-app.sh
+
+jdk11:email:test:
+  <<: *micronaut-test-distroless-template
+  dependencies:
+    - jdk11:email:micronaut-build
+  needs: ["jdk11:email:micronaut-build"]
+  script:
+    - ./test-email.sh
+
+jdk17:email:test:
+  <<: *micronaut-test-distroless-template
+  dependencies:
+    - jdk17:email:micronaut-build
+  needs: ["jdk17:email:micronaut-build"]
+  script:
+    - ./test-email.sh
 
 jdk11:kotlin:test:
   <<: *micronaut-test-template
