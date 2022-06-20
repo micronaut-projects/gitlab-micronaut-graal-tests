@@ -125,7 +125,7 @@ jdk17:email:micronaut-build:
     tags:
       - aws
       - speed
-       
+
 jdk11:kotlin:micronaut-build:
   <<: *jdk11-build
   artifacts:
