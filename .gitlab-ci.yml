@@ -108,7 +108,7 @@ jdk11:email:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-email/email
+      - $CI_PROJECT_DIR/micronaut-email/native-email
   script:
     - ./build-email.sh
   tags:
@@ -119,7 +119,7 @@ jdk17:email:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/micronaut-email/email
+      - $CI_PROJECT_DIR/micronaut-email/native-email
   script:
     - ./build-email.sh
   tags:
