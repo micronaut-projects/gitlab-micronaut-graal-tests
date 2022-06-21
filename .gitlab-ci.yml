@@ -240,7 +240,7 @@ jdk17:zipkin:micronaut-build:
     - aws
     - speed
 
-jdk11:rabbitmq:micronaut-build:
+.jdk11:rabbitmq:micronaut-build:
   <<: *jdk11-build
   artifacts:
     paths:
@@ -251,7 +251,7 @@ jdk11:rabbitmq:micronaut-build:
     - aws
     - speed
 
-jdk17:rabbitmq:micronaut-build:
+.jdk17:rabbitmq:micronaut-build:
   <<: *jdk17-build
   artifacts:
     paths:
@@ -1482,7 +1482,7 @@ jdk17:zipkin:test:
   script:
     - ./test-zipkin.sh
 
-jdk11:rabbitmq:test:
+.jdk11:rabbitmq:test:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.8.9-management-alpine
@@ -1493,7 +1493,7 @@ jdk11:rabbitmq:test:
   script:
     - ./test-rabbitmq.sh
 
-jdk17:rabbitmq:test:
+.jdk17:rabbitmq:test:
   <<: *micronaut-test-template
   services:
     - name: rabbitmq:3.8.9-management-alpine
