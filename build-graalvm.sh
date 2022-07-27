@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JDK_VERSION=$1
-GRAALVM_BRANCH="release/graal-vm/22.2"
+GRAALVM_BRANCH="master"
 
 downloadJdk() {
     JAVA_VERSION=$1
