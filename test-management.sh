@@ -17,7 +17,7 @@ EXPECTED_RESPONSE='{"remote":"https://github.com/micronaut-graal-tests/micronaut
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/metrics | jq '.names | length')
-EXPECTED_RESPONSE='22'
+EXPECTED_RESPONSE='23'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && exit 1; fi
 
 RESPONSE=$(curl -s localhost:8080/loggers | jq '.levels | length')
