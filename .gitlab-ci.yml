@@ -2246,7 +2246,7 @@ jdk17:jooq-postgres:test:
   script:
     - ./test-redis.sh
 
-jdk17:redis:test:
+.jdk17:redis:test:
   <<: *micronaut-test-template
   services:
     - name: redislabs/redisearch:1.6.13
