@@ -149,21 +149,26 @@ jdk17:maven:micronaut-build:
   script:
     - ./build-maven.sh
 
-jdk11:service-discovery-consul:micronaut-build:
-  <<: *jdk11-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
-  script:
-    - ./build-service-discovery-consul.sh
-
-jdk17:service-discovery-consul:micronaut-build:
-  <<: *jdk17-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
-  script:
-    - ./build-service-discovery-consul.sh
+#
+# service-discovery-consul tests commented out as they require a faster custom runner (and ours is broken)
+#
+# TODO: Move these to the discovery module itself
+#
+#jdk11:service-discovery-consul:micronaut-build:
+#  <<: *jdk11-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
+#  script:
+#    - ./build-service-discovery-consul.sh
+#
+#jdk17:service-discovery-consul:micronaut-build:
+#  <<: *jdk17-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
+#  script:
+#    - ./build-service-discovery-consul.sh
 
 .jdk11:service-discovery-eureka:micronaut-build:
   <<: *jdk11-build
@@ -841,37 +846,42 @@ jdk17:grpc:micronaut-build:
   script:
     - ./build-grpc.sh
 
-jdk11:mqtt-v3:micronaut-build:
-  <<: *jdk11-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
-  script:
-    - ./build-mqtt.sh v3
-
-jdk17:mqtt-v3:micronaut-build:
-  <<: *jdk17-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
-  script:
-    - ./build-mqtt.sh v3
-
-jdk11:mqtt-v5:micronaut-build:
-  <<: *jdk11-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
-  script:
-    - ./build-mqtt.sh v5
-
-jdk17:mqtt-v5:micronaut-build:
-  <<: *jdk17-build
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
-  script:
-    - ./build-mqtt.sh v5
+#
+# MQTT tests commented out as they require a faster custom runner (and ours is broken)
+#
+# TODO: Move these to the mqtt module itself
+#
+#jdk11:mqtt-v3:micronaut-build:
+#  <<: *jdk11-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
+#  script:
+#    - ./build-mqtt.sh v3
+#
+#jdk17:mqtt-v3:micronaut-build:
+#  <<: *jdk17-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
+#  script:
+#    - ./build-mqtt.sh v3
+#
+#jdk11:mqtt-v5:micronaut-build:
+#  <<: *jdk11-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
+#  script:
+#    - ./build-mqtt.sh v5
+#
+#jdk17:mqtt-v5:micronaut-build:
+#  <<: *jdk17-build
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
+#  script:
+#    - ./build-mqtt.sh v5
 
 jdk11:liquibase-h2:micronaut-build:
   <<: *jdk11-build
@@ -1073,27 +1083,32 @@ jdk17:maven:test:
   script:
     - ./test-maven.sh
 
-jdk11:service-discovery-consul:test:
-  <<: *micronaut-test-template
-  services:
-    - name: consul:1.8.0
-      alias: consulhost
-  dependencies:
-    - jdk11:service-discovery-consul:micronaut-build
-  needs: ["jdk11:service-discovery-consul:micronaut-build"]
-  script:
-    - ./test-service-discovery-consul.sh
-
-jdk17:service-discovery-consul:test:
-  <<: *micronaut-test-template
-  services:
-    - name: consul:1.8.0
-      alias: consulhost
-  dependencies:
-    - jdk17:service-discovery-consul:micronaut-build
-  needs: ["jdk17:service-discovery-consul:micronaut-build"]
-  script:
-    - ./test-service-discovery-consul.sh
+#
+# service-discovery-consul tests commented out as they require a faster custom runner (and ours is broken)
+#
+# TODO: Move these to the discovery module itself
+#
+#jdk11:service-discovery-consul:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: consul:1.8.0
+#      alias: consulhost
+#  dependencies:
+#    - jdk11:service-discovery-consul:micronaut-build
+#  needs: ["jdk11:service-discovery-consul:micronaut-build"]
+#  script:
+#    - ./test-service-discovery-consul.sh
+#
+#jdk17:service-discovery-consul:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: consul:1.8.0
+#      alias: consulhost
+#  dependencies:
+#    - jdk17:service-discovery-consul:micronaut-build
+#  needs: ["jdk17:service-discovery-consul:micronaut-build"]
+#  script:
+#    - ./test-service-discovery-consul.sh
 
 .jdk11:service-discovery-eureka:test:
   <<: *micronaut-test-template
@@ -1975,49 +1990,54 @@ jdk17:grpc:test:
   script:
     - ./test-grpc.sh
 
-jdk11:mqtt-v3:test:
-  <<: *micronaut-test-template
-  services:
-    - name: eclipse-mosquitto:1.6.12
-      alias: mqtthost
-  dependencies:
-    - jdk11:mqtt-v3:micronaut-build
-  needs: ["jdk11:mqtt-v3:micronaut-build"]
-  script:
-    - ./test-mqtt-v3.sh
-
-jdk17:mqtt-v3:test:
-  <<: *micronaut-test-template
-  services:
-    - name: eclipse-mosquitto:1.6.12
-      alias: mqtthost
-  dependencies:
-    - jdk17:mqtt-v3:micronaut-build
-  needs: ["jdk17:mqtt-v3:micronaut-build"]
-  script:
-    - ./test-mqtt-v3.sh
-
-jdk11:mqtt-v5:test:
-  <<: *micronaut-test-template
-  services:
-    - name: eclipse-mosquitto:1.6.12
-      alias: mqtthost
-  dependencies:
-    - jdk11:mqtt-v5:micronaut-build
-  needs: ["jdk11:mqtt-v5:micronaut-build"]
-  script:
-    - ./test-mqtt-v5.sh
-
-jdk17:mqtt-v5:test:
-  <<: *micronaut-test-template
-  services:
-    - name: eclipse-mosquitto:1.6.12
-      alias: mqtthost
-  dependencies:
-    - jdk17:mqtt-v5:micronaut-build
-  needs: ["jdk17:mqtt-v5:micronaut-build"]
-  script:
-    - ./test-mqtt-v5.sh
+#
+# MQTT tests commented out as they require a faster custom runner (and ours is broken)
+#
+# TODO: Move these to the mqtt module itself
+#
+#jdk11:mqtt-v3:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: eclipse-mosquitto:1.6.12
+#      alias: mqtthost
+#  dependencies:
+#    - jdk11:mqtt-v3:micronaut-build
+#  needs: ["jdk11:mqtt-v3:micronaut-build"]
+#  script:
+#    - ./test-mqtt-v3.sh
+#
+#jdk17:mqtt-v3:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: eclipse-mosquitto:1.6.12
+#      alias: mqtthost
+#  dependencies:
+#    - jdk17:mqtt-v3:micronaut-build
+#  needs: ["jdk17:mqtt-v3:micronaut-build"]
+#  script:
+#    - ./test-mqtt-v3.sh
+#
+#jdk11:mqtt-v5:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: eclipse-mosquitto:1.6.12
+#      alias: mqtthost
+#  dependencies:
+#    - jdk11:mqtt-v5:micronaut-build
+#  needs: ["jdk11:mqtt-v5:micronaut-build"]
+#  script:
+#    - ./test-mqtt-v5.sh
+#
+#jdk17:mqtt-v5:test:
+#  <<: *micronaut-test-template
+#  services:
+#    - name: eclipse-mosquitto:1.6.12
+#      alias: mqtthost
+#  dependencies:
+#    - jdk17:mqtt-v5:micronaut-build
+#  needs: ["jdk17:mqtt-v5:micronaut-build"]
+#  script:
+#    - ./test-mqtt-v5.sh
 
 jdk11:liquibase-h2:test:
   <<: *micronaut-test-template
