@@ -89,9 +89,6 @@ jdk11:basic-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
     - ./build-basic-app.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:basic-app:micronaut-build:
   <<: *jdk17-build
@@ -111,10 +108,7 @@ jdk11:email:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-email/native-email
   script:
     - ./build-email.sh
-  tags:
-    - aws
-    - speed
-    
+
 jdk17:email:micronaut-build:
   <<: *jdk17-build
   artifacts:
@@ -122,9 +116,6 @@ jdk17:email:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-email/native-email
   script:
     - ./build-email.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:kotlin:micronaut-build:
   <<: *jdk11-build
@@ -133,9 +124,6 @@ jdk11:kotlin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-kotlin-graal/kotlin
   script:
     - ./build-kotlin.sh
-  tags:
-    - aws
-    - memory
 
 jdk17:kotlin:micronaut-build:
   <<: *jdk17-build
@@ -144,9 +132,6 @@ jdk17:kotlin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-kotlin-graal/kotlin
   script:
     - ./build-kotlin.sh
-  tags:
-    - aws
-    - memory
 
 jdk11:maven:micronaut-build:
   <<: *jdk11-build
@@ -155,9 +140,6 @@ jdk11:maven:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-maven-graal/maven
   script:
     - ./build-maven.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:maven:micronaut-build:
   <<: *jdk17-build
@@ -166,9 +148,6 @@ jdk17:maven:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-maven-graal/maven
   script:
     - ./build-maven.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:service-discovery-consul:micronaut-build:
   <<: *jdk11-build
@@ -177,9 +156,6 @@ jdk11:service-discovery-consul:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
     - ./build-service-discovery-consul.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:service-discovery-consul:micronaut-build:
   <<: *jdk17-build
@@ -188,9 +164,6 @@ jdk17:service-discovery-consul:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-consul/service-discovery-consul
   script:
     - ./build-service-discovery-consul.sh
-  tags:
-    - aws
-    - speed
 
 .jdk11:service-discovery-eureka:micronaut-build:
   <<: *jdk11-build
@@ -199,9 +172,6 @@ jdk17:service-discovery-consul:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
     - ./build-service-discovery-eureka.sh
-  tags:
-    - aws
-    - speed
 
 .jdk17:service-discovery-eureka:micronaut-build:
   <<: *jdk17-build
@@ -210,9 +180,6 @@ jdk17:service-discovery-consul:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-service-discovery-eureka/service-discovery-eureka
   script:
     - ./build-service-discovery-eureka.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:zipkin:micronaut-build:
   <<: *jdk11-build
@@ -221,9 +188,6 @@ jdk11:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
     - ./build-zipkin.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:zipkin:micronaut-build:
   <<: *jdk17-build
@@ -232,9 +196,6 @@ jdk17:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-zipkin-graal/zipkin
   script:
     - ./build-zipkin.sh
-  tags:
-    - aws
-    - speed
 
 .jdk11:rabbitmq:micronaut-build:
   <<: *jdk11-build
@@ -243,9 +204,6 @@ jdk17:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
     - ./build-rabbitmq.sh
-  tags:
-    - aws
-    - speed
 
 .jdk17:rabbitmq:micronaut-build:
   <<: *jdk17-build
@@ -254,9 +212,6 @@ jdk17:zipkin:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-rabbitmq-graal/rabbitmq
   script:
     - ./build-rabbitmq.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:management:micronaut-build:
   <<: *jdk11-build
@@ -265,9 +220,6 @@ jdk11:management:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
     - ./build-management.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:management:micronaut-build:
   <<: *jdk17-build
@@ -276,9 +228,6 @@ jdk17:management:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-management-graal/management
   script:
     - ./build-management.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:views-freemarker:micronaut-build:
   <<: *jdk11-build
@@ -287,9 +236,6 @@ jdk11:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
     - ./build-views.sh freemarker
-  tags:
-    - aws
-    - speed
 
 jdk17:views-freemarker:micronaut-build:
   <<: *jdk17-build
@@ -298,9 +244,6 @@ jdk17:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-freemarker
   script:
     - ./build-views.sh freemarker
-  tags:
-    - aws
-    - speed
 
 .jdk11:views-handlebars:micronaut-build:
   <<: *jdk11-build
@@ -309,9 +252,6 @@ jdk17:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
     - ./build-views.sh handlebars
-  tags:
-    - aws
-    - speed
 
 .jdk17:views-handlebars:micronaut-build:
   <<: *jdk17-build
@@ -320,9 +260,6 @@ jdk17:views-freemarker:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-handlebars
   script:
     - ./build-views.sh handlebars
-  tags:
-    - aws
-    - speed
 
 jdk11:views-thymeleaf:micronaut-build:
   <<: *jdk11-build
@@ -331,9 +268,6 @@ jdk11:views-thymeleaf:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
     - ./build-views.sh thymeleaf
-  tags:
-    - aws
-    - speed
 
 jdk17:views-thymeleaf:micronaut-build:
   <<: *jdk17-build
@@ -342,9 +276,6 @@ jdk17:views-thymeleaf:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-thymeleaf
   script:
     - ./build-views.sh thymeleaf
-  tags:
-    - aws
-    - speed
 
 jdk11:views-velocity:micronaut-build:
   <<: *jdk11-build
@@ -353,9 +284,6 @@ jdk11:views-velocity:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
     - ./build-views.sh velocity
-  tags:
-    - aws
-    - speed
 
 jdk17:views-velocity:micronaut-build:
   <<: *jdk17-build
@@ -364,9 +292,6 @@ jdk17:views-velocity:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-velocity
   script:
     - ./build-views.sh velocity
-  tags:
-    - aws
-    - speed
 
 jdk11:views-pebble:micronaut-build:
   <<: *jdk11-build
@@ -375,9 +300,6 @@ jdk11:views-pebble:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
   script:
     - ./build-views.sh pebble
-  tags:
-    - aws
-    - speed
 
 jdk17:views-pebble:micronaut-build:
   <<: *jdk17-build
@@ -386,9 +308,6 @@ jdk17:views-pebble:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-views-graal/views-pebble
   script:
     - ./build-views.sh pebble
-  tags:
-    - aws
-    - speed
 
 jdk11:security-jwt:micronaut-build:
   <<: *jdk11-build
@@ -397,9 +316,6 @@ jdk11:security-jwt:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
     - ./build-security-jwt.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:security-jwt:micronaut-build:
   <<: *jdk17-build
@@ -408,9 +324,6 @@ jdk17:security-jwt:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-jwt-graal/security-jwt
   script:
     - ./build-security-jwt.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:security-basic-auth:micronaut-build:
   <<: *jdk11-build
@@ -419,9 +332,6 @@ jdk11:security-basic-auth:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
     - ./build-security-basic-auth.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:security-basic-auth:micronaut-build:
   <<: *jdk17-build
@@ -430,9 +340,6 @@ jdk17:security-basic-auth:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-basic-auth-graal/security-basic-auth
   script:
     - ./build-security-basic-auth.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:security-cookie:micronaut-build:
   <<: *jdk11-build
@@ -441,9 +348,6 @@ jdk11:security-cookie:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
     - ./build-security-cookie.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:security-cookie:micronaut-build:
   <<: *jdk17-build
@@ -452,9 +356,6 @@ jdk17:security-cookie:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-cookie-graal/security-cookie
   script:
     - ./build-security-cookie.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:security-session:micronaut-build:
   <<: *jdk11-build
@@ -463,9 +364,6 @@ jdk11:security-session:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
     - ./build-security-session.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:security-session:micronaut-build:
   <<: *jdk17-build
@@ -474,9 +372,6 @@ jdk17:security-session:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-session-graal/security-session
   script:
     - ./build-security-session.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:security-ldap:micronaut-build:
   <<: *jdk11-build
@@ -485,9 +380,6 @@ jdk11:security-ldap:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-ldap-graal/security-ldap
   script:
     - ./build-security-ldap.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:security-ldap:micronaut-build:
   <<: *jdk17-build
@@ -496,9 +388,6 @@ jdk17:security-ldap:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-security-ldap-graal/security-ldap
   script:
     - ./build-security-ldap.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:data-jdbc-h2:micronaut-build:
   <<: *jdk11-build
@@ -507,9 +396,6 @@ jdk11:data-jdbc-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-h2
   script:
     - ./build-data-jdbc.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jdbc-h2:micronaut-build:
   <<: *jdk17-build
@@ -518,9 +404,6 @@ jdk17:data-jdbc-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-h2
   script:
     - ./build-data-jdbc.sh h2
-  tags:
-    - aws
-    - speed
 
 jdk11:data-jdbc-postgres:micronaut-build:
   <<: *jdk11-build
@@ -529,9 +412,6 @@ jdk11:data-jdbc-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres
   script:
     - ./build-data-jdbc.sh postgres
-  tags:
-    - aws
-    - speed
 
 jdk17:data-jdbc-postgres:micronaut-build:
   <<: *jdk17-build
@@ -540,9 +420,6 @@ jdk17:data-jdbc-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-postgres
   script:
     - ./build-data-jdbc.sh postgres
-  tags:
-    - aws
-    - speed
 
 jdk11:data-jdbc-oracle:micronaut-build:
   <<: *jdk11-build
@@ -551,9 +428,6 @@ jdk11:data-jdbc-oracle:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle
   script:
     - ./build-data-jdbc.sh oracle
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jdbc-oracle:micronaut-build:
   <<: *jdk17-build
@@ -562,9 +436,6 @@ jdk17:data-jdbc-oracle:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-oracle
   script:
     - ./build-data-jdbc.sh oracle
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jdbc-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -573,9 +444,6 @@ jdk11:data-jdbc-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb
   script:
     - ./build-data-jdbc.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jdbc-mariadb:micronaut-build:
   <<: *jdk17-build
@@ -584,9 +452,6 @@ jdk17:data-jdbc-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mariadb
   script:
     - ./build-data-jdbc.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk11-build
@@ -595,9 +460,6 @@ jdk11:data-jdbc-sqlserver:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver
   script:
     - ./build-data-jdbc.sh sqlserver
-  tags:
-    - aws
-    - speed
 
 jdk17:data-jdbc-sqlserver:micronaut-build:
   <<: *jdk17-build
@@ -606,9 +468,6 @@ jdk17:data-jdbc-sqlserver:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-sqlserver
   script:
     - ./build-data-jdbc.sh sqlserver
-  tags:
-    - aws
-    - speed
 
 jdk11:data-jdbc-mysql:micronaut-build:
   <<: *jdk11-build
@@ -617,9 +476,6 @@ jdk11:data-jdbc-mysql:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql
   script:
     - ./build-data-jdbc.sh mysql
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jdbc-mysql:micronaut-build:
   <<: *jdk17-build
@@ -628,9 +484,6 @@ jdk17:data-jdbc-mysql:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jdbc-graal/data-jdbc-mysql
   script:
     - ./build-data-jdbc.sh mysql
-  tags:
-    - aws
-    - speed
 
 jdk11:data-jpa-h2:micronaut-build:
   <<: *jdk11-build
@@ -639,9 +492,6 @@ jdk11:data-jpa-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-h2
   script:
     - ./build-data-jpa.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-h2:micronaut-build:
   <<: *jdk17-build
@@ -650,9 +500,6 @@ jdk17:data-jpa-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-h2
   script:
     - ./build-data-jpa.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jpa-postgres:micronaut-build:
   <<: *jdk11-build
@@ -661,9 +508,6 @@ jdk11:data-jpa-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-postgres
   script:
     - ./build-data-jpa.sh postgres
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-postgres:micronaut-build:
   <<: *jdk17-build
@@ -672,9 +516,6 @@ jdk17:data-jpa-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-postgres
   script:
     - ./build-data-jpa.sh postgres
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jpa-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -683,9 +524,6 @@ jdk11:data-jpa-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mariadb
   script:
     - ./build-data-jpa.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-mariadb:micronaut-build:
   <<: *jdk17-build
@@ -694,9 +532,6 @@ jdk17:data-jpa-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mariadb
   script:
     - ./build-data-jpa.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jpa-mysql:micronaut-build:
   <<: *jdk11-build
@@ -705,9 +540,6 @@ jdk11:data-jpa-mysql:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mysql
   script:
     - ./build-data-jpa.sh mysql
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-mysql:micronaut-build:
   <<: *jdk17-build
@@ -716,9 +548,6 @@ jdk17:data-jpa-mysql:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-mysql
   script:
     - ./build-data-jpa.sh mysql
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jpa-oracle:micronaut-build:
   <<: *jdk11-build
@@ -727,9 +556,6 @@ jdk11:data-jpa-oracle:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-oracle
   script:
     - ./build-data-jpa.sh oracle
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-oracle:micronaut-build:
   <<: *jdk17-build
@@ -738,9 +564,6 @@ jdk17:data-jpa-oracle:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-oracle
   script:
     - ./build-data-jpa.sh oracle
-  tags:
-    - aws
-    - memory
 
 jdk11:data-jpa-sqlserver:micronaut-build:
   <<: *jdk11-build
@@ -749,9 +572,6 @@ jdk11:data-jpa-sqlserver:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-sqlserver
   script:
     - ./build-data-jpa.sh sqlserver
-  tags:
-    - aws
-    - memory
 
 jdk17:data-jpa-sqlserver:micronaut-build:
   <<: *jdk17-build
@@ -760,9 +580,6 @@ jdk17:data-jpa-sqlserver:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-data-jpa-graal/data-jpa-sqlserver
   script:
     - ./build-data-jpa.sh sqlserver
-  tags:
-    - aws
-    - memory
 
 jdk11:schedule:micronaut-build:
   <<: *jdk11-build
@@ -771,9 +588,6 @@ jdk11:schedule:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
     - ./build-schedule.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:schedule:micronaut-build:
   <<: *jdk17-build
@@ -782,9 +596,6 @@ jdk17:schedule:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-schedule-graal/schedule
   script:
     - ./build-schedule.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:cache:micronaut-build:
   <<: *jdk11-build
@@ -793,9 +604,6 @@ jdk11:cache:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
     - ./build-cache.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:cache:micronaut-build:
   <<: *jdk17-build
@@ -804,9 +612,6 @@ jdk17:cache:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cache-graal/cache
   script:
     - ./build-cache.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:servlet-tomcat:micronaut-build:
   <<: *jdk11-build
@@ -815,9 +620,6 @@ jdk11:servlet-tomcat:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-tomcat
   script:
     - ./build-servlet.sh tomcat
-  tags:
-    - aws
-    - speed
 
 jdk17:servlet-tomcat:micronaut-build:
   <<: *jdk17-build
@@ -826,9 +628,6 @@ jdk17:servlet-tomcat:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-tomcat
   script:
     - ./build-servlet.sh tomcat
-  tags:
-    - aws
-    - speed
 
 jdk11:servlet-jetty:micronaut-build:
   <<: *jdk11-build
@@ -837,9 +636,6 @@ jdk11:servlet-jetty:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
     - ./build-servlet.sh jetty
-  tags:
-    - aws
-    - speed
 
 jdk17:servlet-jetty:micronaut-build:
   <<: *jdk17-build
@@ -848,9 +644,6 @@ jdk17:servlet-jetty:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-servlet-graal/servlet-jetty
   script:
     - ./build-servlet.sh jetty
-  tags:
-    - aws
-    - speed
 
 jdk11:introspected:micronaut-build:
   <<: *jdk11-build
@@ -859,9 +652,6 @@ jdk11:introspected:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
     - ./build-introspected.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:introspected:micronaut-build:
   <<: *jdk17-build
@@ -870,9 +660,6 @@ jdk17:introspected:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-introspected-graal/introspected
   script:
     - ./build-introspected.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:flyway-h2:micronaut-build:
   <<: *jdk11-build
@@ -881,9 +668,6 @@ jdk11:flyway-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-h2
   script:
     - ./build-flyway.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk17:flyway-h2:micronaut-build:
   <<: *jdk17-build
@@ -892,9 +676,6 @@ jdk17:flyway-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-h2
   script:
     - ./build-flyway.sh h2
-  tags:
-    - aws
-    - speed
 
 jdk11:flyway-postgres:micronaut-build:
   <<: *jdk11-build
@@ -903,9 +684,6 @@ jdk11:flyway-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres
   script:
     - ./build-flyway.sh postgres
-  tags:
-    - aws
-    - memory
 
 jdk17:flyway-postgres:micronaut-build:
   <<: *jdk17-build
@@ -914,9 +692,6 @@ jdk17:flyway-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-postgres
   script:
     - ./build-flyway.sh postgres
-  tags:
-    - aws
-    - memory
 
 .jdk11:flyway-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -925,9 +700,6 @@ jdk17:flyway-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb
   script:
     - ./build-flyway.sh mariadb
-  tags:
-    - aws
-    - speed
 
 .jdk17:flyway-mariadb:micronaut-build:
   <<: *jdk17-build
@@ -936,9 +708,6 @@ jdk17:flyway-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-flyway-graal/flyway-mariadb
   script:
     - ./build-flyway.sh mariadb
-  tags:
-    - aws
-    - speed
 
 jdk11:elasticsearch:micronaut-build:
   <<: *jdk11-build
@@ -947,9 +716,6 @@ jdk11:elasticsearch:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch
   script:
     - ./build-elasticsearch.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:elasticsearch:micronaut-build:
   <<: *jdk17-build
@@ -958,9 +724,6 @@ jdk17:elasticsearch:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-elasticsearch-graal/elasticsearch
   script:
     - ./build-elasticsearch.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:jooq-h2:micronaut-build:
   <<: *jdk11-build
@@ -969,9 +732,6 @@ jdk11:jooq-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-h2
   script:
     - ./build-jooq-h2.sh
-  tags:
-    - aws
-    - memory
 
 jdk17:jooq-h2:micronaut-build:
   <<: *jdk17-build
@@ -980,9 +740,6 @@ jdk17:jooq-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-h2
   script:
     - ./build-jooq-h2.sh
-  tags:
-    - aws
-    - memory
 
 jdk11:jooq-postgres:micronaut-build:
   <<: *jdk11-build
@@ -998,9 +755,6 @@ jdk11:jooq-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-postgres
   script:
     - ./build-jooq-postgres.sh
-  tags:
-    - aws
-    - memory
 
 jdk17:jooq-postgres:micronaut-build:
   <<: *jdk17-build
@@ -1016,9 +770,6 @@ jdk17:jooq-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-jooq-graal/jooq-postgres
   script:
     - ./build-jooq-postgres.sh
-  tags:
-    - aws
-    - memory
 
 .jdk11:redis:micronaut-build:
   <<: *jdk11-build
@@ -1027,9 +778,6 @@ jdk17:jooq-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
     - ./build-redis.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:redis:micronaut-build:
   <<: *jdk17-build
@@ -1038,9 +786,6 @@ jdk17:redis:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-redis-graal/redis
   script:
     - ./build-redis.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:function-aws:micronaut-build:
   <<: *jdk11-build
@@ -1050,9 +795,6 @@ jdk11:function-aws:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
   script:
     - ./build-function-aws.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:function-aws:micronaut-build:
   <<: *jdk17-build
@@ -1062,9 +804,6 @@ jdk17:function-aws:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml
   script:
     - ./build-function-aws.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:aws-app:micronaut-build:
   <<: *jdk11-build
@@ -1074,9 +813,6 @@ jdk11:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
     - ./build-aws-app.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:aws-app:micronaut-build:
   <<: *jdk17-build
@@ -1086,9 +822,6 @@ jdk17:aws-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-app-graal/sam-native.yaml
   script:
     - ./build-aws-app.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:grpc:micronaut-build:
   <<: *jdk11-build
@@ -1098,9 +831,6 @@ jdk11:grpc:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-client
   script:
     - ./build-grpc.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:grpc:micronaut-build:
   <<: *jdk17-build
@@ -1110,9 +840,6 @@ jdk17:grpc:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-grpc-graal/grpc-client
   script:
     - ./build-grpc.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:mqtt-v3:micronaut-build:
   <<: *jdk11-build
@@ -1121,9 +848,6 @@ jdk11:mqtt-v3:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
   script:
     - ./build-mqtt.sh v3
-  tags:
-    - aws
-    - speed
 
 jdk17:mqtt-v3:micronaut-build:
   <<: *jdk17-build
@@ -1132,9 +856,6 @@ jdk17:mqtt-v3:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v3
   script:
     - ./build-mqtt.sh v3
-  tags:
-    - aws
-    - speed
 
 jdk11:mqtt-v5:micronaut-build:
   <<: *jdk11-build
@@ -1143,9 +864,6 @@ jdk11:mqtt-v5:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
   script:
     - ./build-mqtt.sh v5
-  tags:
-    - aws
-    - speed
 
 jdk17:mqtt-v5:micronaut-build:
   <<: *jdk17-build
@@ -1154,9 +872,6 @@ jdk17:mqtt-v5:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-mqtt-graal/mqtt-v5
   script:
     - ./build-mqtt.sh v5
-  tags:
-    - aws
-    - speed
 
 jdk11:liquibase-h2:micronaut-build:
   <<: *jdk11-build
@@ -1165,9 +880,6 @@ jdk11:liquibase-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-h2
   script:
     - ./build-liquibase.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk17:liquibase-h2:micronaut-build:
   <<: *jdk17-build
@@ -1176,9 +888,6 @@ jdk17:liquibase-h2:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-h2
   script:
     - ./build-liquibase.sh h2
-  tags:
-    - aws
-    - memory
 
 jdk11:liquibase-postgres:micronaut-build:
   <<: *jdk11-build
@@ -1187,9 +896,6 @@ jdk11:liquibase-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-postgres
   script:
     - ./build-liquibase.sh postgres
-  tags:
-    - aws
-    - memory
 
 jdk17:liquibase-postgres:micronaut-build:
   <<: *jdk17-build
@@ -1198,9 +904,6 @@ jdk17:liquibase-postgres:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-postgres
   script:
     - ./build-liquibase.sh postgres
-  tags:
-    - aws
-    - memory
 
 jdk11:liquibase-mariadb:micronaut-build:
   <<: *jdk11-build
@@ -1209,9 +912,6 @@ jdk11:liquibase-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-mariadb
   script:
     - ./build-liquibase.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk17:liquibase-mariadb:micronaut-build:
   <<: *jdk17-build
@@ -1220,9 +920,6 @@ jdk17:liquibase-mariadb:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-liquibase-graal/liquibase-mariadb
   script:
     - ./build-liquibase.sh mariadb
-  tags:
-    - aws
-    - memory
 
 jdk11:aws-sdkv2-s3:micronaut-build:
   <<: *jdk11-build
@@ -1231,9 +928,6 @@ jdk11:aws-sdkv2-s3:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-s3
   script:
     - ./build-aws-sdkv2.sh s3
-  tags:
-    - aws
-    - speed
 
 jdk17:aws-sdkv2-s3:micronaut-build:
   <<: *jdk17-build
@@ -1242,9 +936,6 @@ jdk17:aws-sdkv2-s3:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-s3
   script:
     - ./build-aws-sdkv2.sh s3
-  tags:
-    - aws
-    - speed
 
 jdk11:aws-sdkv2-paramstore:micronaut-build:
   <<: *jdk11-build
@@ -1253,9 +944,6 @@ jdk11:aws-sdkv2-paramstore:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-paramstore
   script:
     - ./build-aws-sdkv2.sh paramstore
-  tags:
-    - aws
-    - speed
 
 jdk17:aws-sdkv2-paramstore:micronaut-build:
   <<: *jdk17-build
@@ -1264,9 +952,6 @@ jdk17:aws-sdkv2-paramstore:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-paramstore
   script:
     - ./build-aws-sdkv2.sh paramstore
-  tags:
-    - aws
-    - speed
 
 jdk11:cassandra:micronaut-build:
   <<: *jdk11-build
@@ -1275,9 +960,6 @@ jdk11:cassandra:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cassandra-graal/cassandra
   script:
     - ./build-cassandra.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:cassandra:micronaut-build:
   <<: *jdk17-build
@@ -1286,9 +968,6 @@ jdk17:cassandra:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-cassandra-graal/cassandra
   script:
     - ./build-cassandra.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:kafka:micronaut-build:
   <<: *jdk11-build
@@ -1297,9 +976,6 @@ jdk11:kafka:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-kafka-graal/kafka
   script:
     - ./build-kafka.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:kafka:micronaut-build:
   <<: *jdk17-build
@@ -1308,9 +984,6 @@ jdk17:kafka:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-kafka-graal/kafka
   script:
     - ./build-kafka.sh
-  tags:
-    - aws
-    - speed
 
 
 #  _            _
@@ -1410,9 +1083,6 @@ jdk11:service-discovery-consul:test:
   needs: ["jdk11:service-discovery-consul:micronaut-build"]
   script:
     - ./test-service-discovery-consul.sh
-  tags:
-    - aws
-    - speed
 
 jdk17:service-discovery-consul:test:
   <<: *micronaut-test-template
@@ -1424,9 +1094,6 @@ jdk17:service-discovery-consul:test:
   needs: ["jdk17:service-discovery-consul:micronaut-build"]
   script:
     - ./test-service-discovery-consul.sh
-  tags:
-    - aws
-    - speed
 
 .jdk11:service-discovery-eureka:test:
   <<: *micronaut-test-template
@@ -1438,9 +1105,6 @@ jdk17:service-discovery-consul:test:
   needs: ["jdk11:service-discovery-eureka:micronaut-build"]
   script:
     - ./test-service-discovery-eureka.sh
-  tags:
-    - aws
-    - speed
 
 .jdk17:service-discovery-eureka:test:
   <<: *micronaut-test-template
@@ -1452,9 +1116,6 @@ jdk17:service-discovery-consul:test:
   needs: ["jdk17:service-discovery-eureka:micronaut-build"]
   script:
     - ./test-service-discovery-eureka.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:zipkin:test:
   <<: *micronaut-test-template
@@ -2023,9 +1684,6 @@ jdk17:schedule:test:
   needs: ["jdk17:schedule:micronaut-build"]
   script:
     - ./test-schedule.sh
-  tags:
-    - aws
-    - speed
 
 jdk11:cache:test:
   <<: *micronaut-test-template
