@@ -100,10 +100,7 @@ jdk17:basic-app:micronaut-build:
       - $CI_PROJECT_DIR/micronaut-basic-app/basic-app
   script:
     - ./build-basic-app.sh
-  tags:
-    - aws
-    - speed
-
+  
 jdk11:email:micronaut-build:
   <<: *jdk11-build
   artifacts:
