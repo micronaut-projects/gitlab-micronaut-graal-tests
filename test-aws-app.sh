@@ -27,7 +27,7 @@ echo "-- Testing..."
 
 
 RESPONSE=$(curl -s $API_ENDPOINT/github/releases | jq -c '.[] | {name:.name} | select(.name | contains("Micronaut Framework 3.7.0"))')
-EXPECTED_RESPONSE='{"name":"Micronaut Framework 3.7.5"}'
+EXPECTED_RESPONSE='{"name":"Micronaut Framework 3.7.0"}'
 if [ "$RESPONSE" != "$EXPECTED_RESPONSE" ]; then echo $RESPONSE && aws cloudformation delete-stack --stack-name $STACK_NAME && exit 1; fi
 
 # Cleanup
