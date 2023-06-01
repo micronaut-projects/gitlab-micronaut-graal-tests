@@ -4,7 +4,7 @@ set -x
 $CI_PROJECT_DIR/micronaut-aws-sdk2-graal/aws-s3 &
 sleep 3
 
-BUCKET_NAME="tmp-micronaut"-${CI_BUILD_ID}
+BUCKET_NAME="tmp-micronaut"-${CI_JOB_ID}
 
 RESPONSE=$(curl -s -X POST localhost:8080/s3/buckets/$BUCKET_NAME | jq -r '.status')
 EXPECTED_RESPONSE='200'
