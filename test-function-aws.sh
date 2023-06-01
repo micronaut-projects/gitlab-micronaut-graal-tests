@@ -2,12 +2,12 @@
 
 apt update && apt install -y curl jq
 
-STACK_NAME=${STACK_NAME}-${CI_BUILD_ID}
+STACK_NAME=${STACK_NAME}-${CI_JOB_ID}
 
 # Deploy to AWS
 echo "-- Uploading application..."
 aws cloudformation package --template-file $CI_PROJECT_DIR/micronaut-function-aws-graal/sam-native.yaml --output-template-file $CI_PROJECT_DIR/micronaut-function-aws-graal/build/output-sam.yaml --s3-bucket $S3_BUCKET
-sed -i 's/MicronautNativeServiceApi/MicronautNativeServiceApi'${CI_BUILD_ID}'/g' $CI_PROJECT_DIR/micronaut-function-aws-graal/build/output-sam.yaml
+sed -i 's/MicronautNativeServiceApi/MicronautNativeServiceApi'${CI_JOB_ID}'/g' $CI_PROJECT_DIR/micronaut-function-aws-graal/build/output-sam.yaml
 
 echo "-- Deploying application..."
 aws cloudformation deploy --template-file $CI_PROJECT_DIR/micronaut-function-aws-graal/build/output-sam.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
